@@ -340,6 +340,90 @@ pinned by a test, and the first thing to revisit with more data.
 - Long C++ symbols are cut to 70 characters in the report table (`…`); `show` and
   `--json` keep them whole.
 
+## Phase 4: verification on this Mac
+
+### Real run (2026-10-27, after the crasher runs)
+
+`crashtriage ingest` over both folders:
+
+| | Files |
+|---|---|
+| Scanned | 96 |
+| Crash reports parsed and stored | 19 (0 parser warnings) |
+| Skipped, non-crash | 39 (20 bug_type 226, 14 bug_type 303, 4 bug_type 298, 1 panic summary) |
+| Skipped, not an `.ips` document | 30 (plain-text CPU / disk-write reports) |
+| Skipped, permission | 8 (see below) |
+
+A second `ingest` added 0 and counted 19 duplicates. `report` gives **19 crashes in
+12 clusters**. Top clusters (process names only):
+
+| Rank | Count | Process | Exception | Top frame |
+|---|---|---|---|---|
+| 1 | 5 | dotnet | EXC_CRASH / SIGABRT | `libcoreclr.dylib!PROCAbort` |
+| 2 | 3 | ct-crasher-versioned | EXC_BAD_ACCESS / SIGSEGV | `ct-crasher-versioned!parse_record` (versions 1.0, 2.0) |
+| 3 | 2 | ct-crasher-stripped | EXC_BAD_ACCESS / SIGSEGV | `ct-crasher-stripped!parse_record` (the Spotlight-symbolicated pair) |
+| 4-11 | 1 each | the other crashers | various | |
+| 12 | 1 | coreaudiod | EXC_BAD_ACCESS / SIGSEGV | `BTAudioHALPlugin+0x746a4` (system-only) |
+
+Without the crasher programs, the Mac's own history is 6 crashes in 2 clusters
+(dotnet x5, coreaudiod x1). All 19 crashes fall in ISO week 2026-W44.
+
+Timing (wall clock, including Python start-up): a fresh ingest of the 96 files took
+0.06-0.11 s over three runs; re-ingest 0.05 s; `report` 0.04 s. The data set is
+small, so these numbers say little about scale.
+
+### New finding: EPERM on analytics files
+
+Between Phase 0 and Phase 4 (same day), the 8 `Analytics-*.core_analytics` files in
+`/Library/Logs/DiagnosticReports/Retired/` became unreadable: `open()` and `head`
+both fail with `EPERM` ("Operation not permitted"). Unix permissions still allow the
+read (`rw-rw---- root:_analyticsusers`, and this account is in that group), there
+are no file flags or ACLs, and the JetsamEvent `.ips` files in the same folder are
+still readable. So something beyond Unix permissions is refusing the read: a macOS
+privacy restriction, or the sandbox the development shell runs under. I did not try
+to work around it (it would need a new permission). The tool handled it as designed:
+counted 8 `permission` skips, listed the files, and went on. These are analytics
+files (bug_type 211), not crash reports, so the crash numbers are not affected.
+
+### Injected defects
+
+`tests/test_defects.py` builds each defect from a real fixture and runs it through
+parse, fingerprint, ingest and the CLI:
+
+| # | Defect | Documented handling | Test |
+|---|---|---|---|
+| 1 | A frame with no `imageOffset` | Report still parsed; frame kept with offset `None`; warning `thread T frame F: no imageOffset`; fingerprint token `image+?`; `show` prints `?` and the warning | `test_defect_frame_without_offset` |
+| 2 | A duplicate incident (same file twice, plus an edited copy with the same incident id) | Stored once; the others count as duplicates; no rows added | `test_defect_duplicate_incident` |
+| 3 | One bug in a rebuilt binary (new UUID, load address, offsets, symbolLocation, version) | Same fingerprint; a hash over raw frames differs | `test_defect_same_bug_naive_hash_splits` |
+| 4 | A crash whose frames are all system frames | Fingerprint uses the top 5 system frames, basis `system-only`; with app frames present the system frames on top are skipped | `test_defect_all_system_frames` |
+| 5 | A non-UTF-8 byte inside a symbol name | Decoded with U+FFFD, parsed, warning recorded, ingested | `test_defect_non_utf8_byte` |
+| 6 | A crash header with an empty body | Skipped as `malformed` ("crash header but the body is empty"); the rest of the folder is ingested; the file is listed by `ingest` | `test_defect_empty_body` |
+
+### Mutation check
+
+`scripts/mutation_check.py` breaks the handling code for each defect in a temporary
+copy of the repo and runs the full suite. Result: the baseline passes and **9 of 9
+mutations are caught**.
+
+| Mutation (breaks the handling of ...) | Failing tests |
+|---|---|
+| frame with a missing offset | 2 (incl. `test_defect_frame_without_offset`) |
+| duplicate incident (`INSERT OR REPLACE`) | 5 (incl. `test_defect_duplicate_incident`) |
+| naive hash: symbolLocation hashed | 17 (incl. `test_defect_same_bug_naive_hash_splits`) |
+| naive hash: JIT frames hashed | 9 |
+| all system frames, no fallback | 5 (incl. `test_defect_all_system_frames`) |
+| system frames on top not skipped | 14 (incl. `test_defect_all_system_frames`) |
+| non-UTF-8 byte (strict decoding) | 3 (incl. `test_defect_non_utf8_byte`) |
+| empty body check removed | 2 (incl. `test_defect_empty_body`) |
+| inputs opened `r+b` instead of `rb` | 2 |
+
+### Test suite
+
+214 tests, all passing, in about 1 s (`.venv/bin/python -m pytest`).
+
+Resume bullets built from these numbers are in `RESUME_BULLETS.md`, which is kept
+out of the public repo on purpose (`.gitignore`).
+
 ## Open questions
 
 - Is `faultingThread` always the thread with `triggered: true`? True for 6 of 6 files
@@ -347,3 +431,9 @@ pinned by a test, and the first thing to revisit with more data.
 - What exactly moves a report into `Retired/`? Every crash here was already there.
 - The fifth dotnet crash (`.000`) has a longer faulting stack (41 frames, 14 JIT) than
   the other four. Is it the same bug reached by a different path, or a different bug?
+  The fingerprint puts all five together (see "Limitations found here" in Phase 2);
+  the native report cannot settle it.
+- What made the analytics files unreadable (EPERM) partway through the day: a macOS
+  privacy rule, or the sandbox of the shell the tool ran in? (Phase 4.)
+- Is `N = 5` right? It is pinned by tests but rests on 19 crashes; more data from
+  real apps might argue for 3 (fewer splits) or more (fewer false merges).
