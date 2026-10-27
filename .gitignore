@@ -1,0 +1,38 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+*.egg-info/
+build/
+dist/
+
+# Local databases and scratch space
+*.db
+*.db-journal
+*.sqlite
+scratch/
+raw/
+
+# Real diagnostic reports never enter the repo. Only anonymized fixtures under
+# tests/fixtures/ are tracked.
+DiagnosticReports/
+*.ips
+*.diag
+*.panic
+*.spin
+*.hang
+*.wakeups
+*.core_analytics
+!tests/fixtures/**/*.ips
+!tests/fixtures/**/*.diag
+
+# Crasher build output (binaries and dSYMs)
+crashers/build/
+*.dSYM/
+
+# Personal, not for the public repo
+RESUME_BULLETS.md
+
+# OS
+.DS_Store
