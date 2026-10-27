@@ -26,7 +26,7 @@ python3.14 -m venv .venv
 
 | Command | What it does |
 |---|---|
-| `ingest [FOLDER\|FILE ...]` | Parse reports into the database (default: both DiagnosticReports folders, including `Retired/`). Re-running adds nothing new. Prints what was skipped and why. |
+| `ingest [FOLDER\|FILE ...] [--symbolicate DSYM]` | Parse reports into the database (default: both DiagnosticReports folders, including `Retired/`). Re-running adds nothing new. Prints what was skipped and why. `--symbolicate` names frames from your own binaries (see below). |
 | `report [--since 7d] [--process NAME] [--top N]` | Markdown table of crash clusters ranked by count, with first/last seen, versions, exception and top frame. |
 | `show <id>` | One crash and its faulting thread. Takes an incident id, a unique prefix of one, or a fingerprint (shows that cluster's latest crash). |
 | `trend [--weeks N] [--process NAME]` | Crashes per ISO week (UTC) per process. |
@@ -64,6 +64,27 @@ and 2.0, and the fingerprint still puts the three crashes together.
   2  ct-crasher-versioned  0x4e8        * main + 56  (versioned.c:44)
   3  dyld                  0x204e4        start + 6992
 ```
+
+## Symbolicating your own binaries
+
+A report names a frame only if macOS found symbols when it wrote the report. For a
+stripped binary you built, keep its dSYM and pass it (or a folder of them):
+
+```sh
+crashtriage ingest --symbolicate path/to/MyTool.dSYM      # or a folder searched for *.dSYM
+```
+
+`crashtriage` reads each dSYM's UUID from its Mach-O `LC_UUID` load command, and
+for every stored crash whose image has the same UUID it asks `atos` for the frames
+that have no name (`atos -o <dSYM> -arch <arch> -l <load address> <addresses>`).
+Named frames get the function and source line, and the crash is re-fingerprinted,
+so the same bug in two stripped builds joins one cluster. It applies to every
+stored crash, it only fills frames that have no name, and running it again
+changes nothing. On the development Mac, the stripped crasher's two builds went
+from 3 clusters to 1 (6 frames named, none unresolved).
+
+(macOS does this by itself when Spotlight can find the dSYM: the first run of the
+stripped crasher came back fully symbolicated. `NOTES.md` has the details.)
 
 ## How the fingerprint works
 
@@ -109,9 +130,11 @@ to run, and the bug does not. The full rule, and why each step exists, is in
 ## Limitations
 
 - **No symbolication of third-party code.** Frames are named only if the report
-  already names them. A stripped binary without its dSYM shows offsets, and
-  offsets move between builds, so the same bug in two unsymbolicated builds gets
-  two fingerprints (`ct-crasher-stripped` in the example).
+  already names them or you have the binary's dSYM (`--symbolicate`). Without
+  one, a stripped binary shows offsets, and offsets move between builds, so the
+  same bug in two unsymbolicated builds gets two fingerprints
+  (`ct-crasher-stripped` in the example). Frames named by `atos` have no
+  "offset within the function" (`+ 12`); the fingerprint does not use it anyway.
 - **User-space crash reports only.** Kernel panics, hangs, spins, jetsam
   (memory pressure) events and CPU or disk-write reports are skipped, as is the
   old plain-text crash format.
@@ -143,6 +166,7 @@ intended output change.
 | `crashtriage/fingerprint.py` | the fingerprint rule |
 | `crashtriage/store.py` | SQLite schema, idempotent ingest, round trip back to records |
 | `crashtriage/report.py`, `cli.py` | the `report`, `show` and `trend` commands |
+| `crashtriage/symbolicate.py` | Mach-O UUID reader and `atos` symbolication |
 | `crashtriage/anonymize.py` | makes commit-safe copies of real reports |
 | `crashers/` | small C, C++ and Swift programs that crash in distinct ways |
 | `tests/fixtures/` | anonymized real reports (provenance in its README) |

@@ -424,6 +424,61 @@ mutations are caught**.
 Resume bullets built from these numbers are in `RESUME_BULLETS.md`, which is kept
 out of the public repo on purpose (`.gitignore`).
 
+## Phase 5: `--symbolicate` with atos and dSYMs
+
+### What it does
+
+`crashtriage ingest --symbolicate <dSYM or folder>` (repeatable):
+
+1. Reads the UUID and architecture of each Mach-O file in the dSYM bundles from
+   the `LC_UUID` load command (thin and universal files), with `struct`. A test
+   checks the result against `dwarfdump --uuid` on a freshly built binary.
+2. For each stored crash with unnamed frames in an image whose UUID matches,
+   runs `atos -o <dSYM DWARF file> -arch <image arch> -l <image base> <base+offset>...`,
+   one call per image.
+3. Parses `symbol (in image) (file:line)` lines; unresolved addresses come back as
+   `0x... (in image)` or a bare address and are left unnamed. If atos prints a
+   different number of lines than addresses were sent, nothing from that call is
+   used, so a name can never land on the wrong frame.
+4. Updates only frames whose symbol is NULL, then re-fingerprints those crashes.
+
+### Observed `atos` behavior (macOS 26.6.2, /usr/bin/atos)
+
+- Resolved, with a dSYM: `parse_record (in ct-crasher-stripped) (versioned.c:24)`.
+  No `+ offset` is printed when there is line information, so `symbolLocation`
+  stays empty for frames named this way.
+- Address inside the image but not in a function: `0x0000000100000010 (in ...)`.
+- Address outside the image: echoed back (`0x104099999`).
+- Stripped binary, no dSYM: `0x00000001000005a4 (in ct-crasher-stripped) + 12`.
+- Wrong architecture: an error on stderr and nothing on stdout.
+
+### Result on this Mac
+
+Before: 19 crashes in 12 clusters; `ct-crasher-stripped` split into 3 clusters
+(the Spotlight-symbolicated pair, plus one cluster per unsymbolicated build).
+`ingest --symbolicate crashers/build/dsyms.noindex` named 6 frames in 2 crashes
+with 2 dSYMs (0 unresolved). After: **19 crashes in 10 clusters**, and all 4
+`ct-crasher-stripped` crashes (versions 1.0 and 2.0) are one cluster whose
+fingerprint equals the one macOS's own symbolication produced. A second run
+changed 0 crashes.
+
+### Decisions and limits
+
+- Matching is by UUID only. A dSYM is never applied to a binary from another
+  build, even with the same name.
+- `--symbolicate` updates crashes already in the database, not only new ones,
+  because the dSYM is often found after the crash was ingested.
+- Each run of `crashers/build.sh` produced binaries with new UUIDs (observed three
+  times), so the real-data result above only holds for the build that produced
+  those crash reports. Rebuild, re-run the crashers, then symbolicate.
+- System libraries are not symbolicated (their dSYMs are not on the machine).
+
+### Final checks
+
+- Test suite: 238 tests, all passing (`.venv/bin/python -m pytest`, about 1.3 s).
+- Mutation check: 11 of 11 mutations caught (the 9 above, plus "atos output that
+  does not line up" and "dSYM used without a UUID match").
+
 ## Open questions
 
 - Is `faultingThread` always the thread with `triggered: true`? True for 6 of 6 files

@@ -38,6 +38,10 @@ MUTATIONS = [
      "if not body_text.strip():", "if False:"),
     ("inputs opened for writing", "crashtriage/parser.py",
      'with open(path, "rb") as fh:', 'with open(path, "r+b") as fh:'),
+    ("atos output that does not line up (symbolication)", "crashtriage/symbolicate.py",
+     "if len(lines) != len(offsets):", "if False:"),
+    ("dSYM used without a UUID match (symbolication)", "crashtriage/symbolicate.py",
+     "or image.uuid.lower() not in dsyms:", "or not dsyms:"),
 ]
 
 

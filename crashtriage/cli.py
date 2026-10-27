@@ -1,6 +1,6 @@
 """Command-line interface.
 
-    crashtriage ingest [FOLDER ...]                        read reports into the database
+    crashtriage ingest [FOLDER ...] [--symbolicate DSYM]   read reports into the database
     crashtriage report [--since 7d] [--process NAME] [--top N]
     crashtriage show <incident-id | fingerprint>
     crashtriage trend [--weeks N] [--process NAME]
@@ -33,6 +33,7 @@ from .report import (
     trend,
 )
 from .store import SchemaMismatch, connect, ingest, row_counts
+from .symbolicate import atos_path, find_dsyms, symbolicate_stored
 
 # Skips worth listing file by file; the rest are expected and only counted.
 _LISTED_KINDS = ("permission", "unreadable", "malformed")
@@ -57,6 +58,13 @@ def build_parser() -> argparse.ArgumentParser:
 
     p = commands.add_parser("ingest", parents=[common], help="read crash reports into the database (read-only on the inputs)")
     p.add_argument("folders", nargs="*", help="folders or files (default: ~/Library/Logs/DiagnosticReports and /Library/Logs/DiagnosticReports)")
+    p.add_argument(
+        "--symbolicate",
+        action="append",
+        metavar="DSYM",
+        help="name unsymbolicated frames with atos, using this .dSYM bundle or every .dSYM under this folder "
+        "(matched by UUID; repeatable). Applies to every stored crash, not only new ones.",
+    )
 
     p = commands.add_parser("report", parents=[common], help="crash clusters ranked by count, as a Markdown table")
     p.add_argument("--since", help="only crashes since 7d, 24h, 2w, YYYY-MM-DD or an ISO 8601 time")
@@ -114,9 +122,19 @@ def _tilde(path: str) -> str:
 
 def _ingest(args: argparse.Namespace) -> int:
     folders = args.folders or [str(p) for p in default_folders()]
+    dsyms = None
+    if args.symbolicate:
+        if atos_path() is None:
+            _error("--symbolicate needs atos (install the Xcode command line tools)")
+            return 1
+        dsyms = find_dsyms(args.symbolicate)
+        if not dsyms:
+            _error("no dSYM found under " + ", ".join(args.symbolicate))
+            return 1
     conn = connect(args.db)
     try:
         result = ingest(conn, folders)
+        symbolicated = symbolicate_stored(conn, dsyms) if dsyms else None
         stored = row_counts(conn)["incidents"]
     finally:
         conn.close()
@@ -139,6 +157,15 @@ def _ingest(args: argparse.Namespace) -> int:
         },
         "database": {"path": args.db, "incidents": stored},
     }
+    if symbolicated is not None:
+        data["symbolication"] = {
+            "dsyms": len(dsyms),
+            "incidents_changed": symbolicated.incidents_changed,
+            "frames_resolved": symbolicated.frames_resolved,
+            "frames_unresolved": symbolicated.frames_unresolved,
+            "clusters_before": symbolicated.clusters_before,
+            "clusters_after": symbolicated.clusters_after,
+        }
 
     lines = [
         "Folders: " + ", ".join(_tilde(f) for f in folders),
@@ -156,6 +183,12 @@ def _ingest(args: argparse.Namespace) -> int:
             lines.append(f"  {'':<11}        - {_tilde(s.path)}")
         if len(shown) > _LIST_LIMIT:
             lines.append(f"  {'':<11}        ... and {len(shown) - _LIST_LIMIT} more (see --json)")
+    if symbolicated is not None:
+        lines.append(
+            f"Symbolicated {symbolicated.frames_resolved} frames in {symbolicated.incidents_changed} crashes "
+            f"with {len(dsyms)} dSYMs ({symbolicated.frames_unresolved} not resolved); "
+            f"clusters {symbolicated.clusters_before} -> {symbolicated.clusters_after}."
+        )
     lines.append(f"Database {args.db} now holds {stored} crashes.")
     _emit(args, data, "\n".join(lines) + "\n")
     return 0
