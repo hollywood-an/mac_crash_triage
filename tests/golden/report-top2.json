@@ -1,0 +1,55 @@
+{
+  "filters": {
+    "since": null,
+    "as_of": null,
+    "process": null,
+    "top": 2
+  },
+  "crashes": 15,
+  "total_clusters": 11,
+  "clusters": [
+    {
+      "rank": 1,
+      "fingerprint": "bd6f08520a5ab6c0",
+      "basis": "app",
+      "count": 3,
+      "process": "ct-crasher-versioned",
+      "exception_type": "EXC_BAD_ACCESS",
+      "signals": [
+        "SIGSEGV"
+      ],
+      "first_seen": "2026-10-27T20:15:49Z",
+      "last_seen": "2026-10-27T20:15:53Z",
+      "versions": [
+        "1.0",
+        "2.0"
+      ],
+      "top_frame": "ct-crasher-versioned!parse_record",
+      "incident_ids": [
+        "00000000-0000-0000-6573-78D2AE2A476A",
+        "00000000-0000-0000-8AED-E3F5E3BB5CC1",
+        "00000000-0000-0000-BF63-32D6CBB7EC8D"
+      ]
+    },
+    {
+      "rank": 2,
+      "fingerprint": "edb224fcb71d2a42",
+      "basis": "app",
+      "count": 3,
+      "process": "dotnet",
+      "exception_type": "EXC_CRASH",
+      "signals": [
+        "SIGABRT"
+      ],
+      "first_seen": "2026-10-26T22:25:39Z",
+      "last_seen": "2026-10-26T22:36:55Z",
+      "versions": [],
+      "top_frame": "libcoreclr.dylib!PROCAbort",
+      "incident_ids": [
+        "00000000-0000-0000-B6F3-F80AB71052CA",
+        "00000000-0000-0000-B30A-4E561E99509A",
+        "00000000-0000-0000-B013-7C4C105FD146"
+      ]
+    }
+  ]
+}

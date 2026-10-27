@@ -1,0 +1,12 @@
+Folders: fixtures
+Scanned 19 files.
+Crash reports: 15 parsed, 15 added, 0 already in the database.
+Skipped 4 files:
+  not-ips         2
+                  2  first line is not a JSON header
+  malformed       1
+                  1  body is not valid JSON: Expecting ':' delimiter at line 174 column 20
+                     - fixtures/malformed-truncated.ips
+  non-crash       1
+                  1  bug_type 298 (jetsam event)
+Database crashtriage.db now holds 15 crashes.

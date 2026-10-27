@@ -1,0 +1,25 @@
+{
+  "weeks": [
+    "2026-W43",
+    "2026-W44"
+  ],
+  "window": {
+    "start": "2026-10-19T00:00:00Z",
+    "end": "2026-10-29T00:00:00Z"
+  },
+  "rows": [
+    {
+      "process": "dotnet",
+      "counts": [
+        0,
+        3
+      ],
+      "total": 3
+    }
+  ],
+  "totals": [
+    0,
+    3
+  ],
+  "undated_crashes": 0
+}

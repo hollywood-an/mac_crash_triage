@@ -1,0 +1,45 @@
+{
+  "folders": [
+    "fixtures"
+  ],
+  "files_seen": 19,
+  "crash_reports": 15,
+  "added": 0,
+  "duplicates": 15,
+  "skipped": {
+    "total": 4,
+    "by_kind": {
+      "malformed": 1,
+      "non-crash": 1,
+      "not-ips": 2
+    },
+    "by_reason": [
+      {
+        "kind": "not-ips",
+        "reason": "first line is not a JSON header",
+        "count": 2
+      },
+      {
+        "kind": "malformed",
+        "reason": "body is not valid JSON: Expecting ':' delimiter at line 174 column 20",
+        "count": 1
+      },
+      {
+        "kind": "non-crash",
+        "reason": "bug_type 298 (jetsam event)",
+        "count": 1
+      }
+    ],
+    "files": [
+      {
+        "path": "fixtures/malformed-truncated.ips",
+        "kind": "malformed",
+        "reason": "body is not valid JSON: Expecting ':' delimiter at line 174 column 20"
+      }
+    ]
+  },
+  "database": {
+    "path": "crashtriage.db",
+    "incidents": 15
+  }
+}

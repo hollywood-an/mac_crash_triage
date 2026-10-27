@@ -1,0 +1,156 @@
+{
+  "incident_id": "00000000-0000-0000-8E98-8FC38E6D3F1F",
+  "timestamp": "2026-10-27T20:15:45Z",
+  "timestamp_raw": "2026-10-27 16:15:45.1095 -0400",
+  "process": "ct-crasher-throw",
+  "version": null,
+  "build": null,
+  "pid": 4334,
+  "path": "/REDACTED/ct-crasher-throw",
+  "os_version": "macOS 26.6.2",
+  "os_build": "25G83",
+  "cpu_type": "ARM-64",
+  "exception_type": "EXC_CRASH",
+  "signal": "SIGABRT",
+  "exception_subtype": null,
+  "termination": {
+    "namespace": "SIGNAL",
+    "code": 6,
+    "indicator": "Abort trap: 6"
+  },
+  "fingerprint": {
+    "value": "15114a2f571b693f",
+    "basis": "app",
+    "tokens": [
+      "ct-crasher-throw!load_config(char const*)",
+      "ct-crasher-throw!main"
+    ],
+    "frame_indices": [
+      9,
+      10
+    ]
+  },
+  "cluster_size": 1,
+  "faulting_thread": 0,
+  "threads": [
+    {
+      "index": 0,
+      "id": 14135072,
+      "name": null,
+      "queue": "com.apple.main-thread",
+      "triggered": true,
+      "original_length": null,
+      "frames": [
+        {
+          "image": "libsystem_kernel.dylib",
+          "image_index": 1,
+          "offset": 38376,
+          "symbol": "__pthread_kill",
+          "symbol_location": 8,
+          "source_file": null,
+          "source_line": null
+        },
+        {
+          "image": "libsystem_pthread.dylib",
+          "image_index": 2,
+          "offset": 26840,
+          "symbol": "pthread_kill",
+          "symbol_location": 296,
+          "source_file": null,
+          "source_line": null
+        },
+        {
+          "image": "libsystem_c.dylib",
+          "image_index": 3,
+          "offset": 493944,
+          "symbol": "abort",
+          "symbol_location": 148,
+          "source_file": null,
+          "source_line": null
+        },
+        {
+          "image": "libc++abi.dylib",
+          "image_index": 4,
+          "offset": 91948,
+          "symbol": "__abort_message",
+          "symbol_location": 132,
+          "source_file": null,
+          "source_line": null
+        },
+        {
+          "image": "libc++abi.dylib",
+          "image_index": 4,
+          "offset": 13680,
+          "symbol": "demangling_terminate_handler()",
+          "symbol_location": 272,
+          "source_file": null,
+          "source_line": null
+        },
+        {
+          "image": "libobjc.A.dylib",
+          "image_index": 5,
+          "offset": 149668,
+          "symbol": "_objc_terminate()",
+          "symbol_location": 172,
+          "source_file": null,
+          "source_line": null
+        },
+        {
+          "image": "libc++abi.dylib",
+          "image_index": 4,
+          "offset": 79708,
+          "symbol": "std::__terminate(void (*)())",
+          "symbol_location": 16,
+          "source_file": null,
+          "source_line": null
+        },
+        {
+          "image": "libc++abi.dylib",
+          "image_index": 4,
+          "offset": 89060,
+          "symbol": "__cxxabiv1::failed_throw(__cxxabiv1::__cxa_exception*)",
+          "symbol_location": 88,
+          "source_file": null,
+          "source_line": null
+        },
+        {
+          "image": "libc++abi.dylib",
+          "image_index": 4,
+          "offset": 8348,
+          "symbol": "__cxa_throw",
+          "symbol_location": 92,
+          "source_file": null,
+          "source_line": null
+        },
+        {
+          "image": "ct-crasher-throw",
+          "image_index": 0,
+          "offset": 1376,
+          "symbol": "load_config(char const*)",
+          "symbol_location": 68,
+          "source_file": "throw.cpp",
+          "source_line": 6
+        },
+        {
+          "image": "ct-crasher-throw",
+          "image_index": 0,
+          "offset": 1292,
+          "symbol": "main",
+          "symbol_location": 36,
+          "source_file": "throw.cpp",
+          "source_line": 10
+        },
+        {
+          "image": "dyld",
+          "image_index": 6,
+          "offset": 132324,
+          "symbol": "start",
+          "symbol_location": 6992,
+          "source_file": null,
+          "source_line": null
+        }
+      ]
+    }
+  ],
+  "warnings": []
+}

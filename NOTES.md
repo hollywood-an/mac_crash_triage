@@ -305,6 +305,41 @@ pinned by a test, and the first thing to revisit with more data.
 - The database stores each report's local source path. It is local
   (`*.db` is gitignored) and paths are not printed by `report`.
 
+## Phase 3: triage CLI
+
+### Decisions
+
+- **Commands:** `ingest [FOLDER|FILE ...]`, `report [--since] [--process] [--top]`,
+  `show <id>`, `trend [--weeks N] [--process]`. Every command takes `--db` (default
+  `./crashtriage.db`) and `--json`. `report` and `trend` also take `--as-of`.
+- **Determinism.** Output is a pure function of the database and the arguments.
+  Nothing prints the current time. Relative windows (`--since 7d`, `trend`'s last N
+  weeks) are measured from the clock unless `--as-of` is given, and the report echoes
+  the filter as typed (`since 7d`), not as a resolved date, so the text does not
+  change from one run to the next when the data does not. Tests pin this with golden
+  files, with a database ingested in reverse order, and with repeated runs.
+- **Ranking:** count (desc), then last seen (desc), then fingerprint (asc), which is
+  a total order, so ties never depend on insertion order.
+- **Filters apply before grouping.** Count, first seen, last seen and versions all
+  describe the crashes that matched the filters.
+- **`--since` / `--as-of` semantics:** `--as-of` is an exclusive end; a bare date
+  means the end of that day (UTC). `--since` takes `24h`, `7d`, `2w`, a date (start of
+  day, UTC) or an ISO time with an offset. A time without an offset is refused rather
+  than guessed. Crashes without a timestamp are excluded by `--since` and are counted
+  separately by `trend`.
+- **Weeks** are ISO weeks in UTC, Monday to Sunday (2026-10-26 is the Monday that
+  starts 2026-W44).
+- **`show` accepts** a full incident id, a unique prefix of one, or a fingerprint
+  (or prefix), in which case it shows that cluster's latest crash. The report table
+  lists fingerprints rather than incident ids because the ids are 36 characters.
+  `*` in the frame list marks the frames that went into the fingerprint.
+- **Versions** sort numerically part by part; a text part sorts after numbers
+  (`1.9`, `1.9.1`, `1.9-beta`, `1.10`). Not semver, but a total order.
+- **Errors:** read commands on a missing database exit 1 without creating it;
+  unknown or ambiguous ids exit 1 with the reason on stderr; bad arguments exit 2.
+- Long C++ symbols are cut to 70 characters in the report table (`…`); `show` and
+  `--json` keep them whole.
+
 ## Open questions
 
 - Is `faultingThread` always the thread with `triggered: true`? True for 6 of 6 files

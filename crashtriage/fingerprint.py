@@ -44,6 +44,7 @@ class Fingerprint:
     value: str  # 16 lowercase hex digits
     basis: str  # "app", "system-only" or "no-frames"
     tokens: tuple[str, ...]
+    frame_indices: tuple[int, ...]  # positions in the faulting thread of the hashed frames
 
     @property
     def top_frame(self) -> str | None:
@@ -76,16 +77,17 @@ def classify(frame: Frame, report: CrashReport) -> str:
 def fingerprint(report: CrashReport, top_n: int = TOP_N) -> Fingerprint:
     thread = report.faulting
     frames = thread.frames if thread is not None else ()
-    kinds = [(frame, classify(frame, report)) for frame in frames]
-    app = [frame for frame, kind in kinds if kind == "app"]
-    system = [frame for frame, kind in kinds if kind == "system"]
+    kinds = [classify(frame, report) for frame in frames]
+    app = [i for i, kind in enumerate(kinds) if kind == "app"]
+    system = [i for i, kind in enumerate(kinds) if kind == "system"]
     if app:
         chosen, basis = app, "app"
     elif system:
         chosen, basis = system, "system-only"
     else:
         chosen, basis = [], "no-frames"
-    tokens = tuple(frame_token(frame) for frame in chosen[:top_n])
+    chosen = chosen[:top_n]
+    tokens = tuple(frame_token(frames[i]) for i in chosen)
     material = "\0".join([FINGERPRINT_VERSION, report.process_name, report.exception_type or "", "\n".join(tokens)])
     value = hashlib.sha256(material.encode("utf-8")).hexdigest()[:16]
-    return Fingerprint(value=value, basis=basis, tokens=tokens)
+    return Fingerprint(value=value, basis=basis, tokens=tokens, frame_indices=tuple(chosen))

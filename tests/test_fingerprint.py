@@ -135,6 +135,7 @@ def test_system_frames_on_top_are_skipped() -> None:
     throw = fingerprint(parsed("crasher-throw.ips"))
     assert throw.basis == "app"
     assert throw.tokens == ("ct-crasher-throw!load_config(char const*)", "ct-crasher-throw!main")
+    assert throw.frame_indices == (9, 10)  # frames 0-8 are libsystem / libc++abi / libobjc
     swift = fingerprint(parsed("crasher-swift.ips"))
     assert swift.top_frame == "ct-crasher-swift!requirePositive(_:)"
     dotnet = fingerprint(parsed("dotnet-abort-a.ips"))
