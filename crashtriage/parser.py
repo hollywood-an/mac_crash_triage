@@ -86,7 +86,7 @@ def parse_bytes(data: bytes, path: str = "<memory>") -> CrashReport | Skipped:
         return Skipped(path, "malformed", "body is JSON but not an object")
 
     try:
-        return _build(header, body, bug_type, sha256, warnings)
+        return _build(header, body, bug_type, sha256, warnings, path)
     except _Malformed as exc:
         return Skipped(path, "malformed", str(exc))
     except (TypeError, ValueError, AttributeError, KeyError, IndexError) as exc:
@@ -185,6 +185,7 @@ def _build(
     bug_type: str,
     sha256: str,
     warnings: list[str],
+    path: str,
 ) -> CrashReport:
     incident_id = _str(header, "incident_id") or _str(body, "incident")
     if incident_id is None:
@@ -257,6 +258,7 @@ def _build(
         images=images,
         source_sha256=sha256,
         warnings=tuple(warnings),
+        source_path=path,
     )
 
 

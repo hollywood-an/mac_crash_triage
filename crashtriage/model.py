@@ -77,6 +77,7 @@ class CrashReport:
     images: tuple[Image, ...]
     source_sha256: str
     warnings: tuple[str, ...] = field(default=())
+    source_path: str = "<memory>"
 
     @property
     def faulting(self) -> ThreadRec | None:

@@ -228,6 +228,83 @@ new files in total, counting a second run of the two stripped builds). Results:
 bug_type 226, 14 bug_type 303, 8 bug_type 211, 4 bug_type 298, 1 panic summary;
 29 `not-ips` text reports). 0 permission or unreadable skips.
 
+## Phase 2: store and fingerprint
+
+### Fingerprint rule (version `crashtriage-fp-v1`)
+
+Implemented in `crashtriage/fingerprint.py`; the module docstring is the exact
+specification.
+
+1. Use the faulting thread only.
+2. Drop frames in anonymous memory (`source: "A"`): JIT code, whose offsets are
+   per-run absolute addresses.
+3. A frame is *system* when its image path starts with one of `/System/`,
+   `/usr/lib/`, `/usr/libexec/`, `/usr/bin/`, `/usr/sbin/`, `/bin/`, `/sbin/`,
+   `/Library/Apple/`, **unless** that image is the crashing executable itself
+   (so a crash inside `/usr/sbin/coreaudiod`'s own code counts as app code). Every
+   other frame is an *app* frame.
+4. If any app frame exists, use only app frames: the system frames on top
+   (`__pthread_kill`, `abort`, `__cxa_throw`, `_assertionFailure`) describe how
+   the process died, which is the same for unrelated bugs. Otherwise use the
+   system frames and record `basis = system-only`.
+5. Take the first 5 and render each as `image!symbol`, or `image+0xOFFSET` when
+   there is no symbol. `symbolLocation`, image UUID, load address, version and
+   pid are left out: they change between builds while the bug does not.
+6. `sha256("crashtriage-fp-v1" \0 process \0 exception type \0 tokens joined by
+   newlines)`, first 16 hex digits.
+
+Why N = 5: on every fixture the frames that identify the bug are within the
+first 3 app frames, and 5 leaves room for a shared helper on top (e.g. a common
+`validate()` called from two places) without letting deep, unrelated callers
+(`main`, run loops, thread entry points) split a cluster. It is a judgment call,
+pinned by a test, and the first thing to revisit with more data.
+
+### Measured on the fixtures and this Mac
+
+| Data | Crashes | Fingerprint clusters | Naive clusters (hash of the raw faulting stack) |
+|---|---|---|---|
+| Fixtures | 15 | 11 | 14 |
+| This Mac, all | 19 | 12 | 16 |
+| This Mac, excluding `ct-crasher-*` | 6 | 2 | 6 |
+
+- `ct-crasher-versioned` 1.0 (x2) and 2.0 share one fingerprint although every
+  image offset of the bug moved in 2.0. A raw-stack hash splits them into two.
+- The five dotnet crashes share one fingerprint; a raw-stack hash gives five,
+  because their JIT frames have different absolute addresses on every run.
+- The two *symbolicated* stripped-build reports (the first run, when Spotlight
+  found the dSYM) share one fingerprint; the two *unsymbolicated* ones split,
+  as documented (fixed in Phase 5 by `--symbolicate`).
+- Ingesting the real folders twice: 19 added, then 0 added and 19 duplicates;
+  incidents 19, images 169, threads 112, frames 872 both times.
+
+### Limitations found here
+
+- **Managed runtimes.** For dotnet, the top app frames are the CLR's generic
+  "unhandled managed exception" path (`PROCAbort`, `TerminateProcess`, `SfiNext`,
+  `CallDescrWorkerInternal`, `DispatchCallSimple`). The frames that would tell two
+  managed bugs apart are JIT frames with no symbols, which must be dropped. So every
+  unhandled .NET exception in the same runtime lands in one cluster. The fifth dotnet
+  crash (41 frames instead of 35) may really be a different managed bug; a native
+  crash report cannot show that.
+- **System-only crashes** (coreaudiod) use offsets in a stripped Apple plug-in, so
+  they will split across macOS updates.
+
+### Store decisions
+
+- SQLite tables `incidents`, `images`, `threads`, `frames`, plus `meta` (schema and
+  fingerprint versions). `incident_id` is the primary key; `source_sha256` is unique.
+- **Idempotent ingest:** `INSERT OR IGNORE` on the incident row; when it is
+  ignored, nothing else is written and the file counts as a duplicate. One
+  transaction per file.
+- **Duplicate incident id with different bytes:** the first file (in sorted path
+  order) wins and the second counts as a duplicate.
+- `load_report()` rebuilds the exact `CrashReport` from the tables (tested for
+  every fixture), so `show` and re-fingerprinting work from the database alone.
+- If the stored fingerprint version differs from the code's, every fingerprint is
+  recomputed when the database is opened.
+- The database stores each report's local source path. It is local
+  (`*.db` is gitignored) and paths are not printed by `report`.
+
 ## Open questions
 
 - Is `faultingThread` always the thread with `triggered: true`? True for 6 of 6 files
