@@ -1,0 +1,296 @@
+{"app_name":"ct-crasher-stripped","timestamp":"2026-10-27 16:17:06.00 -0400","app_version":"2.0","slice_uuid":"00000000-0000-0000-f601-420518f7b766","build_version":"2","platform":1,"share_with_app_devs":0,"is_first_party":1,"bug_type":"309","os_version":"macOS 26.6.2 (25G83)","roots_installed":0,"incident_id":"00000000-0000-0000-57F6-EE6D65C90F2C","name":"ct-crasher-stripped"}
+{
+  "uptime": 460000,
+  "procRole": "Unspecified",
+  "version": 2,
+  "userID": -1,
+  "deployVersion": 210,
+  "modelCode": "Mac15,3",
+  "coalitionID": 54946,
+  "osVersion": {
+    "train": "macOS 26.6.2",
+    "build": "25G83",
+    "releaseType": "User"
+  },
+  "captureTime": "2026-10-27 16:17:06.4679 -0400",
+  "codeSigningMonitor": 2,
+  "incident": "00000000-0000-0000-57F6-EE6D65C90F2C",
+  "pid": 5322,
+  "translated": false,
+  "cpuType": "ARM-64",
+  "procLaunch": "2026-10-27 16:17:06.2842 -0400",
+  "procStartAbsTime": 11137634795580,
+  "procExitAbsTime": 11137639198028,
+  "procName": "ct-crasher-stripped",
+  "procPath": "/REDACTED/ct-crasher-stripped",
+  "bundleInfo": {
+    "CFBundleVersion": "2",
+    "CFBundleShortVersionString": "2.0"
+  },
+  "parentProc": "Exited process",
+  "parentPid": 5317,
+  "coalitionName": "com.microsoft.VSCode",
+  "crashReporterKey": "REDACTED",
+  "appleIntelligenceStatus": {
+    "state": "available"
+  },
+  "developerMode": 1,
+  "bootProgressRegister": "0x2f000000",
+  "responsiblePid": 19039,
+  "responsibleProc": "Code",
+  "codeSigningID": "dev.crashtriage.ct-crasher-stripped",
+  "codeSigningTeamID": "",
+  "codeSigningFlags": 570425857,
+  "codeSigningValidationCategory": 10,
+  "codeSigningTrustLevel": 4294967295,
+  "codeSigningAuxiliaryInfo": 0,
+  "instructionByteStream": {
+    "beforePC": "6AcAuQEAABToB0C5AAEAEv17Qan/gwCRwANf1v9DANHgBwD56AdA+Q==",
+    "atPC": "CAFA+QgBwDkIjQBx4BefGv9DAJHAA1/W/0MA0eAPALkAAIDS/0MAkQ=="
+  },
+  "bootSessionUUID": "00000000-0000-0000-D627-38DA3BFC9D05",
+  "wakeTime": 1277,
+  "sleepWakeUUID": "00000000-0000-0000-44DB-1D3FD5E9997E",
+  "sip": "enabled",
+  "vmRegionInfo": "0 is not in any region.  Bytes before following region: 4371136512\n      REGION TYPE                    START - END         [ VSIZE] PRT/MAX SHRMOD  REGION DETAIL\n      UNUSED SPACE AT START\n--->  \n      __TEXT                      1048a4000-1048a8000    [   16K] r-x/r-x SM=COW  /REDACTED/ct-crasher-stripped",
+  "exception": {
+    "codes": "0x0000000000000001, 0x0000000000000000",
+    "rawCodes": [
+      1,
+      0
+    ],
+    "type": "EXC_BAD_ACCESS",
+    "signal": "SIGSEGV",
+    "subtype": "KERN_INVALID_ADDRESS at 0x0000000000000000"
+  },
+  "termination": {
+    "flags": 0,
+    "code": 11,
+    "namespace": "SIGNAL",
+    "indicator": "Segmentation fault: 11",
+    "byProc": "exc handler",
+    "byPid": 5322
+  },
+  "vmregioninfo": "0 is not in any region.  Bytes before following region: 4371136512\n      REGION TYPE                    START - END         [ VSIZE] PRT/MAX SHRMOD  REGION DETAIL\n      UNUSED SPACE AT START\n--->  \n      __TEXT                      1048a4000-1048a8000    [   16K] r-x/r-x SM=COW  /REDACTED/ct-crasher-stripped",
+  "extMods": {
+    "caller": {
+      "thread_create": 0,
+      "thread_set_state": 0,
+      "task_for_pid": 0
+    },
+    "system": {
+      "thread_create": 0,
+      "thread_set_state": 0,
+      "task_for_pid": 0
+    },
+    "targeted": {
+      "thread_create": 0,
+      "thread_set_state": 0,
+      "task_for_pid": 0
+    },
+    "warnings": 0
+  },
+  "faultingThread": 0,
+  "threads": [
+    {
+      "triggered": true,
+      "id": 14138919,
+      "threadState": {
+        "x": [
+          {
+            "value": 0
+          },
+          {
+            "value": 4371138048
+          },
+          {
+            "value": 3
+          },
+          {
+            "value": 6690138628
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 1
+          },
+          {
+            "value": 10
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 2
+          },
+          {
+            "value": 4294967293
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 6690138816,
+            "symbolLocation": 0,
+            "symbol": "_platform_strlen"
+          },
+          {
+            "value": 8536125992
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 8509947992,
+            "symbolLocation": 0,
+            "symbol": "lsl::sMemoryManagerBuffer"
+          },
+          {
+            "value": 8509948160,
+            "symbolLocation": 0,
+            "symbol": "lsl::sAllocatorBuffer"
+          },
+          {
+            "value": 6095741576
+          },
+          {
+            "value": 18446744073709551600
+          },
+          {
+            "value": 8512797280,
+            "symbolLocation": 0,
+            "symbol": "vm_page_mask"
+          },
+          {
+            "value": 1
+          },
+          {
+            "value": 6095741936
+          },
+          {
+            "value": 8512797296,
+            "symbolLocation": 0,
+            "symbol": "mach_task_self_"
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          }
+        ],
+        "flavor": "ARM_THREAD_STATE64",
+        "lr": {
+          "value": 4371137840
+        },
+        "cpsr": {
+          "value": 2147487744
+        },
+        "fp": {
+          "value": 6095741376
+        },
+        "sp": {
+          "value": 6095741344
+        },
+        "esr": {
+          "value": 2449473542,
+          "description": "(Data Abort) byte read Translation fault"
+        },
+        "pc": {
+          "value": 4371137956,
+          "matchesCrashFrame": 1
+        },
+        "far": {
+          "value": 0
+        }
+      },
+      "queue": "com.apple.main-thread",
+      "frames": [
+        {
+          "imageOffset": 1444,
+          "imageIndex": 0
+        },
+        {
+          "imageOffset": 1328,
+          "imageIndex": 0
+        },
+        {
+          "imageOffset": 1256,
+          "imageIndex": 0
+        },
+        {
+          "imageOffset": 132324,
+          "symbol": "start",
+          "symbolLocation": 6992,
+          "imageIndex": 1
+        }
+      ]
+    }
+  ],
+  "usedImages": [
+    {
+      "source": "P",
+      "arch": "arm64",
+      "base": 4371136512,
+      "size": 16384,
+      "uuid": "00000000-0000-0000-f601-420518f7b766",
+      "path": "/REDACTED/ct-crasher-stripped",
+      "name": "ct-crasher-stripped"
+    },
+    {
+      "source": "P",
+      "arch": "arm64e",
+      "base": 6685999104,
+      "size": 734464,
+      "uuid": "00000000-0000-0000-71d0-cf84787458ea",
+      "path": "/usr/lib/dyld",
+      "name": "dyld"
+    },
+    {
+      "size": 0,
+      "source": "A",
+      "base": 0,
+      "uuid": "00000000-0000-0000-0000-000000000000"
+    },
+    {
+      "source": "P",
+      "arch": "arm64e",
+      "base": 6690136064,
+      "size": 35172,
+      "uuid": "00000000-0000-0000-e618-d03222239bbe",
+      "path": "/usr/lib/system/libsystem_platform.dylib",
+      "name": "libsystem_platform.dylib"
+    }
+  ],
+  "sharedCache": {
+    "base": 6684868608,
+    "size": 6010847232,
+    "uuid": "00000000-0000-0000-20d8-088239cd8d64"
+  },
+  "legacyInfo": {
+    "threadTriggered": {
+      "queue": "com.apple.main-thread"
+    }
+  },
+  "logWritingSignature": "REDACTED",
+  "bug_type": "309",
+  "roots_installed": 0,
+  "trmStatus": 1,
+  "trialInfo": {}
+}

@@ -1,0 +1,306 @@
+{"app_name":"ct-crasher-bus","timestamp":"2026-10-27 16:15:38.00 -0400","app_version":"","slice_uuid":"00000000-0000-0000-8e90-ed388f1bd799","build_version":"","platform":1,"share_with_app_devs":0,"is_first_party":1,"bug_type":"309","os_version":"macOS 26.6.2 (25G83)","roots_installed":0,"incident_id":"00000000-0000-0000-27FA-6F10B21096BA","name":"ct-crasher-bus"}
+{
+  "uptime": 460000,
+  "procRole": "Unspecified",
+  "version": 2,
+  "userID": -1,
+  "deployVersion": 210,
+  "modelCode": "Mac15,3",
+  "coalitionID": 54946,
+  "osVersion": {
+    "train": "macOS 26.6.2",
+    "build": "25G83",
+    "releaseType": "User"
+  },
+  "captureTime": "2026-10-27 16:15:38.3283 -0400",
+  "codeSigningMonitor": 2,
+  "incident": "00000000-0000-0000-27FA-6F10B21096BA",
+  "pid": 4239,
+  "translated": false,
+  "cpuType": "ARM-64",
+  "procLaunch": "2026-10-27 16:15:38.0525 -0400",
+  "procStartAbsTime": 11135517143839,
+  "procExitAbsTime": 11135523730758,
+  "procName": "ct-crasher-bus",
+  "procPath": "/REDACTED/ct-crasher-bus",
+  "parentProc": "bash",
+  "parentPid": 4204,
+  "coalitionName": "com.microsoft.VSCode",
+  "crashReporterKey": "REDACTED",
+  "appleIntelligenceStatus": {
+    "state": "available"
+  },
+  "developerMode": 1,
+  "bootProgressRegister": "0x2f000000",
+  "responsiblePid": 19039,
+  "responsibleProc": "Code",
+  "codeSigningID": "ct-crasher-bus",
+  "codeSigningTeamID": "",
+  "codeSigningFlags": 570556929,
+  "codeSigningValidationCategory": 10,
+  "codeSigningTrustLevel": 4294967295,
+  "codeSigningAuxiliaryInfo": 0,
+  "instructionByteStream": {
+    "beforePC": "BQAAlOALQLn9e0Gp/4MAkcADX9b/QwDR4AcA+ekHQPnoA4RSaKC6cg==",
+    "atPC": "KAEAuf9DAJHAA1/REDACTED_TOKEN"
+  },
+  "bootSessionUUID": "00000000-0000-0000-D627-38DA3BFC9D05",
+  "wakeTime": 1189,
+  "sleepWakeUUID": "00000000-0000-0000-44DB-1D3FD5E9997E",
+  "sip": "enabled",
+  "vmRegionInfo": "0x10436c37c is in 0x10436c000-0x104370000;  bytes after start: 892  bytes before end: 15491\n      REGION TYPE                    START - END         [ VSIZE] PRT/MAX SHRMOD  REGION DETAIL\n      UNUSED SPACE AT START\n--->  __TEXT                      10436c000-104370000    [   16K] r-x/r-x SM=COW  /REDACTED/ct-crasher-bus\n      __LINKEDIT                  104370000-104374000    [   16K] r--/r-- SM=COW  /REDACTED/ct-crasher-bus",
+  "exception": {
+    "codes": "0x0000000000000002, 0x000000010436c37c",
+    "rawCodes": [
+      2,
+      4365665148
+    ],
+    "type": "EXC_BAD_ACCESS",
+    "signal": "SIGBUS",
+    "subtype": "KERN_PROTECTION_FAILURE at 0x000000010436c37c"
+  },
+  "termination": {
+    "flags": 0,
+    "code": 10,
+    "namespace": "SIGNAL",
+    "indicator": "Bus error: 10",
+    "byProc": "exc handler",
+    "byPid": 4239
+  },
+  "vmregioninfo": "0x10436c37c is in 0x10436c000-0x104370000;  bytes after start: 892  bytes before end: 15491\n      REGION TYPE                    START - END         [ VSIZE] PRT/MAX SHRMOD  REGION DETAIL\n      UNUSED SPACE AT START\n--->  __TEXT                      10436c000-104370000    [   16K] r-x/r-x SM=COW  /REDACTED/ct-crasher-bus\n      __LINKEDIT                  104370000-104374000    [   16K] r--/r-- SM=COW  /REDACTED/ct-crasher-bus",
+  "extMods": {
+    "caller": {
+      "thread_create": 0,
+      "thread_set_state": 0,
+      "task_for_pid": 0
+    },
+    "system": {
+      "thread_create": 0,
+      "thread_set_state": 0,
+      "task_for_pid": 0
+    },
+    "targeted": {
+      "thread_create": 0,
+      "thread_set_state": 0,
+      "task_for_pid": 0
+    },
+    "warnings": 0
+  },
+  "faultingThread": 0,
+  "threads": [
+    {
+      "triggered": true,
+      "id": 14134695,
+      "threadState": {
+        "x": [
+          {
+            "sourceLine": 4,
+            "value": 4365665148,
+            "sourceFile": "bus.c",
+            "symbol": "target",
+            "symbolLocation": 0
+          },
+          {
+            "value": 6101215560
+          },
+          {
+            "value": 6101215576
+          },
+          {
+            "value": 6101216128
+          },
+          {
+            "value": 1
+          },
+          {
+            "value": 32
+          },
+          {
+            "value": 99
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 3573751839
+          },
+          {
+            "sourceLine": 4,
+            "value": 4365665148,
+            "sourceFile": "bus.c",
+            "symbol": "target",
+            "symbolLocation": 0
+          },
+          {
+            "value": 6101212504
+          },
+          {
+            "value": 8510079296
+          },
+          {
+            "value": 131072
+          },
+          {
+            "value": 6686017984,
+            "symbolLocation": 0,
+            "symbol": "_dyld_start"
+          },
+          {
+            "value": 1
+          },
+          {
+            "value": 85
+          },
+          {
+            "value": 6690138308,
+            "symbolLocation": 0,
+            "symbol": "os_unfair_lock_unlock"
+          },
+          {
+            "value": 8536135144
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 8509947992,
+            "symbolLocation": 0,
+            "symbol": "lsl::sMemoryManagerBuffer"
+          },
+          {
+            "value": 8509948160,
+            "symbolLocation": 0,
+            "symbol": "lsl::sAllocatorBuffer"
+          },
+          {
+            "value": 6101214040
+          },
+          {
+            "value": 18446744073709551600
+          },
+          {
+            "value": 8512797280,
+            "symbolLocation": 0,
+            "symbol": "vm_page_mask"
+          },
+          {
+            "value": 1
+          },
+          {
+            "value": 6101214400
+          },
+          {
+            "value": 8512797296,
+            "symbolLocation": 0,
+            "symbol": "mach_task_self_"
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          }
+        ],
+        "flavor": "ARM_THREAD_STATE64",
+        "lr": {
+          "value": 4365665100
+        },
+        "cpsr": {
+          "value": 1610616832
+        },
+        "fp": {
+          "value": 6101213888
+        },
+        "sp": {
+          "value": 6101213856
+        },
+        "esr": {
+          "value": 2449473615,
+          "description": "(Data Abort) byte write Permission fault"
+        },
+        "pc": {
+          "value": 4365665136,
+          "matchesCrashFrame": 1
+        },
+        "far": {
+          "value": 4365665148
+        }
+      },
+      "queue": "com.apple.main-thread",
+      "frames": [
+        {
+          "imageOffset": 880,
+          "sourceLine": 7,
+          "sourceFile": "bus.c",
+          "symbol": "patch_code",
+          "imageIndex": 0,
+          "symbolLocation": 20
+        },
+        {
+          "imageOffset": 844,
+          "sourceLine": 11,
+          "sourceFile": "bus.c",
+          "symbol": "main",
+          "imageIndex": 0,
+          "symbolLocation": 36
+        },
+        {
+          "imageOffset": 132324,
+          "symbol": "start",
+          "symbolLocation": 6992,
+          "imageIndex": 1
+        }
+      ]
+    }
+  ],
+  "usedImages": [
+    {
+      "source": "P",
+      "arch": "arm64",
+      "base": 4365664256,
+      "size": 16384,
+      "uuid": "00000000-0000-0000-8e90-ed388f1bd799",
+      "path": "/REDACTED/ct-crasher-bus",
+      "name": "ct-crasher-bus"
+    },
+    {
+      "source": "P",
+      "arch": "arm64e",
+      "base": 6685999104,
+      "size": 734464,
+      "uuid": "00000000-0000-0000-71d0-cf84787458ea",
+      "path": "/usr/lib/dyld",
+      "name": "dyld"
+    },
+    {
+      "size": 0,
+      "source": "A",
+      "base": 0,
+      "uuid": "00000000-0000-0000-0000-000000000000"
+    },
+    {
+      "source": "P",
+      "arch": "arm64e",
+      "base": 6690136064,
+      "size": 35172,
+      "uuid": "00000000-0000-0000-e618-d03222239bbe",
+      "path": "/usr/lib/system/libsystem_platform.dylib",
+      "name": "libsystem_platform.dylib"
+    }
+  ],
+  "sharedCache": {
+    "base": 6684868608,
+    "size": 6010847232,
+    "uuid": "00000000-0000-0000-20d8-088239cd8d64"
+  },
+  "legacyInfo": {
+    "threadTriggered": {
+      "queue": "com.apple.main-thread"
+    }
+  },
+  "logWritingSignature": "REDACTED",
+  "bug_type": "309",
+  "roots_installed": 0,
+  "trmStatus": 1,
+  "trialInfo": {}
+}

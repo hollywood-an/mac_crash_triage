@@ -1,0 +1,120 @@
+{"bug_type":"298","timestamp":"2026-10-21 13:14:14.00 -0400","os_version":"macOS 26.6.2 (25G83)","roots_installed":0,"incident_id":"00000000-0000-0000-58BE-8E211F348E88"}
+{
+  "build": "macOS 26.6.2 (25G83)",
+  "product": "Mac15,3",
+  "kernel": "Darwin Kernel Version 25.6.0: Fri Jul 31 19:18:29 PDT 2026; root:xnu-12377.161.14~5/RELEASE_ARM64_T8122",
+  "incident": "00000000-0000-0000-58BE-8E211F348E88",
+  "crashReporterKey": "REDACTED",
+  "date": "2026-10-21 13:14:14.66 -0400",
+  "codeSigningMonitor": 2,
+  "bug_type": "298",
+  "developerMode": 1,
+  "appleIntelligenceStatus": {
+    "state": "available"
+  },
+  "timeDelta": 54,
+  "memoryStatus": {
+    "compressorSize": 339540,
+    "compressions": 328877919,
+    "decompressions": 297881963,
+    "zoneMapCap": 6069403648,
+    "largestZone": "APFS_4K_OBJS",
+    "largestZoneSize": 203309056,
+    "pageSize": 16384,
+    "uncompressed": 1063812,
+    "zoneMapSize": 1218625536,
+    "memoryPages": {
+      "active": 194644,
+      "throttled": 0,
+      "fileBacked": 150341,
+      "wired": 261264,
+      "anonymous": 238593,
+      "purgeable": 5879,
+      "inactive": 189171,
+      "free": 11939,
+      "speculative": 5119
+    }
+  },
+  "largestProcess": "Code Helper (Plugin)",
+  "genCounter": 0,
+  "processes": [
+    {
+      "uuid": "00000000-0000-0000-fb59-22aa3f3828d7",
+      "states": [
+        "suspended"
+      ],
+      "csFlags": 570522385,
+      "purgeable": 0,
+      "age": 4806877213752,
+      "fds": 25,
+      "coalition": 754,
+      "csTrustLevel": 4294967295,
+      "rpages": 804,
+      "priority": 0,
+      "mem_regions": 121,
+      "physicalPages": {
+        "internal": [
+          1,
+          777
+        ]
+      },
+      "freeze_skip_reason:": "none",
+      "pid": 848,
+      "cpuTime": 0.149521,
+      "name": "NewsTag",
+      "lifetimeMax": 805
+    },
+    {
+      "uuid": "00000000-0000-0000-7284-44d4f9d8f61c",
+      "states": [
+        "suspended"
+      ],
+      "csFlags": 570522385,
+      "purgeable": 0,
+      "age": 4806776137935,
+      "fds": 25,
+      "coalition": 754,
+      "csTrustLevel": 4294967295,
+      "rpages": 426,
+      "priority": 0,
+      "mem_regions": 81,
+      "physicalPages": {
+        "internal": [
+          0,
+          402
+        ]
+      },
+      "freeze_skip_reason:": "none",
+      "pid": 925,
+      "cpuTime": 0.042072,
+      "name": "VoiceMemosSettingsWidgetExtensio",
+      "lifetimeMax": 427
+    },
+    {
+      "uuid": "00000000-0000-0000-1875-5e48cfddb5d8",
+      "states": [
+        "suspended"
+      ],
+      "csFlags": 570522385,
+      "purgeable": 0,
+      "age": 4806766479908,
+      "fds": 25,
+      "coalition": 754,
+      "csTrustLevel": 4294967295,
+      "rpages": 412,
+      "priority": 0,
+      "mem_regions": 80,
+      "physicalPages": {
+        "internal": [
+          0,
+          387
+        ]
+      },
+      "freeze_skip_reason:": "none",
+      "pid": 931,
+      "cpuTime": 0.044394,
+      "name": "RecordWidgetExtension",
+      "lifetimeMax": 413
+    }
+  ]
+}

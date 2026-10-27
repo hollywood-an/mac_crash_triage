@@ -144,6 +144,90 @@ addresses. A naive offset hash would report one bug as several.
   there), so its paths are redacted by the anonymizer and its frames count as app frames
   for fingerprinting.
 
+## Phase 1: crashers, parser, anonymizer
+
+### Crasher programs (approved before running)
+
+`crashers/build.sh` builds eight small programs with dSYMs; `crashers/run.sh` runs
+them. macOS wrote one report per crash into `~/Library/Logs/DiagnosticReports` (13
+new files in total, counting a second run of the two stripped builds). Results:
+
+| Program | Exception / signal | Subtype | Faulting frames |
+|---|---|---|---|
+| `ct-crasher-segv` | EXC_BAD_ACCESS / SIGSEGV | KERN_INVALID_ADDRESS at 0x0 | 3 |
+| `ct-crasher-bus` | EXC_BAD_ACCESS / **SIGBUS** | KERN_PROTECTION_FAILURE | 3 |
+| `ct-crasher-trap` | EXC_BREAKPOINT / SIGTRAP | (none) | 3 |
+| `ct-crasher-swift` | EXC_BREAKPOINT / SIGTRAP | (none) | 4, top one in `libswiftCore` |
+| `ct-crasher-overflow` | EXC_BAD_ACCESS / SIGSEGV | KERN_PROTECTION_FAILURE | 9 shown, 27,519 real |
+| `ct-crasher-throw` | EXC_CRASH / SIGABRT | (none) | 12, top 9 in libsystem/libc++abi |
+| `ct-crasher-versioned` 1.0 x2, 2.0 | EXC_BAD_ACCESS / SIGSEGV | KERN_INVALID_ADDRESS at 0x0 | 4 |
+| `ct-crasher-stripped` 1.0, 2.0 | EXC_BAD_ACCESS / SIGSEGV | KERN_INVALID_ADDRESS at 0x0 | 4, no symbols |
+
+### More things the real files showed
+
+1. **macOS already redacts home folders in crash reports.** `procPath` and image
+   paths under the home folder are written as `/Users/USER/Documents/*/<name>`.
+   After JSON-decoding, none of the 23 `.ips` files contained the login name, the
+   hostname, the full name or the real home path. The anonymizer is still needed
+   for incident ids, UUIDs, device keys, MAC addresses and paths outside the OS.
+2. **Slashes are escaped in the JSON** (`"\/usr\/lib\/dyld"`). A `grep` for `/Users/`
+   on a raw file finds nothing even when the decoded value contains it, so privacy
+   checks must decode the JSON first (`tests/test_privacy.py` does).
+3. **`sourceFile` and `sourceLine` appear when a dSYM is available.** None of the
+   original six reports had them; every crasher report did.
+4. **ReportCrash finds dSYMs through Spotlight.** The first run of the "stripped"
+   build came back fully symbolicated, because `mdfind
+   "com_apple_xcode_dsym_uuids == <UUID>"` found the dSYM in the build folder.
+   The stripped builds now keep their dSYMs in `crashers/build/dsyms.noindex/`
+   (Spotlight skips `*.noindex`), and their second run produced the unsymbolicated
+   reports used as fixtures.
+5. **An embedded Info.plist gives a command-line tool a version.** With
+   `-sectcreate __TEXT __info_plist`, the header's `app_version`/`build_version`
+   and the body's `bundleInfo` were filled in (`1.0`/`1`, `2.0`/`2`).
+6. **The header `timestamp` is when the report was written, not when the crash
+   happened.** Two dotnet crashes captured at 18:25:39 and 18:25:52 both have the
+   header timestamp 18:25:55. The body's `captureTime` is the crash time.
+7. **Deep recursion is elided.** The stack-overflow report lists 9 frames; the
+   thread carries `originalLength: 27519` and a `recursionInfoArray`
+   (`depth`, `hottestElided`, `coldestElided`, `keyFrame`).
+8. **Every report has an anonymous image** (`source: "A"`, base 0, size 0), even a
+   plain C program. Only dotnet's frames point into it.
+9. Other keys not mentioned in the brief: `os_fault` (EXC_BREAKPOINT reports),
+   both `vmRegionInfo` and `vmregioninfo` (same text, two spellings), `asi`
+   (`abort() called`), `instructionByteStream` (base64 bytes around the PC).
+10. Two reports for the same process in the same second: the second is named
+    `<proc>-<date>.000.ips` (seen again with the two stripped runs).
+
+### Decisions
+
+- **Crash time is `captureTime`**, falling back to the header `timestamp` (finding 6).
+  Stored as UTC, whole seconds, ISO 8601 with `Z`.
+- **Process version** is header `app_version`, then `bundleInfo.CFBundleShortVersionString`;
+  an empty string is "unknown".
+- **Skips have a kind**: `permission`, `unreadable`, `not-ips`, `non-crash`,
+  `legacy`, `malformed`. A crash header with an empty, truncated or wrongly shaped
+  body is `malformed`; a frame without `imageOffset` or with a bad `imageIndex`
+  is kept and recorded as a warning on the report.
+- **Non-UTF-8 bytes** are replaced with U+FFFD and recorded as a warning; the
+  report is still parsed.
+- **Missing incident id** falls back to `sha256-<first 32 hex of the file hash>`.
+- **Header vs body incident id** are compared case-insensitively (UUID case has no
+  meaning).
+- **Anonymizer re-serializes the JSON** (2-space indent, unescaped slashes). Files
+  grow (the coreaudiod report went from 60 KB to 115 KB) but parse identically.
+  It replaces UUIDs with `00000000-0000-0000-XXXX-XXXXXXXXXXXX`, an HMAC of the
+  original under a random salt that is not stored. Every fixture is a fixed point of
+  the anonymizer (running it again changes no byte).
+- **Free-text paths with spaces** are followed across a space only when the next
+  word contains a `/`; a final path component with a space keeps its tail
+  (`/REDACTED/Google Chrome`), which is the basename that is kept anyway.
+
+### Parser run on this Mac (after the crasher runs)
+
+95 files: 19 crash reports parsed with 0 warnings; 76 skipped (47 `non-crash`: 20
+bug_type 226, 14 bug_type 303, 8 bug_type 211, 4 bug_type 298, 1 panic summary;
+29 `not-ips` text reports). 0 permission or unreadable skips.
+
 ## Open questions
 
 - Is `faultingThread` always the thread with `triggered: true`? True for 6 of 6 files

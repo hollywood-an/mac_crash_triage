@@ -1,0 +1,5216 @@
+{"app_name":"coreaudiod","timestamp":"2026-10-26 21:59:30.00 -0400","app_version":"5.0","slice_uuid":"00000000-0000-0000-f3a1-52aedb285f24","build_version":"5.0","platform":1,"share_with_app_devs":0,"is_first_party":1,"bug_type":"309","os_version":"macOS 26.6.2 (25G83)","roots_installed":0,"incident_id":"00000000-0000-0000-3B51-9E7175764D46","name":"coreaudiod"}
+{
+  "uptime": 420000,
+  "procRole": "Unspecified",
+  "version": 2,
+  "userID": -1,
+  "deployVersion": 210,
+  "modelCode": "Mac15,3",
+  "coalitionID": 399,
+  "osVersion": {
+    "train": "macOS 26.6.2",
+    "build": "25G83",
+    "releaseType": "User"
+  },
+  "captureTime": "2026-10-26 21:59:10.3663 -0400",
+  "codeSigningMonitor": 2,
+  "incident": "00000000-0000-0000-3B51-9E7175764D46",
+  "pid": 425,
+  "translated": false,
+  "cpuType": "ARM-64",
+  "procLaunch": "2026-10-09 19:58:25.0578 -0400",
+  "procStartAbsTime": 1147387506,
+  "procExitAbsTime": 10081958979982,
+  "procName": "coreaudiod",
+  "procPath": "/usr/sbin/coreaudiod",
+  "bundleInfo": {
+    "CFBundleVersion": "5.0",
+    "CFBundleShortVersionString": "5.0"
+  },
+  "parentProc": "launchd",
+  "parentPid": 1,
+  "coalitionName": "com.apple.audio.coreaudiod",
+  "crashReporterKey": "REDACTED",
+  "lowPowerMode": 1,
+  "appleIntelligenceStatus": {
+    "state": "available"
+  },
+  "developerMode": 1,
+  "bootProgressRegister": "0x2f000000",
+  "throttleTimeout": 10,
+  "codeSigningID": "com.apple.audio.coreaudiod",
+  "codeSigningTeamID": "",
+  "codeSigningFlags": 570522369,
+  "codeSigningValidationCategory": 1,
+  "codeSigningTrustLevel": 4294967295,
+  "codeSigningAuxiliaryInfo": 0,
+  "instructionByteStream": {
+    "beforePC": "YPz/REDACTED_TOKEN",
+    "atPC": "0AJA+fEDFqqxj+/REDACTED/REDACTED_TOKEN"
+  },
+  "bootSessionUUID": "00000000-0000-0000-D627-38DA3BFC9D05",
+  "wakeTime": 27,
+  "sleepWakeUUID": "00000000-0000-0000-A440-803A624D9EF3",
+  "sip": "enabled",
+  "vmRegionInfo": "0 is not in any region.  Bytes before following region: 4374872064\n      REGION TYPE                    START - END         [ VSIZE] PRT/MAX SHRMOD  REGION DETAIL\n      UNUSED SPACE AT START\n--->  \n      __TEXT                      104c34000-104c58000    [  144K] r-x/r-x SM=COW  /usr/sbin/coreaudiod",
+  "exception": {
+    "codes": "0x0000000000000001, 0x0000000000000000",
+    "rawCodes": [
+      1,
+      0
+    ],
+    "type": "EXC_BAD_ACCESS",
+    "signal": "SIGSEGV",
+    "subtype": "KERN_INVALID_ADDRESS at 0x0000000000000000"
+  },
+  "termination": {
+    "flags": 0,
+    "code": 11,
+    "namespace": "SIGNAL",
+    "indicator": "Segmentation fault: 11",
+    "byProc": "exc handler",
+    "byPid": 425
+  },
+  "vmregioninfo": "0 is not in any region.  Bytes before following region: 4374872064\n      REGION TYPE                    START - END         [ VSIZE] PRT/MAX SHRMOD  REGION DETAIL\n      UNUSED SPACE AT START\n--->  \n      __TEXT                      104c34000-104c58000    [  144K] r-x/r-x SM=COW  /usr/sbin/coreaudiod",
+  "extMods": {
+    "caller": {
+      "thread_create": 0,
+      "thread_set_state": 0,
+      "task_for_pid": 0
+    },
+    "system": {
+      "thread_create": 0,
+      "thread_set_state": 0,
+      "task_for_pid": 0
+    },
+    "targeted": {
+      "thread_create": 0,
+      "thread_set_state": 0,
+      "task_for_pid": 0
+    },
+    "warnings": 0
+  },
+  "faultingThread": 25,
+  "threads": [
+    {
+      "id": 4089,
+      "threadState": {
+        "x": [
+          {
+            "value": 268451845
+          },
+          {
+            "value": 21592279046
+          },
+          {
+            "value": 8589934592
+          },
+          {
+            "value": 347114961895424
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 347114961895424
+          },
+          {
+            "value": 2
+          },
+          {
+            "value": 4294967295
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 17179869184
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 2
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 80819
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 18446744073709551569
+          },
+          {
+            "value": 8536128104
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 4294967295
+          },
+          {
+            "value": 2
+          },
+          {
+            "value": 347114961895424
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 347114961895424
+          },
+          {
+            "value": 21592279046
+          },
+          {
+            "value": 6092006392
+          },
+          {
+            "value": 8589934592
+          },
+          {
+            "value": 18446744073709550527
+          },
+          {
+            "value": 4412409862
+          }
+        ],
+        "flavor": "ARM_THREAD_STATE64",
+        "lr": {
+          "value": 6689908132
+        },
+        "cpsr": {
+          "value": 4096
+        },
+        "fp": {
+          "value": 6092006240
+        },
+        "sp": {
+          "value": 6092006160
+        },
+        "esr": {
+          "value": 1442840704,
+          "description": "(Syscall)"
+        },
+        "pc": {
+          "value": 6689831988
+        },
+        "far": {
+          "value": 0
+        }
+      },
+      "queue": "com.apple.main-thread",
+      "frames": [
+        {
+          "imageOffset": 3124,
+          "symbol": "mach_msg2_trap",
+          "symbolLocation": 8,
+          "imageIndex": 12
+        },
+        {
+          "imageOffset": 79268,
+          "symbol": "mach_msg2_internal",
+          "symbolLocation": 76,
+          "imageIndex": 12
+        },
+        {
+          "imageOffset": 39360,
+          "symbol": "mach_msg_overwrite",
+          "symbolLocation": 480,
+          "imageIndex": 12
+        },
+        {
+          "imageOffset": 4032,
+          "symbol": "mach_msg",
+          "symbolLocation": 24,
+          "imageIndex": 12
+        },
+        {
+          "imageOffset": 516360,
+          "symbol": "__CFRunLoopServiceMachPort",
+          "symbolLocation": 160,
+          "imageIndex": 13
+        },
+        {
+          "imageOffset": 510452,
+          "symbol": "__CFRunLoopRun",
+          "symbolLocation": 1188,
+          "imageIndex": 13
+        },
+        {
+          "imageOffset": 1372772,
+          "symbol": "_CFRunLoopRunSpecificWithOptions",
+          "symbolLocation": 532,
+          "imageIndex": 13
+        },
+        {
+          "imageOffset": 97904,
+          "symbol": "main",
+          "symbolLocation": 3628,
+          "imageIndex": 0
+        },
+        {
+          "imageOffset": 132324,
+          "symbol": "start",
+          "symbolLocation": 6992,
+          "imageIndex": 14
+        }
+      ]
+    },
+    {
+      "id": 4133,
+      "name": "caulk.messenger.shared:17",
+      "threadState": {
+        "x": [
+          {
+            "value": 14
+          },
+          {
+            "value": 7881299349733376
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 1
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 1
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 4294967295
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 4468080672
+          },
+          {
+            "value": 18446744073709551615
+          },
+          {
+            "value": 1835008
+          },
+          {
+            "value": 6092566216
+          },
+          {
+            "value": 18446744073709551580
+          },
+          {
+            "value": 8536130600
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 4375367136
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          }
+        ],
+        "flavor": "ARM_THREAD_STATE64",
+        "lr": {
+          "value": 6901202432
+        },
+        "cpsr": {
+          "value": 2147487744
+        },
+        "fp": {
+          "value": 6092566400
+        },
+        "sp": {
+          "value": 6092566368
+        },
+        "esr": {
+          "value": 1442840704,
+          "description": "(Syscall)"
+        },
+        "pc": {
+          "value": 6689831856
+        },
+        "far": {
+          "value": 0
+        }
+      },
+      "frames": [
+        {
+          "imageOffset": 2992,
+          "symbol": "semaphore_wait_trap",
+          "symbolLocation": 8,
+          "imageIndex": 12
+        },
+        {
+          "imageOffset": 7680,
+          "symbol": "caulk::semaphore::timed_wait(double)",
+          "symbolLocation": 224,
+          "imageIndex": 16
+        },
+        {
+          "imageOffset": 7340,
+          "symbol": "caulk::concurrent::details::worker_thread::run()",
+          "symbolLocation": 32,
+          "imageIndex": 16
+        },
+        {
+          "imageOffset": 6476,
+          "symbol": "void* caulk::thread_proxy<std::__1::tuple<caulk::thread::attributes, void (caulk::concurrent::details::worker_thread::*)(), std::__1::tuple<caulk::concurrent::details::worker_thread*>>>(void*)",
+          "symbolLocation": 96,
+          "imageIndex": 16
+        },
+        {
+          "imageOffset": 27736,
+          "symbol": "_pthread_start",
+          "symbolLocation": 136,
+          "imageIndex": 17
+        },
+        {
+          "imageOffset": 7196,
+          "symbol": "thread_start",
+          "symbolLocation": 8,
+          "imageIndex": 17
+        }
+      ]
+    },
+    {
+      "id": 4135,
+      "name": "caulk.messenger.shared:high",
+      "threadState": {
+        "x": [
+          {
+            "value": 14
+          },
+          {
+            "value": 6403
+          },
+          {
+            "value": 6403
+          },
+          {
+            "value": 633
+          },
+          {
+            "value": 4294967295
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 4294967295
+          },
+          {
+            "value": 1
+          },
+          {
+            "value": 39476865832
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 18446744073709551580
+          },
+          {
+            "value": 8536130600
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 4375349840
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          }
+        ],
+        "flavor": "ARM_THREAD_STATE64",
+        "lr": {
+          "value": 6901202432
+        },
+        "cpsr": {
+          "value": 2147487744
+        },
+        "fp": {
+          "value": 6093139840
+        },
+        "sp": {
+          "value": 6093139808
+        },
+        "esr": {
+          "value": 1442840704,
+          "description": "(Syscall)"
+        },
+        "pc": {
+          "value": 6689831856
+        },
+        "far": {
+          "value": 0
+        }
+      },
+      "frames": [
+        {
+          "imageOffset": 2992,
+          "symbol": "semaphore_wait_trap",
+          "symbolLocation": 8,
+          "imageIndex": 12
+        },
+        {
+          "imageOffset": 7680,
+          "symbol": "caulk::semaphore::timed_wait(double)",
+          "symbolLocation": 224,
+          "imageIndex": 16
+        },
+        {
+          "imageOffset": 7340,
+          "symbol": "caulk::concurrent::details::worker_thread::run()",
+          "symbolLocation": 32,
+          "imageIndex": 16
+        },
+        {
+          "imageOffset": 6476,
+          "symbol": "void* caulk::thread_proxy<std::__1::tuple<caulk::thread::attributes, void (caulk::concurrent::details::worker_thread::*)(), std::__1::tuple<caulk::concurrent::details::worker_thread*>>>(void*)",
+          "symbolLocation": 96,
+          "imageIndex": 16
+        },
+        {
+          "imageOffset": 27736,
+          "symbol": "_pthread_start",
+          "symbolLocation": 136,
+          "imageIndex": 17
+        },
+        {
+          "imageOffset": 7196,
+          "symbol": "thread_start",
+          "symbolLocation": 8,
+          "imageIndex": 17
+        }
+      ]
+    },
+    {
+      "id": 4141,
+      "name": "HAL Async Logger",
+      "threadState": {
+        "x": [
+          {
+            "value": 14
+          },
+          {
+            "value": 4375358385
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 6094860385
+          },
+          {
+            "value": 4375358368
+          },
+          {
+            "value": 16
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 4294967295
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 18446744073709551580
+          },
+          {
+            "value": 8536130600
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 4375357976
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          }
+        ],
+        "flavor": "ARM_THREAD_STATE64",
+        "lr": {
+          "value": 6901202432
+        },
+        "cpsr": {
+          "value": 2147487744
+        },
+        "fp": {
+          "value": 6094860160
+        },
+        "sp": {
+          "value": 6094860128
+        },
+        "esr": {
+          "value": 1442840704,
+          "description": "(Syscall)"
+        },
+        "pc": {
+          "value": 6689831856
+        },
+        "far": {
+          "value": 0
+        }
+      },
+      "frames": [
+        {
+          "imageOffset": 2992,
+          "symbol": "semaphore_wait_trap",
+          "symbolLocation": 8,
+          "imageIndex": 12
+        },
+        {
+          "imageOffset": 7680,
+          "symbol": "caulk::semaphore::timed_wait(double)",
+          "symbolLocation": 224,
+          "imageIndex": 16
+        },
+        {
+          "imageOffset": 7340,
+          "symbol": "caulk::concurrent::details::worker_thread::run()",
+          "symbolLocation": 32,
+          "imageIndex": 16
+        },
+        {
+          "imageOffset": 6476,
+          "symbol": "void* caulk::thread_proxy<std::__1::tuple<caulk::thread::attributes, void (caulk::concurrent::details::worker_thread::*)(), std::__1::tuple<caulk::concurrent::details::worker_thread*>>>(void*)",
+          "symbolLocation": 96,
+          "imageIndex": 16
+        },
+        {
+          "imageOffset": 27736,
+          "symbol": "_pthread_start",
+          "symbolLocation": 136,
+          "imageIndex": 17
+        },
+        {
+          "imageOffset": 7196,
+          "symbol": "thread_start",
+          "symbolLocation": 8,
+          "imageIndex": 17
+        }
+      ]
+    },
+    {
+      "id": 4287,
+      "name": "caulk.messenger.shared:21",
+      "threadState": {
+        "x": [
+          {
+            "value": 14
+          },
+          {
+            "value": 39473676672
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 6095427168
+          },
+          {
+            "value": 8467872768,
+            "symbolLocation": 0,
+            "symbol": "_os_log_current_test_callback"
+          },
+          {
+            "value": 1
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 6095433952
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 4294967295
+          },
+          {
+            "value": 72057598332895232
+          },
+          {
+            "value": 4287
+          },
+          {
+            "value": 4897004874937663492
+          },
+          {
+            "value": 144115192639261344
+          },
+          {
+            "value": 2199023259648
+          },
+          {
+            "value": 144115188344293896
+          },
+          {
+            "value": 18446744073709551580
+          },
+          {
+            "value": 8536130600
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 4375407136
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          }
+        ],
+        "flavor": "ARM_THREAD_STATE64",
+        "lr": {
+          "value": 6901202432
+        },
+        "cpsr": {
+          "value": 2147487744
+        },
+        "fp": {
+          "value": 6095433600
+        },
+        "sp": {
+          "value": 6095433568
+        },
+        "esr": {
+          "value": 1442840704,
+          "description": "(Syscall)"
+        },
+        "pc": {
+          "value": 6689831856
+        },
+        "far": {
+          "value": 0
+        }
+      },
+      "frames": [
+        {
+          "imageOffset": 2992,
+          "symbol": "semaphore_wait_trap",
+          "symbolLocation": 8,
+          "imageIndex": 12
+        },
+        {
+          "imageOffset": 7680,
+          "symbol": "caulk::semaphore::timed_wait(double)",
+          "symbolLocation": 224,
+          "imageIndex": 16
+        },
+        {
+          "imageOffset": 7340,
+          "symbol": "caulk::concurrent::details::worker_thread::run()",
+          "symbolLocation": 32,
+          "imageIndex": 16
+        },
+        {
+          "imageOffset": 6476,
+          "symbol": "void* caulk::thread_proxy<std::__1::tuple<caulk::thread::attributes, void (caulk::concurrent::details::worker_thread::*)(), std::__1::tuple<caulk::concurrent::details::worker_thread*>>>(void*)",
+          "symbolLocation": 96,
+          "imageIndex": 16
+        },
+        {
+          "imageOffset": 27736,
+          "symbol": "_pthread_start",
+          "symbolLocation": 136,
+          "imageIndex": 17
+        },
+        {
+          "imageOffset": 7196,
+          "symbol": "thread_start",
+          "symbolLocation": 8,
+          "imageIndex": 17
+        }
+      ]
+    },
+    {
+      "id": 4561,
+      "name": "caulk::deferred_logger",
+      "threadState": {
+        "x": [
+          {
+            "value": 14
+          },
+          {
+            "value": 39473366647
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 6096580711
+          },
+          {
+            "value": 39473366624
+          },
+          {
+            "value": 22
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 4294967295
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 18446744073709551580
+          },
+          {
+            "value": 8536130600
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 4375442200
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          }
+        ],
+        "flavor": "ARM_THREAD_STATE64",
+        "lr": {
+          "value": 6901202432
+        },
+        "cpsr": {
+          "value": 2147487744
+        },
+        "fp": {
+          "value": 6096580480
+        },
+        "sp": {
+          "value": 6096580448
+        },
+        "esr": {
+          "value": 1442840704,
+          "description": "(Syscall)"
+        },
+        "pc": {
+          "value": 6689831856
+        },
+        "far": {
+          "value": 0
+        }
+      },
+      "frames": [
+        {
+          "imageOffset": 2992,
+          "symbol": "semaphore_wait_trap",
+          "symbolLocation": 8,
+          "imageIndex": 12
+        },
+        {
+          "imageOffset": 7680,
+          "symbol": "caulk::semaphore::timed_wait(double)",
+          "symbolLocation": 224,
+          "imageIndex": 16
+        },
+        {
+          "imageOffset": 7340,
+          "symbol": "caulk::concurrent::details::worker_thread::run()",
+          "symbolLocation": 32,
+          "imageIndex": 16
+        },
+        {
+          "imageOffset": 6476,
+          "symbol": "void* caulk::thread_proxy<std::__1::tuple<caulk::thread::attributes, void (caulk::concurrent::details::worker_thread::*)(), std::__1::tuple<caulk::concurrent::details::worker_thread*>>>(void*)",
+          "symbolLocation": 96,
+          "imageIndex": 16
+        },
+        {
+          "imageOffset": 27736,
+          "symbol": "_pthread_start",
+          "symbolLocation": 136,
+          "imageIndex": 17
+        },
+        {
+          "imageOffset": 7196,
+          "symbol": "thread_start",
+          "symbolLocation": 8,
+          "imageIndex": 17
+        }
+      ]
+    },
+    {
+      "id": 4589,
+      "name": "DspLib messenger",
+      "threadState": {
+        "x": [
+          {
+            "value": 14
+          },
+          {
+            "value": 30786325584896
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 1
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 1
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 4294967295
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 4468080664
+          },
+          {
+            "value": 18446744073709551615
+          },
+          {
+            "value": 7168
+          },
+          {
+            "value": 6097153672
+          },
+          {
+            "value": 18446744073709551580
+          },
+          {
+            "value": 8536130600
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 4375413912
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          }
+        ],
+        "flavor": "ARM_THREAD_STATE64",
+        "lr": {
+          "value": 6901202432
+        },
+        "cpsr": {
+          "value": 2147487744
+        },
+        "fp": {
+          "value": 6097153920
+        },
+        "sp": {
+          "value": 6097153888
+        },
+        "esr": {
+          "value": 1442840704,
+          "description": "(Syscall)"
+        },
+        "pc": {
+          "value": 6689831856
+        },
+        "far": {
+          "value": 0
+        }
+      },
+      "frames": [
+        {
+          "imageOffset": 2992,
+          "symbol": "semaphore_wait_trap",
+          "symbolLocation": 8,
+          "imageIndex": 12
+        },
+        {
+          "imageOffset": 7680,
+          "symbol": "caulk::semaphore::timed_wait(double)",
+          "symbolLocation": 224,
+          "imageIndex": 16
+        },
+        {
+          "imageOffset": 7340,
+          "symbol": "caulk::concurrent::details::worker_thread::run()",
+          "symbolLocation": 32,
+          "imageIndex": 16
+        },
+        {
+          "imageOffset": 6476,
+          "symbol": "void* caulk::thread_proxy<std::__1::tuple<caulk::thread::attributes, void (caulk::concurrent::details::worker_thread::*)(), std::__1::tuple<caulk::concurrent::details::worker_thread*>>>(void*)",
+          "symbolLocation": 96,
+          "imageIndex": 16
+        },
+        {
+          "imageOffset": 27736,
+          "symbol": "_pthread_start",
+          "symbolLocation": 136,
+          "imageIndex": 17
+        },
+        {
+          "imageOffset": 7196,
+          "symbol": "thread_start",
+          "symbolLocation": 8,
+          "imageIndex": 17
+        }
+      ]
+    },
+    {
+      "id": 12414368,
+      "frames": [],
+      "threadState": {
+        "x": [
+          {
+            "value": 6094286848
+          },
+          {
+            "value": 1338243
+          },
+          {
+            "value": 6093750272
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 409603
+          },
+          {
+            "value": 18446744073709551615
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          }
+        ],
+        "flavor": "ARM_THREAD_STATE64",
+        "lr": {
+          "value": 0
+        },
+        "cpsr": {
+          "value": 4096
+        },
+        "fp": {
+          "value": 0
+        },
+        "sp": {
+          "value": 6094286848
+        },
+        "esr": {
+          "value": 1442840704,
+          "description": "(Syscall)"
+        },
+        "pc": {
+          "value": 6690089992
+        },
+        "far": {
+          "value": 0
+        }
+      }
+    },
+    {
+      "id": 12416282,
+      "threadState": {
+        "x": [
+          {
+            "value": 4
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 12418268
+          },
+          {
+            "value": 8352
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 39502120960
+          },
+          {
+            "value": 18446726482597246976
+          },
+          {
+            "value": 39473001871
+          },
+          {
+            "value": 39473001864
+          },
+          {
+            "value": 39473001856
+          },
+          {
+            "value": 12416282
+          },
+          {
+            "value": 2
+          },
+          {
+            "value": 258
+          },
+          {
+            "value": 144115196588779297,
+            "symbolLocation": 144115188075855873,
+            "symbol": "OBJC_CLASS_$___NSArrayM"
+          },
+          {
+            "value": 8512923424,
+            "symbolLocation": 0,
+            "symbol": "OBJC_CLASS_$___NSArrayM"
+          },
+          {
+            "value": 301
+          },
+          {
+            "value": 8536126240
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 39473001832
+          },
+          {
+            "value": 258
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 39473001856
+          },
+          {
+            "value": 12416282
+          },
+          {
+            "value": 39473001864
+          },
+          {
+            "value": 39504330208
+          },
+          {
+            "value": 14155376618284216320
+          },
+          {
+            "value": 14155376583154288224
+          },
+          {
+            "value": 8402511488,
+            "symbolLocation": 0,
+            "symbol": "__block_descriptor_tmp.11.5755"
+          }
+        ],
+        "flavor": "ARM_THREAD_STATE64",
+        "lr": {
+          "value": 6690098844
+        },
+        "cpsr": {
+          "value": 1610616832
+        },
+        "fp": {
+          "value": 6101737872
+        },
+        "sp": {
+          "value": 6101737824
+        },
+        "esr": {
+          "value": 1442840704,
+          "description": "(Syscall)"
+        },
+        "pc": {
+          "value": 6689843676
+        },
+        "far": {
+          "value": 0
+        }
+      },
+      "queue": "com.apple.audio.manager.com.apple.audio.BTAudioHALPlugin.event",
+      "frames": [
+        {
+          "imageOffset": 14812,
+          "symbol": "__psynch_mutexwait",
+          "symbolLocation": 8,
+          "imageIndex": 12
+        },
+        {
+          "imageOffset": 16028,
+          "symbol": "_pthread_mutex_firstfit_lock_wait",
+          "symbolLocation": 84,
+          "imageIndex": 17
+        },
+        {
+          "imageOffset": 6368,
+          "symbol": "_pthread_mutex_firstfit_lock_slow",
+          "symbolLocation": 216,
+          "imageIndex": 17
+        },
+        {
+          "imageOffset": 6299888,
+          "symbol": "HALB_Mutex::Lock()",
+          "symbolLocation": 116,
+          "imageIndex": 18
+        },
+        {
+          "imageOffset": 5545916,
+          "symbol": "HALB_CommandGate::ExecuteCommand(void () block_pointer) const",
+          "symbolLocation": 48,
+          "imageIndex": 18
+        },
+        {
+          "imageOffset": 2501132,
+          "symbol": "invocation function for block in HALS_MetaManager::DeviceDied(HALS_Device*)",
+          "symbolLocation": 292,
+          "imageIndex": 18
+        },
+        {
+          "imageOffset": 5546024,
+          "symbol": "HALB_CommandGate::ExecuteCommand(void () block_pointer) const",
+          "symbolLocation": 156,
+          "imageIndex": 18
+        },
+        {
+          "imageOffset": 1364248,
+          "symbol": "HALS_System::DeviceDied(HALS_Device*)",
+          "symbolLocation": 400,
+          "imageIndex": 18
+        },
+        {
+          "imageOffset": 183264,
+          "symbol": "HALS_PlugIn::RebuildDeviceList()",
+          "symbolLocation": 636,
+          "imageIndex": 18
+        },
+        {
+          "imageOffset": 182300,
+          "symbol": "HALS_PlugIn::HandlePlugIn_PropertiesChanged(unsigned int, AudioObjectPropertyAddress const*)",
+          "symbolLocation": 220,
+          "imageIndex": 18
+        },
+        {
+          "imageOffset": 215376,
+          "symbol": "HALS_PlugIn::HostInterface_PropertiesChanged(AudioServerPlugInHostInterface const*, unsigned int, unsigned int, AudioObjectPropertyAddress const*)::$_0::operator()() const",
+          "symbolLocation": 192,
+          "imageIndex": 18
+        },
+        {
+          "imageOffset": 111792,
+          "symbol": "_dispatch_client_callout",
+          "symbolLocation": 16,
+          "imageIndex": 19
+        },
+        {
+          "imageOffset": 71720,
+          "symbol": "_dispatch_sync_invoke_and_complete_recurse",
+          "symbolLocation": 64,
+          "imageIndex": 19
+        },
+        {
+          "imageOffset": 214140,
+          "symbol": "HALS_PlugIn::HostInterface_PropertiesChanged(AudioServerPlugInHostInterface const*, unsigned int, unsigned int, AudioObjectPropertyAddress const*)",
+          "symbolLocation": 1256,
+          "imageIndex": 18
+        },
+        {
+          "imageOffset": 6696,
+          "symbol": "_dispatch_call_block_and_release",
+          "symbolLocation": 32,
+          "imageIndex": 19
+        },
+        {
+          "imageOffset": 111792,
+          "symbol": "_dispatch_client_callout",
+          "symbolLocation": 16,
+          "imageIndex": 19
+        },
+        {
+          "imageOffset": 41008,
+          "symbol": "_dispatch_lane_serial_drain",
+          "symbolLocation": 740,
+          "imageIndex": 19
+        },
+        {
+          "imageOffset": 43820,
+          "symbol": "_dispatch_lane_invoke",
+          "symbolLocation": 392,
+          "imageIndex": 19
+        },
+        {
+          "imageOffset": 85556,
+          "symbol": "_dispatch_root_queue_drain_deferred_wlh",
+          "symbolLocation": 284,
+          "imageIndex": 19
+        },
+        {
+          "imageOffset": 83764,
+          "symbol": "_dispatch_workloop_worker_thread",
+          "symbolLocation": 720,
+          "imageIndex": 19
+        },
+        {
+          "imageOffset": 11968,
+          "symbol": "_pthread_wqthread",
+          "symbolLocation": 292,
+          "imageIndex": 17
+        },
+        {
+          "imageOffset": 7184,
+          "symbol": "start_wqthread",
+          "symbolLocation": 8,
+          "imageIndex": 17
+        }
+      ]
+    },
+    {
+      "id": 12417924,
+      "frames": [],
+      "threadState": {
+        "x": [
+          {
+            "value": 6093713408
+          },
+          {
+            "value": 1349859
+          },
+          {
+            "value": 6093176832
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 409604
+          },
+          {
+            "value": 18446744073709551615
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          }
+        ],
+        "flavor": "ARM_THREAD_STATE64",
+        "lr": {
+          "value": 0
+        },
+        "cpsr": {
+          "value": 4096
+        },
+        "fp": {
+          "value": 0
+        },
+        "sp": {
+          "value": 6093713408
+        },
+        "esr": {
+          "value": 1442840704,
+          "description": "(Syscall)"
+        },
+        "pc": {
+          "value": 6690089992
+        },
+        "far": {
+          "value": 0
+        }
+      }
+    },
+    {
+      "id": 12417925,
+      "frames": [],
+      "threadState": {
+        "x": [
+          {
+            "value": 6096007168
+          },
+          {
+            "value": 1304071
+          },
+          {
+            "value": 6095470592
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 409604
+          },
+          {
+            "value": 18446744073709551615
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          }
+        ],
+        "flavor": "ARM_THREAD_STATE64",
+        "lr": {
+          "value": 0
+        },
+        "cpsr": {
+          "value": 4096
+        },
+        "fp": {
+          "value": 0
+        },
+        "sp": {
+          "value": 6096007168
+        },
+        "esr": {
+          "value": 1442840704,
+          "description": "(Syscall)"
+        },
+        "pc": {
+          "value": 6690089992
+        },
+        "far": {
+          "value": 0
+        }
+      }
+    },
+    {
+      "id": 12417926,
+      "frames": [],
+      "threadState": {
+        "x": [
+          {
+            "value": 6097727488
+          },
+          {
+            "value": 1310551
+          },
+          {
+            "value": 6097190912
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 409604
+          },
+          {
+            "value": 18446744073709551615
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          }
+        ],
+        "flavor": "ARM_THREAD_STATE64",
+        "lr": {
+          "value": 0
+        },
+        "cpsr": {
+          "value": 4096
+        },
+        "fp": {
+          "value": 0
+        },
+        "sp": {
+          "value": 6097727488
+        },
+        "esr": {
+          "value": 1442840704,
+          "description": "(Syscall)"
+        },
+        "pc": {
+          "value": 6690089992
+        },
+        "far": {
+          "value": 0
+        }
+      }
+    },
+    {
+      "id": 12417927,
+      "frames": [],
+      "threadState": {
+        "x": [
+          {
+            "value": 6098300928
+          },
+          {
+            "value": 1321507
+          },
+          {
+            "value": 6097764352
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 409604
+          },
+          {
+            "value": 18446744073709551615
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          }
+        ],
+        "flavor": "ARM_THREAD_STATE64",
+        "lr": {
+          "value": 0
+        },
+        "cpsr": {
+          "value": 4096
+        },
+        "fp": {
+          "value": 0
+        },
+        "sp": {
+          "value": 6098300928
+        },
+        "esr": {
+          "value": 1442840704,
+          "description": "(Syscall)"
+        },
+        "pc": {
+          "value": 6690089992
+        },
+        "far": {
+          "value": 0
+        }
+      }
+    },
+    {
+      "id": 12417928,
+      "threadState": {
+        "x": [
+          {
+            "value": 4
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 9934080
+          },
+          {
+            "value": 12418283
+          },
+          {
+            "value": 73896
+          },
+          {
+            "value": 16
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 39477128695
+          },
+          {
+            "value": 39477128688
+          },
+          {
+            "value": 39477128680
+          },
+          {
+            "value": 12417928
+          },
+          {
+            "value": 42666548725782274
+          },
+          {
+            "value": 42666548725782530
+          },
+          {
+            "value": 12418283
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 301
+          },
+          {
+            "value": 8536126240
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 39477128656
+          },
+          {
+            "value": 42666548725782530
+          },
+          {
+            "value": 9934080
+          },
+          {
+            "value": 39477128680
+          },
+          {
+            "value": 12417928
+          },
+          {
+            "value": 39477128688
+          },
+          {
+            "value": 4412432448
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 276
+          }
+        ],
+        "flavor": "ARM_THREAD_STATE64",
+        "lr": {
+          "value": 6690098844
+        },
+        "cpsr": {
+          "value": 1610616832
+        },
+        "fp": {
+          "value": 6098872256
+        },
+        "sp": {
+          "value": 6098872208
+        },
+        "esr": {
+          "value": 1442840704,
+          "description": "(Syscall)"
+        },
+        "pc": {
+          "value": 6689843676
+        },
+        "far": {
+          "value": 0
+        }
+      },
+      "queue": "com.apple.BTAudioHALPlugin.UnifiedDeviceSyncQueue",
+      "frames": [
+        {
+          "imageOffset": 14812,
+          "symbol": "__psynch_mutexwait",
+          "symbolLocation": 8,
+          "imageIndex": 12
+        },
+        {
+          "imageOffset": 16028,
+          "symbol": "_pthread_mutex_firstfit_lock_wait",
+          "symbolLocation": 84,
+          "imageIndex": 17
+        },
+        {
+          "imageOffset": 6368,
+          "symbol": "_pthread_mutex_firstfit_lock_slow",
+          "symbolLocation": 216,
+          "imageIndex": 17
+        },
+        {
+          "imageOffset": 517572,
+          "imageIndex": 6
+        },
+        {
+          "imageOffset": 517888,
+          "imageIndex": 6
+        },
+        {
+          "imageOffset": 517784,
+          "imageIndex": 6
+        },
+        {
+          "imageOffset": 320840,
+          "imageIndex": 6
+        },
+        {
+          "imageOffset": 63808,
+          "imageIndex": 6
+        },
+        {
+          "imageOffset": 6696,
+          "symbol": "_dispatch_call_block_and_release",
+          "symbolLocation": 32,
+          "imageIndex": 19
+        },
+        {
+          "imageOffset": 111792,
+          "symbol": "_dispatch_client_callout",
+          "symbolLocation": 16,
+          "imageIndex": 19
+        },
+        {
+          "imageOffset": 41008,
+          "symbol": "_dispatch_lane_serial_drain",
+          "symbolLocation": 740,
+          "imageIndex": 19
+        },
+        {
+          "imageOffset": 43820,
+          "symbol": "_dispatch_lane_invoke",
+          "symbolLocation": 392,
+          "imageIndex": 19
+        },
+        {
+          "imageOffset": 85556,
+          "symbol": "_dispatch_root_queue_drain_deferred_wlh",
+          "symbolLocation": 284,
+          "imageIndex": 19
+        },
+        {
+          "imageOffset": 83764,
+          "symbol": "_dispatch_workloop_worker_thread",
+          "symbolLocation": 720,
+          "imageIndex": 19
+        },
+        {
+          "imageOffset": 11968,
+          "symbol": "_pthread_wqthread",
+          "symbolLocation": 292,
+          "imageIndex": 17
+        },
+        {
+          "imageOffset": 7184,
+          "symbol": "start_wqthread",
+          "symbolLocation": 8,
+          "imageIndex": 17
+        }
+      ]
+    },
+    {
+      "id": 12417929,
+      "frames": [],
+      "threadState": {
+        "x": [
+          {
+            "value": 6099447808
+          },
+          {
+            "value": 1209883
+          },
+          {
+            "value": 6098911232
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 409604
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          }
+        ],
+        "flavor": "ARM_THREAD_STATE64",
+        "lr": {
+          "value": 0
+        },
+        "cpsr": {
+          "value": 4096
+        },
+        "fp": {
+          "value": 0
+        },
+        "sp": {
+          "value": 6099447808
+        },
+        "esr": {
+          "value": 1442840704,
+          "description": "(Syscall)"
+        },
+        "pc": {
+          "value": 6690089992
+        },
+        "far": {
+          "value": 0
+        }
+      }
+    },
+    {
+      "id": 12418261,
+      "threadState": {
+        "x": [
+          {
+            "value": 4
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 9934080
+          },
+          {
+            "value": 12418283
+          },
+          {
+            "value": 73896
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 18446744072631617535
+          },
+          {
+            "value": 18446726482597246976
+          },
+          {
+            "value": 39477128695
+          },
+          {
+            "value": 39477128688
+          },
+          {
+            "value": 39477128680
+          },
+          {
+            "value": 12418261
+          },
+          {
+            "value": 42666548725781762
+          },
+          {
+            "value": 42666548725782018
+          },
+          {
+            "value": 12418283
+          },
+          {
+            "value": 17222123520
+          },
+          {
+            "value": 301
+          },
+          {
+            "value": 8536126240
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 39477128656
+          },
+          {
+            "value": 42666548725782018
+          },
+          {
+            "value": 9934080
+          },
+          {
+            "value": 39477128680
+          },
+          {
+            "value": 12418261
+          },
+          {
+            "value": 39477128688
+          },
+          {
+            "value": 4
+          },
+          {
+            "value": 6100595072
+          },
+          {
+            "value": 6100594912
+          },
+          {
+            "value": 8512807816,
+            "symbolLocation": 0,
+            "symbol": "OBJC_CLASS_$_OS_dispatch_mach_msg"
+          }
+        ],
+        "flavor": "ARM_THREAD_STATE64",
+        "lr": {
+          "value": 6690098844
+        },
+        "cpsr": {
+          "value": 1610616832
+        },
+        "fp": {
+          "value": 6100591104
+        },
+        "sp": {
+          "value": 6100591056
+        },
+        "esr": {
+          "value": 1442840704,
+          "description": "(Syscall)"
+        },
+        "pc": {
+          "value": 6689843676
+        },
+        "far": {
+          "value": 0
+        }
+      },
+      "queue": "com.apple.BTAudioHALPlugin",
+      "frames": [
+        {
+          "imageOffset": 14812,
+          "symbol": "__psynch_mutexwait",
+          "symbolLocation": 8,
+          "imageIndex": 12
+        },
+        {
+          "imageOffset": 16028,
+          "symbol": "_pthread_mutex_firstfit_lock_wait",
+          "symbolLocation": 84,
+          "imageIndex": 17
+        },
+        {
+          "imageOffset": 6368,
+          "symbol": "_pthread_mutex_firstfit_lock_slow",
+          "symbolLocation": 216,
+          "imageIndex": 17
+        },
+        {
+          "imageOffset": 517572,
+          "imageIndex": 6
+        },
+        {
+          "imageOffset": 517888,
+          "imageIndex": 6
+        },
+        {
+          "imageOffset": 517784,
+          "imageIndex": 6
+        },
+        {
+          "imageOffset": 322284,
+          "imageIndex": 6
+        },
+        {
+          "imageOffset": 322056,
+          "imageIndex": 6
+        },
+        {
+          "imageOffset": 67796,
+          "imageIndex": 6
+        },
+        {
+          "imageOffset": 313240,
+          "imageIndex": 6
+        },
+        {
+          "imageOffset": 303644,
+          "imageIndex": 6
+        },
+        {
+          "imageOffset": 58508,
+          "symbol": "_xpc_connection_call_event_handler",
+          "symbolLocation": 112,
+          "imageIndex": 20
+        },
+        {
+          "imageOffset": 52444,
+          "symbol": "_xpc_connection_mach_event",
+          "symbolLocation": 1488,
+          "imageIndex": 20
+        },
+        {
+          "imageOffset": 111864,
+          "symbol": "_dispatch_client_callout4",
+          "symbolLocation": 16,
+          "imageIndex": 19
+        },
+        {
+          "imageOffset": 122516,
+          "symbol": "_dispatch_mach_msg_invoke",
+          "symbolLocation": 480,
+          "imageIndex": 19
+        },
+        {
+          "imageOffset": 40600,
+          "symbol": "_dispatch_lane_serial_drain",
+          "symbolLocation": 332,
+          "imageIndex": 19
+        },
+        {
+          "imageOffset": 125932,
+          "symbol": "_dispatch_mach_invoke",
+          "symbolLocation": 472,
+          "imageIndex": 19
+        },
+        {
+          "imageOffset": 40600,
+          "symbol": "_dispatch_lane_serial_drain",
+          "symbolLocation": 332,
+          "imageIndex": 19
+        },
+        {
+          "imageOffset": 43820,
+          "symbol": "_dispatch_lane_invoke",
+          "symbolLocation": 392,
+          "imageIndex": 19
+        },
+        {
+          "imageOffset": 85556,
+          "symbol": "_dispatch_root_queue_drain_deferred_wlh",
+          "symbolLocation": 284,
+          "imageIndex": 19
+        },
+        {
+          "imageOffset": 83764,
+          "symbol": "_dispatch_workloop_worker_thread",
+          "symbolLocation": 720,
+          "imageIndex": 19
+        },
+        {
+          "imageOffset": 11968,
+          "symbol": "_pthread_wqthread",
+          "symbolLocation": 292,
+          "imageIndex": 17
+        },
+        {
+          "imageOffset": 7184,
+          "symbol": "start_wqthread",
+          "symbolLocation": 8,
+          "imageIndex": 17
+        }
+      ]
+    },
+    {
+      "id": 12418262,
+      "frames": [],
+      "threadState": {
+        "x": [
+          {
+            "value": 6100021248
+          },
+          {
+            "value": 1244991
+          },
+          {
+            "value": 6099484672
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 409604
+          },
+          {
+            "value": 18446744073709551615
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          }
+        ],
+        "flavor": "ARM_THREAD_STATE64",
+        "lr": {
+          "value": 0
+        },
+        "cpsr": {
+          "value": 4096
+        },
+        "fp": {
+          "value": 0
+        },
+        "sp": {
+          "value": 6100021248
+        },
+        "esr": {
+          "value": 1442840704,
+          "description": "(Syscall)"
+        },
+        "pc": {
+          "value": 6690089992
+        },
+        "far": {
+          "value": 0
+        }
+      }
+    },
+    {
+      "id": 12418263,
+      "frames": [],
+      "threadState": {
+        "x": [
+          {
+            "value": 6101168128
+          },
+          {
+            "value": 1193711
+          },
+          {
+            "value": 6100631552
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 409604
+          },
+          {
+            "value": 18446744073709551615
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          }
+        ],
+        "flavor": "ARM_THREAD_STATE64",
+        "lr": {
+          "value": 0
+        },
+        "cpsr": {
+          "value": 4096
+        },
+        "fp": {
+          "value": 0
+        },
+        "sp": {
+          "value": 6101168128
+        },
+        "esr": {
+          "value": 1442840704,
+          "description": "(Syscall)"
+        },
+        "pc": {
+          "value": 6690089992
+        },
+        "far": {
+          "value": 0
+        }
+      }
+    },
+    {
+      "id": 12418268,
+      "threadState": {
+        "x": [
+          {
+            "value": 4
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 9934080
+          },
+          {
+            "value": 12418283
+          },
+          {
+            "value": 73896
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 40
+          },
+          {
+            "value": 6102308608
+          },
+          {
+            "value": 39477128695
+          },
+          {
+            "value": 39477128688
+          },
+          {
+            "value": 39477128680
+          },
+          {
+            "value": 12418268
+          },
+          {
+            "value": 42666548725782018
+          },
+          {
+            "value": 42666548725782274
+          },
+          {
+            "value": 12418283
+          },
+          {
+            "value": 39478738944
+          },
+          {
+            "value": 301
+          },
+          {
+            "value": 8536126240
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 39477128656
+          },
+          {
+            "value": 42666548725782274
+          },
+          {
+            "value": 9934080
+          },
+          {
+            "value": 39477128680
+          },
+          {
+            "value": 12418268
+          },
+          {
+            "value": 39477128688
+          },
+          {
+            "value": 600
+          },
+          {
+            "value": 4456933592
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 40
+          }
+        ],
+        "flavor": "ARM_THREAD_STATE64",
+        "lr": {
+          "value": 6690098844
+        },
+        "cpsr": {
+          "value": 1610616832
+        },
+        "fp": {
+          "value": 6102307360
+        },
+        "sp": {
+          "value": 6102307312
+        },
+        "esr": {
+          "value": 1442840704,
+          "description": "(Syscall)"
+        },
+        "pc": {
+          "value": 6689843676
+        },
+        "far": {
+          "value": 0
+        }
+      },
+      "queue": "com.apple.audio.device.CADefaultDeviceAggregate-18824-2.event",
+      "frames": [
+        {
+          "imageOffset": 14812,
+          "symbol": "__psynch_mutexwait",
+          "symbolLocation": 8,
+          "imageIndex": 12
+        },
+        {
+          "imageOffset": 16028,
+          "symbol": "_pthread_mutex_firstfit_lock_wait",
+          "symbolLocation": 84,
+          "imageIndex": 17
+        },
+        {
+          "imageOffset": 6368,
+          "symbol": "_pthread_mutex_firstfit_lock_slow",
+          "symbolLocation": 216,
+          "imageIndex": 17
+        },
+        {
+          "imageOffset": 517572,
+          "imageIndex": 6
+        },
+        {
+          "imageOffset": 517888,
+          "imageIndex": 6
+        },
+        {
+          "imageOffset": 517784,
+          "imageIndex": 6
+        },
+        {
+          "imageOffset": 364884,
+          "imageIndex": 6
+        },
+        {
+          "imageOffset": 3329396,
+          "symbol": "HALS_UCPlugIn::ObjectGetPropertyData(unsigned int, int, AudioObjectPropertyAddress const&, unsigned int, void const*, unsigned int, unsigned int&, void*) const",
+          "symbolLocation": 76,
+          "imageIndex": 18
+        },
+        {
+          "imageOffset": 3659132,
+          "symbol": "HALS_PlugInStream::GetPropertyData(unsigned int, AudioObjectPropertyAddress const&, unsigned int, unsigned int&, void*, unsigned int, void const*, HALS_Client*) const",
+          "symbolLocation": 3652,
+          "imageIndex": 18
+        },
+        {
+          "imageOffset": 2992132,
+          "symbol": "HALS_Stream::GetNumberChannels() const",
+          "symbolLocation": 92,
+          "imageIndex": 18
+        },
+        {
+          "imageOffset": 3000224,
+          "symbol": "HALS_MetaDevice::_CreateLegacyIOContextDescription(HALS_Client*) const",
+          "symbolLocation": 3532,
+          "imageIndex": 18
+        },
+        {
+          "imageOffset": 4521000,
+          "symbol": "invocation function for block in HALS_Device::CreateIOContextDescription(HALS_Client*) const",
+          "symbolLocation": 32,
+          "imageIndex": 18
+        },
+        {
+          "imageOffset": 5546024,
+          "symbol": "HALB_CommandGate::ExecuteCommand(void () block_pointer) const",
+          "symbolLocation": 156,
+          "imageIndex": 18
+        },
+        {
+          "imageOffset": 4509448,
+          "symbol": "HALS_Device::CreateIOContextDescription(HALS_Client*) const",
+          "symbolLocation": 204,
+          "imageIndex": 18
+        },
+        {
+          "imageOffset": 4482704,
+          "symbol": "HALS_Device::GetPropertyData(unsigned int, AudioObjectPropertyAddress const&, unsigned int, unsigned int&, void*, unsigned int, void const*, HALS_Client*) const",
+          "symbolLocation": 7540,
+          "imageIndex": 18
+        },
+        {
+          "imageOffset": 6393608,
+          "symbol": "_XObject_GetPropertyData_DPList",
+          "symbolLocation": 452,
+          "imageIndex": 18
+        },
+        {
+          "imageOffset": 6418700,
+          "symbol": "HALB_MIGServer_server",
+          "symbolLocation": 108,
+          "imageIndex": 18
+        },
+        {
+          "imageOffset": 129148,
+          "symbol": "dispatch_mig_server",
+          "symbolLocation": 424,
+          "imageIndex": 19
+        },
+        {
+          "imageOffset": 2923240,
+          "symbol": "invocation function for block in AMCP::Utility::Dispatch_Queue::install_mig_server(unsigned int, unsigned int, int (*)(mach_msg_header_t*, mach_msg_header_t*), bool, bool)",
+          "symbolLocation": 52,
+          "imageIndex": 18
+        },
+        {
+          "imageOffset": 111792,
+          "symbol": "_dispatch_client_callout",
+          "symbolLocation": 16,
+          "imageIndex": 19
+        },
+        {
+          "imageOffset": 25032,
+          "symbol": "_dispatch_continuation_pop",
+          "symbolLocation": 596,
+          "imageIndex": 19
+        },
+        {
+          "imageOffset": 102832,
+          "symbol": "_dispatch_source_latch_and_call",
+          "symbolLocation": 392,
+          "imageIndex": 19
+        },
+        {
+          "imageOffset": 97924,
+          "symbol": "_dispatch_source_invoke",
+          "symbolLocation": 844,
+          "imageIndex": 19
+        },
+        {
+          "imageOffset": 40600,
+          "symbol": "_dispatch_lane_serial_drain",
+          "symbolLocation": 332,
+          "imageIndex": 19
+        },
+        {
+          "imageOffset": 43876,
+          "symbol": "_dispatch_lane_invoke",
+          "symbolLocation": 448,
+          "imageIndex": 19
+        },
+        {
+          "imageOffset": 48840,
+          "symbol": "_dispatch_workloop_invoke",
+          "symbolLocation": 1584,
+          "imageIndex": 19
+        },
+        {
+          "imageOffset": 85556,
+          "symbol": "_dispatch_root_queue_drain_deferred_wlh",
+          "symbolLocation": 284,
+          "imageIndex": 19
+        },
+        {
+          "imageOffset": 83764,
+          "symbol": "_dispatch_workloop_worker_thread",
+          "symbolLocation": 720,
+          "imageIndex": 19
+        },
+        {
+          "imageOffset": 11968,
+          "symbol": "_pthread_wqthread",
+          "symbolLocation": 292,
+          "imageIndex": 17
+        },
+        {
+          "imageOffset": 7184,
+          "symbol": "start_wqthread",
+          "symbolLocation": 8,
+          "imageIndex": 17
+        }
+      ]
+    },
+    {
+      "id": 12418270,
+      "frames": [],
+      "threadState": {
+        "x": [
+          {
+            "value": 6103461888
+          },
+          {
+            "value": 1294451
+          },
+          {
+            "value": 6102925312
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 409604
+          },
+          {
+            "value": 18446744073709551615
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          }
+        ],
+        "flavor": "ARM_THREAD_STATE64",
+        "lr": {
+          "value": 0
+        },
+        "cpsr": {
+          "value": 4096
+        },
+        "fp": {
+          "value": 0
+        },
+        "sp": {
+          "value": 6103461888
+        },
+        "esr": {
+          "value": 1442840704,
+          "description": "(Syscall)"
+        },
+        "pc": {
+          "value": 6690089992
+        },
+        "far": {
+          "value": 0
+        }
+      }
+    },
+    {
+      "id": 12418271,
+      "threadState": {
+        "x": [
+          {
+            "value": 268435463
+          },
+          {
+            "value": 17179869201
+          },
+          {
+            "value": 259846766611
+          },
+          {
+            "value": 72735
+          },
+          {
+            "value": 4340064453904091
+          },
+          {
+            "value": 1
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 100
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 17179869184
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 1296091
+          },
+          {
+            "value": 1010500
+          },
+          {
+            "value": 1
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 18446744073709551569
+          },
+          {
+            "value": 8536128104
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 100
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 1
+          },
+          {
+            "value": 4340064453904091
+          },
+          {
+            "value": 72735
+          },
+          {
+            "value": 17179869201
+          },
+          {
+            "value": 6102886288
+          },
+          {
+            "value": 259846766611
+          },
+          {
+            "value": 18446744073709550527
+          },
+          {
+            "value": 17
+          }
+        ],
+        "flavor": "ARM_THREAD_STATE64",
+        "lr": {
+          "value": 6689908132
+        },
+        "cpsr": {
+          "value": 2147487744
+        },
+        "fp": {
+          "value": 6102885952
+        },
+        "sp": {
+          "value": 6102885872
+        },
+        "esr": {
+          "value": 1442840704,
+          "description": "(Syscall)"
+        },
+        "pc": {
+          "value": 6689831988
+        },
+        "far": {
+          "value": 0
+        }
+      },
+      "queue": "com.apple.audio.HALS_Client.995.downcall",
+      "frames": [
+        {
+          "imageOffset": 3124,
+          "symbol": "mach_msg2_trap",
+          "symbolLocation": 8,
+          "imageIndex": 12
+        },
+        {
+          "imageOffset": 79268,
+          "symbol": "mach_msg2_internal",
+          "symbolLocation": 76,
+          "imageIndex": 12
+        },
+        {
+          "imageOffset": 39360,
+          "symbol": "mach_msg_overwrite",
+          "symbolLocation": 480,
+          "imageIndex": 12
+        },
+        {
+          "imageOffset": 4032,
+          "symbol": "mach_msg",
+          "symbolLocation": 24,
+          "imageIndex": 12
+        },
+        {
+          "imageOffset": 6350620,
+          "symbol": "HALS_Object_PropertyListener",
+          "symbolLocation": 144,
+          "imageIndex": 18
+        },
+        {
+          "imageOffset": 1908524,
+          "symbol": "invocation function for block in HALS_Client::HandleObjectPropertiesChanged(HALS_Object const*, unsigned int, unsigned int, AudioObjectPropertyAddress const*)",
+          "symbolLocation": 88,
+          "imageIndex": 18
+        },
+        {
+          "imageOffset": 6696,
+          "symbol": "_dispatch_call_block_and_release",
+          "symbolLocation": 32,
+          "imageIndex": 19
+        },
+        {
+          "imageOffset": 111792,
+          "symbol": "_dispatch_client_callout",
+          "symbolLocation": 16,
+          "imageIndex": 19
+        },
+        {
+          "imageOffset": 41008,
+          "symbol": "_dispatch_lane_serial_drain",
+          "symbolLocation": 740,
+          "imageIndex": 19
+        },
+        {
+          "imageOffset": 43876,
+          "symbol": "_dispatch_lane_invoke",
+          "symbolLocation": 448,
+          "imageIndex": 19
+        },
+        {
+          "imageOffset": 48840,
+          "symbol": "_dispatch_workloop_invoke",
+          "symbolLocation": 1584,
+          "imageIndex": 19
+        },
+        {
+          "imageOffset": 85556,
+          "symbol": "_dispatch_root_queue_drain_deferred_wlh",
+          "symbolLocation": 284,
+          "imageIndex": 19
+        },
+        {
+          "imageOffset": 83764,
+          "symbol": "_dispatch_workloop_worker_thread",
+          "symbolLocation": 720,
+          "imageIndex": 19
+        },
+        {
+          "imageOffset": 11968,
+          "symbol": "_pthread_wqthread",
+          "symbolLocation": 292,
+          "imageIndex": 17
+        },
+        {
+          "imageOffset": 7184,
+          "symbol": "start_wqthread",
+          "symbolLocation": 8,
+          "imageIndex": 17
+        }
+      ]
+    },
+    {
+      "id": 12418274,
+      "threadState": {
+        "x": [
+          {
+            "value": 268451845
+          },
+          {
+            "value": 17179869459
+          },
+          {
+            "value": 223339549971
+          },
+          {
+            "value": 5724070419275595
+          },
+          {
+            "value": 4338050114272067
+          },
+          {
+            "value": 5724070419103744
+          },
+          {
+            "value": 44
+          },
+          {
+            "value": 30000
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 17179869184
+          },
+          {
+            "value": 44
+          },
+          {
+            "value": 1325891
+          },
+          {
+            "value": 1010031
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 1332739
+          },
+          {
+            "value": 8512797664,
+            "symbolLocation": 0,
+            "symbol": "_NSConcreteStackBlock"
+          },
+          {
+            "value": 18446744073709551569
+          },
+          {
+            "value": 8536128104
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 30000
+          },
+          {
+            "value": 44
+          },
+          {
+            "value": 5724070419103744
+          },
+          {
+            "value": 4338050114272067
+          },
+          {
+            "value": 5724070419275595
+          },
+          {
+            "value": 17179869459
+          },
+          {
+            "value": 6104031056
+          },
+          {
+            "value": 223339549971
+          },
+          {
+            "value": 18446744073709550527
+          },
+          {
+            "value": 275
+          }
+        ],
+        "flavor": "ARM_THREAD_STATE64",
+        "lr": {
+          "value": 6689908132
+        },
+        "cpsr": {
+          "value": 4096
+        },
+        "fp": {
+          "value": 6104030656
+        },
+        "sp": {
+          "value": 6104030576
+        },
+        "esr": {
+          "value": 1442840704,
+          "description": "(Syscall)"
+        },
+        "pc": {
+          "value": 6689831988
+        },
+        "far": {
+          "value": 0
+        }
+      },
+      "queue": "HALC_ShellObject_Listener Queue",
+      "frames": [
+        {
+          "imageOffset": 3124,
+          "symbol": "mach_msg2_trap",
+          "symbolLocation": 8,
+          "imageIndex": 12
+        },
+        {
+          "imageOffset": 79268,
+          "symbol": "mach_msg2_internal",
+          "symbolLocation": 76,
+          "imageIndex": 12
+        },
+        {
+          "imageOffset": 39360,
+          "symbol": "mach_msg_overwrite",
+          "symbolLocation": 480,
+          "imageIndex": 12
+        },
+        {
+          "imageOffset": 4032,
+          "symbol": "mach_msg",
+          "symbolLocation": 24,
+          "imageIndex": 12
+        },
+        {
+          "imageOffset": 4208620,
+          "symbol": "HALC_ProxyObject::SetPropertyData(AudioObjectPropertyAddress const&, unsigned int, void const*, unsigned int, void const*)",
+          "symbolLocation": 3744,
+          "imageIndex": 18
+        },
+        {
+          "imageOffset": 3286936,
+          "symbol": "HALC_ShellObject::SetPropertyData(unsigned int, AudioObjectPropertyAddress const&, unsigned int, void const*, unsigned int, void const*)",
+          "symbolLocation": 864,
+          "imageIndex": 18
+        },
+        {
+          "imageOffset": 1836280,
+          "symbol": "HAL_HardwarePlugIn_ObjectSetPropertyData(AudioHardwarePlugInInterface**, unsigned int, AudioObjectPropertyAddress const*, unsigned int, void const*, unsigned int, void const*)",
+          "symbolLocation": 540,
+          "imageIndex": 18
+        },
+        {
+          "imageOffset": 3168320,
+          "symbol": "HALPlugIn::ObjectSetPropertyData(HALObject const&, AudioObjectPropertyAddress const&, unsigned int, void const*, unsigned int, void const*, AudioTimeStamp const*)",
+          "symbolLocation": 88,
+          "imageIndex": 18
+        },
+        {
+          "imageOffset": 2669440,
+          "symbol": "HALObject::SetPropertyData(AudioObjectPropertyAddress const&, unsigned int, void const*, unsigned int, void const*, AudioTimeStamp const*)",
+          "symbolLocation": 280,
+          "imageIndex": 18
+        },
+        {
+          "imageOffset": 2704832,
+          "symbol": "AudioObjectSetPropertyData_mac_imp",
+          "symbolLocation": 788,
+          "imageIndex": 18
+        },
+        {
+          "imageOffset": 9156,
+          "symbol": "AHS_DeviceSettings::ApplySettings()",
+          "symbolLocation": 664,
+          "imageIndex": 0
+        },
+        {
+          "imageOffset": 5500,
+          "symbol": "AHS_DeviceSettings::PropertyListener(unsigned int, unsigned int, AudioObjectPropertyAddress const*, void*)",
+          "symbolLocation": 848,
+          "imageIndex": 0
+        },
+        {
+          "imageOffset": 2665524,
+          "symbol": "HALObject::PropertiesChanged(unsigned int, AudioObjectPropertyAddress const*)",
+          "symbolLocation": 1952,
+          "imageIndex": 18
+        },
+        {
+          "imageOffset": 955496,
+          "symbol": "HALSystem::AudioObjectPropertiesChanged(AudioHardwarePlugInInterface**, unsigned int, unsigned int, AudioObjectPropertyAddress const*)",
+          "symbolLocation": 292,
+          "imageIndex": 18
+        },
+        {
+          "imageOffset": 3285968,
+          "symbol": "void applesauce::dispatch::v1::async<HALC_ShellObject::PropertiesChanged(unsigned int, unsigned int, AudioObjectPropertyAddress const*, bool) const::$_0&>(NSObject<OS_dispatch_queue>*, HALC_ShellObject::PropertiesChanged(unsigned int, unsigned int, AudioObjectPropertyAddress const*, bool) const::$_0&)::'lambda'(void*)::__invoke(void*)",
+          "symbolLocation": 64,
+          "imageIndex": 18
+        },
+        {
+          "imageOffset": 111792,
+          "symbol": "_dispatch_client_callout",
+          "symbolLocation": 16,
+          "imageIndex": 19
+        },
+        {
+          "imageOffset": 41008,
+          "symbol": "_dispatch_lane_serial_drain",
+          "symbolLocation": 740,
+          "imageIndex": 19
+        },
+        {
+          "imageOffset": 43876,
+          "symbol": "_dispatch_lane_invoke",
+          "symbolLocation": 448,
+          "imageIndex": 19
+        },
+        {
+          "imageOffset": 48840,
+          "symbol": "_dispatch_workloop_invoke",
+          "symbolLocation": 1584,
+          "imageIndex": 19
+        },
+        {
+          "imageOffset": 85556,
+          "symbol": "_dispatch_root_queue_drain_deferred_wlh",
+          "symbolLocation": 284,
+          "imageIndex": 19
+        },
+        {
+          "imageOffset": 83764,
+          "symbol": "_dispatch_workloop_worker_thread",
+          "symbolLocation": 720,
+          "imageIndex": 19
+        },
+        {
+          "imageOffset": 11968,
+          "symbol": "_pthread_wqthread",
+          "symbolLocation": 292,
+          "imageIndex": 17
+        },
+        {
+          "imageOffset": 7184,
+          "symbol": "start_wqthread",
+          "symbolLocation": 8,
+          "imageIndex": 17
+        }
+      ]
+    },
+    {
+      "id": 12418275,
+      "frames": [],
+      "threadState": {
+        "x": [
+          {
+            "value": 6104608768
+          },
+          {
+            "value": 1291747
+          },
+          {
+            "value": 6104072192
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 409604
+          },
+          {
+            "value": 18446744073709551615
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          }
+        ],
+        "flavor": "ARM_THREAD_STATE64",
+        "lr": {
+          "value": 0
+        },
+        "cpsr": {
+          "value": 4096
+        },
+        "fp": {
+          "value": 0
+        },
+        "sp": {
+          "value": 6104608768
+        },
+        "esr": {
+          "value": 1442840704,
+          "description": "(Syscall)"
+        },
+        "pc": {
+          "value": 6690089992
+        },
+        "far": {
+          "value": 0
+        }
+      }
+    },
+    {
+      "id": 12418276,
+      "threadState": {
+        "x": [
+          {
+            "value": 268451845
+          },
+          {
+            "value": 17183031299
+          },
+          {
+            "value": 171799942419
+          },
+          {
+            "value": 5749118668382723
+          },
+          {
+            "value": 313571268615071
+          },
+          {
+            "value": 5749118668374016
+          },
+          {
+            "value": 60
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 17179869184
+          },
+          {
+            "value": 60
+          },
+          {
+            "value": 1301407
+          },
+          {
+            "value": 73009
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 1338571
+          },
+          {
+            "value": 8
+          },
+          {
+            "value": 18446744073709551569
+          },
+          {
+            "value": 8536128104
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 60
+          },
+          {
+            "value": 5749118668374016
+          },
+          {
+            "value": 313571268615071
+          },
+          {
+            "value": 5749118668382723
+          },
+          {
+            "value": 17183031299
+          },
+          {
+            "value": 6105179732
+          },
+          {
+            "value": 171799942419
+          },
+          {
+            "value": 18446744073709550527
+          },
+          {
+            "value": 3162115
+          }
+        ],
+        "flavor": "ARM_THREAD_STATE64",
+        "lr": {
+          "value": 6689908132
+        },
+        "cpsr": {
+          "value": 4096
+        },
+        "fp": {
+          "value": 6105179392
+        },
+        "sp": {
+          "value": 6105179312
+        },
+        "esr": {
+          "value": 1442840704,
+          "description": "(Syscall)"
+        },
+        "pc": {
+          "value": 6689831988
+        },
+        "far": {
+          "value": 0
+        }
+      },
+      "queue": "com.apple.audio.HALS_IOContext-assertion",
+      "frames": [
+        {
+          "imageOffset": 3124,
+          "symbol": "mach_msg2_trap",
+          "symbolLocation": 8,
+          "imageIndex": 12
+        },
+        {
+          "imageOffset": 79268,
+          "symbol": "mach_msg2_internal",
+          "symbolLocation": 76,
+          "imageIndex": 12
+        },
+        {
+          "imageOffset": 39360,
+          "symbol": "mach_msg_overwrite",
+          "symbolLocation": 480,
+          "imageIndex": 12
+        },
+        {
+          "imageOffset": 4032,
+          "symbol": "mach_msg",
+          "symbolLocation": 24,
+          "imageIndex": 12
+        },
+        {
+          "imageOffset": 68424,
+          "symbol": "io_pm_assertion_retain_release",
+          "symbolLocation": 180,
+          "imageIndex": 21
+        },
+        {
+          "imageOffset": 49500,
+          "symbol": "IOPMAssertionRelease",
+          "symbolLocation": 164,
+          "imageIndex": 21
+        },
+        {
+          "imageOffset": 1653252,
+          "symbol": "std::__1::unique_ptr<HALB_PowerAssertion, std::__1::default_delete<HALB_PowerAssertion>>::reset[abi:nqe210106](HALB_PowerAssertion*)",
+          "symbolLocation": 40,
+          "imageIndex": 18
+        },
+        {
+          "imageOffset": 1652640,
+          "symbol": "std::__1::__function::__func<HALS_IOContext_Legacy_Impl::UpdatePowerAssertions()::$_0, void (std::__1::shared_ptr<HALS_IOContext_PowerAssertions> const&)>::operator()(std::__1::shared_ptr<HALS_IOContext_PowerAssertions> const&)",
+          "symbolLocation": 308,
+          "imageIndex": 18
+        },
+        {
+          "imageOffset": 1651976,
+          "symbol": "HALS_IOContext_Legacy_Impl::DoPowerAssertionTask(std::__1::function<void (std::__1::shared_ptr<HALS_IOContext_PowerAssertions> const&)>)::$_0::operator()() const",
+          "symbolLocation": 100,
+          "imageIndex": 18
+        },
+        {
+          "imageOffset": 1651832,
+          "symbol": "void applesauce::dispatch::v1::async<HALS_IOContext_Legacy_Impl::DoPowerAssertionTask(std::__1::function<void (std::__1::shared_ptr<HALS_IOContext_PowerAssertions> const&)>)::$_0&>(dispatch_queue_s*, HALS_IOContext_Legacy_Impl::DoPowerAssertionTask(std::__1::function<void (std::__1::shared_ptr<HALS_IOContext_PowerAssertions> const&)>)::$_0&)::'lambda'(void*)::__invoke(void*)",
+          "symbolLocation": 28,
+          "imageIndex": 18
+        },
+        {
+          "imageOffset": 111792,
+          "symbol": "_dispatch_client_callout",
+          "symbolLocation": 16,
+          "imageIndex": 19
+        },
+        {
+          "imageOffset": 41008,
+          "symbol": "_dispatch_lane_serial_drain",
+          "symbolLocation": 740,
+          "imageIndex": 19
+        },
+        {
+          "imageOffset": 43876,
+          "symbol": "_dispatch_lane_invoke",
+          "symbolLocation": 448,
+          "imageIndex": 19
+        },
+        {
+          "imageOffset": 48840,
+          "symbol": "_dispatch_workloop_invoke",
+          "symbolLocation": 1584,
+          "imageIndex": 19
+        },
+        {
+          "imageOffset": 85556,
+          "symbol": "_dispatch_root_queue_drain_deferred_wlh",
+          "symbolLocation": 284,
+          "imageIndex": 19
+        },
+        {
+          "imageOffset": 83764,
+          "symbol": "_dispatch_workloop_worker_thread",
+          "symbolLocation": 720,
+          "imageIndex": 19
+        },
+        {
+          "imageOffset": 11968,
+          "symbol": "_pthread_wqthread",
+          "symbolLocation": 292,
+          "imageIndex": 17
+        },
+        {
+          "imageOffset": 7184,
+          "symbol": "start_wqthread",
+          "symbolLocation": 8,
+          "imageIndex": 17
+        }
+      ]
+    },
+    {
+      "id": 12418277,
+      "frames": [],
+      "threadState": {
+        "x": [
+          {
+            "value": 6105755648
+          },
+          {
+            "value": 1305235
+          },
+          {
+            "value": 6105219072
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 409603
+          },
+          {
+            "value": 18446744073709551615
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          }
+        ],
+        "flavor": "ARM_THREAD_STATE64",
+        "lr": {
+          "value": 0
+        },
+        "cpsr": {
+          "value": 4096
+        },
+        "fp": {
+          "value": 0
+        },
+        "sp": {
+          "value": 6105755648
+        },
+        "esr": {
+          "value": 1442840704,
+          "description": "(Syscall)"
+        },
+        "pc": {
+          "value": 6690089992
+        },
+        "far": {
+          "value": 0
+        }
+      }
+    },
+    {
+      "triggered": true,
+      "id": 12418283,
+      "threadState": {
+        "x": [
+          {
+            "value": 6106325192
+          },
+          {
+            "value": 39473678656
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 6106320352
+          },
+          {
+            "value": 8467872768,
+            "symbolLocation": 0,
+            "symbol": "_os_log_current_test_callback"
+          },
+          {
+            "value": 1
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 6106329312
+          },
+          {
+            "value": 12652373077022146631
+          },
+          {
+            "value": 12652373077022146631
+          },
+          {
+            "value": 72057598332895232
+          },
+          {
+            "value": 12418283
+          },
+          {
+            "value": 3102645754134532
+          },
+          {
+            "value": 144115192639262568
+          },
+          {
+            "value": 2199023259648
+          },
+          {
+            "value": 144115188344295200
+          },
+          {
+            "value": 6690149216,
+            "symbolLocation": 0,
+            "symbol": "_platform_memmove"
+          },
+          {
+            "value": 8536121568
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 39466526432
+          },
+          {
+            "value": 6106326096
+          },
+          {
+            "value": 39503325184
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 39473678656
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 1818456950
+          },
+          {
+            "value": 601
+          },
+          {
+            "value": 4456741371
+          }
+        ],
+        "flavor": "ARM_THREAD_STATE64",
+        "lr": {
+          "value": 4456580768
+        },
+        "cpsr": {
+          "value": 1610616832
+        },
+        "fp": {
+          "value": 6106325520
+        },
+        "sp": {
+          "value": 6106325344
+        },
+        "esr": {
+          "value": 2449473542,
+          "description": "(Data Abort) byte read Translation fault"
+        },
+        "pc": {
+          "value": 4456580772,
+          "matchesCrashFrame": 1
+        },
+        "far": {
+          "value": 0
+        }
+      },
+      "queue": "com.apple.audio.device.XX-XX-XX-XX-XX-XX:output.event",
+      "frames": [
+        {
+          "imageOffset": 476836,
+          "imageIndex": 6
+        },
+        {
+          "imageOffset": 476832,
+          "imageIndex": 6
+        },
+        {
+          "imageOffset": 365588,
+          "imageIndex": 6
+        },
+        {
+          "imageOffset": 3328904,
+          "symbol": "HALS_UCPlugIn::ObjectSetPropertyData(unsigned int, int, AudioObjectPropertyAddress const&, unsigned int, void const*, unsigned int, void const*)",
+          "symbolLocation": 68,
+          "imageIndex": 18
+        },
+        {
+          "imageOffset": 3540104,
+          "symbol": "HALS_PlugInControl::SetPropertyData(unsigned int, AudioObjectPropertyAddress const&, unsigned int, void const*, unsigned int, void const*, HALS_Client*)",
+          "symbolLocation": 1516,
+          "imageIndex": 18
+        },
+        {
+          "imageOffset": 6388764,
+          "symbol": "_XObject_SetPropertyData_DF32",
+          "symbolLocation": 456,
+          "imageIndex": 18
+        },
+        {
+          "imageOffset": 6418700,
+          "symbol": "HALB_MIGServer_server",
+          "symbolLocation": 108,
+          "imageIndex": 18
+        },
+        {
+          "imageOffset": 129148,
+          "symbol": "dispatch_mig_server",
+          "symbolLocation": 424,
+          "imageIndex": 19
+        },
+        {
+          "imageOffset": 2923240,
+          "symbol": "invocation function for block in AMCP::Utility::Dispatch_Queue::install_mig_server(unsigned int, unsigned int, int (*)(mach_msg_header_t*, mach_msg_header_t*), bool, bool)",
+          "symbolLocation": 52,
+          "imageIndex": 18
+        },
+        {
+          "imageOffset": 111792,
+          "symbol": "_dispatch_client_callout",
+          "symbolLocation": 16,
+          "imageIndex": 19
+        },
+        {
+          "imageOffset": 25032,
+          "symbol": "_dispatch_continuation_pop",
+          "symbolLocation": 596,
+          "imageIndex": 19
+        },
+        {
+          "imageOffset": 102832,
+          "symbol": "_dispatch_source_latch_and_call",
+          "symbolLocation": 392,
+          "imageIndex": 19
+        },
+        {
+          "imageOffset": 97924,
+          "symbol": "_dispatch_source_invoke",
+          "symbolLocation": 844,
+          "imageIndex": 19
+        },
+        {
+          "imageOffset": 40600,
+          "symbol": "_dispatch_lane_serial_drain",
+          "symbolLocation": 332,
+          "imageIndex": 19
+        },
+        {
+          "imageOffset": 43876,
+          "symbol": "_dispatch_lane_invoke",
+          "symbolLocation": 448,
+          "imageIndex": 19
+        },
+        {
+          "imageOffset": 48840,
+          "symbol": "_dispatch_workloop_invoke",
+          "symbolLocation": 1584,
+          "imageIndex": 19
+        },
+        {
+          "imageOffset": 85556,
+          "symbol": "_dispatch_root_queue_drain_deferred_wlh",
+          "symbolLocation": 284,
+          "imageIndex": 19
+        },
+        {
+          "imageOffset": 83764,
+          "symbol": "_dispatch_workloop_worker_thread",
+          "symbolLocation": 720,
+          "imageIndex": 19
+        },
+        {
+          "imageOffset": 11968,
+          "symbol": "_pthread_wqthread",
+          "symbolLocation": 292,
+          "imageIndex": 17
+        },
+        {
+          "imageOffset": 7184,
+          "symbol": "start_wqthread",
+          "symbolLocation": 8,
+          "imageIndex": 17
+        }
+      ]
+    },
+    {
+      "id": 12418284,
+      "frames": [],
+      "threadState": {
+        "x": [
+          {
+            "value": 6106902528
+          },
+          {
+            "value": 1312259
+          },
+          {
+            "value": 6106365952
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 409604
+          },
+          {
+            "value": 18446744073709551615
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          }
+        ],
+        "flavor": "ARM_THREAD_STATE64",
+        "lr": {
+          "value": 0
+        },
+        "cpsr": {
+          "value": 4096
+        },
+        "fp": {
+          "value": 0
+        },
+        "sp": {
+          "value": 6106902528
+        },
+        "esr": {
+          "value": 1442840704,
+          "description": "(Syscall)"
+        },
+        "pc": {
+          "value": 6690089992
+        },
+        "far": {
+          "value": 0
+        }
+      }
+    },
+    {
+      "id": 12418285,
+      "frames": [],
+      "threadState": {
+        "x": [
+          {
+            "value": 6107475968
+          },
+          {
+            "value": 1313051
+          },
+          {
+            "value": 6106939392
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 409604
+          },
+          {
+            "value": 18446744073709551615
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          }
+        ],
+        "flavor": "ARM_THREAD_STATE64",
+        "lr": {
+          "value": 0
+        },
+        "cpsr": {
+          "value": 4096
+        },
+        "fp": {
+          "value": 0
+        },
+        "sp": {
+          "value": 6107475968
+        },
+        "esr": {
+          "value": 1442840704,
+          "description": "(Syscall)"
+        },
+        "pc": {
+          "value": 6690089992
+        },
+        "far": {
+          "value": 0
+        }
+      }
+    },
+    {
+      "id": 12418286,
+      "frames": [],
+      "threadState": {
+        "x": [
+          {
+            "value": 6108049408
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 6107512832
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 278532
+          },
+          {
+            "value": 18446744073709551615
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          }
+        ],
+        "flavor": "ARM_THREAD_STATE64",
+        "lr": {
+          "value": 0
+        },
+        "cpsr": {
+          "value": 4096
+        },
+        "fp": {
+          "value": 0
+        },
+        "sp": {
+          "value": 6108049408
+        },
+        "esr": {
+          "value": 0
+        },
+        "pc": {
+          "value": 6690089992
+        },
+        "far": {
+          "value": 0
+        }
+      }
+    },
+    {
+      "id": 12418287,
+      "frames": [],
+      "threadState": {
+        "x": [
+          {
+            "value": 6108622848
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 6108086272
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 278532
+          },
+          {
+            "value": 18446744073709551615
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          }
+        ],
+        "flavor": "ARM_THREAD_STATE64",
+        "lr": {
+          "value": 0
+        },
+        "cpsr": {
+          "value": 4096
+        },
+        "fp": {
+          "value": 0
+        },
+        "sp": {
+          "value": 6108622848
+        },
+        "esr": {
+          "value": 0
+        },
+        "pc": {
+          "value": 6690089992
+        },
+        "far": {
+          "value": 0
+        }
+      }
+    }
+  ],
+  "usedImages": [
+    {
+      "source": "P",
+      "arch": "arm64e",
+      "base": 4374872064,
+      "size": 147456,
+      "uuid": "00000000-0000-0000-f3a1-52aedb285f24",
+      "path": "/usr/sbin/coreaudiod",
+      "name": "coreaudiod"
+    },
+    {
+      "source": "P",
+      "arch": "arm64e",
+      "base": 4471668736,
+      "CFBundleShortVersionString": "1.0",
+      "CFBundleIdentifier": "com.apple.audio.AudioDSPComponents",
+      "size": 7749632,
+      "uuid": "00000000-0000-0000-ca5e-902d2bc8057f",
+      "path": "/System/Library/Components/AudioDSP.component/Contents/MacOS/AudioDSP",
+      "name": "AudioDSP",
+      "CFBundleVersion": "1"
+    },
+    {
+      "source": "P",
+      "arch": "arm64e",
+      "base": 4381720576,
+      "CFBundleShortVersionString": "2.0",
+      "CFBundleIdentifier": "com.apple.audio.Halogen",
+      "size": 65536,
+      "uuid": "00000000-0000-0000-77df-49bec5efb38f",
+      "path": "/System/Library/Audio/Plug-Ins/HAL/AirPlay.driver/Contents/MacOS/AirPlay",
+      "name": "AirPlay",
+      "CFBundleVersion": "960.13.1"
+    },
+    {
+      "source": "P",
+      "arch": "arm64e",
+      "base": 4385619968,
+      "CFBundleShortVersionString": "1.0",
+      "CFBundleIdentifier": "com.apple.audio.AppleAOPAudioPlugin",
+      "size": 147456,
+      "uuid": "00000000-0000-0000-59a5-9460a2191926",
+      "path": "/System/Library/Audio/Plug-Ins/HAL/AppleAOPAudioPlugin.driver/Contents/MacOS/AppleAOPAudioPlugin",
+      "name": "AppleAOPAudioPlugin"
+    },
+    {
+      "source": "P",
+      "arch": "arm64e",
+      "base": 4385521664,
+      "CFBundleShortVersionString": "1.0",
+      "CFBundleIdentifier": "com.apple.accessibility.audioPlugin",
+      "size": 32768,
+      "uuid": "00000000-0000-0000-2ffd-a824f1b24c35",
+      "path": "/System/Library/Audio/Plug-Ins/HAL/AppleAccessibilityAudio.driver/Contents/MacOS/AppleAccessibilityAudio",
+      "name": "AppleAccessibilityAudio",
+      "CFBundleVersion": "1"
+    },
+    {
+      "source": "P",
+      "arch": "arm64e",
+      "base": 4385341440,
+      "CFBundleShortVersionString": "1.0",
+      "CFBundleIdentifier": "com.apple.audio.AppleTimeSyncAudioClock",
+      "size": 49152,
+      "uuid": "00000000-0000-0000-3b62-8cc52e593993",
+      "path": "/System/Library/Audio/Plug-Ins/HAL/AppleTimeSyncAudioClock.driver/Contents/MacOS/AppleTimeSyncAudioClock",
+      "name": "AppleTimeSyncAudioClock",
+      "CFBundleVersion": "1460.2"
+    },
+    {
+      "source": "P",
+      "arch": "arm64e",
+      "base": 4456103936,
+      "CFBundleShortVersionString": "1.0",
+      "CFBundleIdentifier": "com.apple.audio.BTAudioHALPlugin",
+      "size": 770048,
+      "uuid": "00000000-0000-0000-6a6d-ef56e700f39d",
+      "path": "/System/Library/Audio/Plug-Ins/HAL/BTAudioHALPlugin.driver/Contents/MacOS/BTAudioHALPlugin",
+      "name": "BTAudioHALPlugin",
+      "CFBundleVersion": "1"
+    },
+    {
+      "source": "P",
+      "arch": "arm64e",
+      "base": 4386914304,
+      "CFBundleShortVersionString": "1.0",
+      "CFBundleIdentifier": "com.apple.audio.ContinuityCaptureAudioPlugin",
+      "size": 65536,
+      "uuid": "00000000-0000-0000-003f-ddad67e88ec3",
+      "path": "/System/Library/Audio/Plug-Ins/HAL/ContinuityCaptureAudioPlugin.driver/Contents/MacOS/ContinuityCaptureAudioPlugin",
+      "name": "ContinuityCaptureAudioPlugin",
+      "CFBundleVersion": "1"
+    },
+    {
+      "source": "P",
+      "arch": "arm64e",
+      "base": 4386816000,
+      "CFBundleShortVersionString": "1.0",
+      "CFBundleIdentifier": "com.apple.accessibility.HearingAudioPlugin",
+      "size": 16384,
+      "uuid": "00000000-0000-0000-dd21-09bc55ab4e47",
+      "path": "/System/Library/Audio/Plug-Ins/HAL/HearingAudioPlugin.driver/Contents/MacOS/HearingAudioPlugin",
+      "name": "HearingAudioPlugin",
+      "CFBundleVersion": "1"
+    },
+    {
+      "source": "P",
+      "arch": "arm64e",
+      "base": 4454727680,
+      "CFBundleShortVersionString": "640.10",
+      "CFBundleIdentifier": "com.apple.audio.MacAudio",
+      "size": 262144,
+      "uuid": "00000000-0000-0000-1fc7-3c9a5bba6523",
+      "path": "/System/Library/Audio/Plug-Ins/HAL/MacAudio.driver/Contents/MacOS/MacAudio",
+      "name": "MacAudio",
+      "CFBundleVersion": "640.10"
+    },
+    {
+      "source": "P",
+      "arch": "arm64e",
+      "base": 4515495936,
+      "CFBundleShortVersionString": "1.14",
+      "CFBundleIdentifier": "com.apple.audio.units.Components",
+      "size": 1294336,
+      "uuid": "00000000-0000-0000-8ca3-778996ec4da4",
+      "path": "/System/Library/Components/CoreAudio.component/Contents/MacOS/CoreAudio",
+      "name": "CoreAudio",
+      "CFBundleVersion": "1.14"
+    },
+    {
+      "source": "P",
+      "arch": "arm64e",
+      "base": 4553195520,
+      "CFBundleShortVersionString": "7.0",
+      "CFBundleIdentifier": "com.apple.audio.codecs.Components",
+      "size": 9928704,
+      "uuid": "00000000-0000-0000-da2e-ad9010b618f2",
+      "path": "/System/Library/Components/AudioCodecs.component/Contents/MacOS/AudioCodecs",
+      "name": "AudioCodecs",
+      "CFBundleVersion": "7.0"
+    },
+    {
+      "source": "P",
+      "arch": "arm64e",
+      "base": 6689828864,
+      "size": 250600,
+      "uuid": "00000000-0000-0000-3832-04bce5e2a5a9",
+      "path": "/usr/lib/system/libsystem_kernel.dylib",
+      "name": "libsystem_kernel.dylib"
+    },
+    {
+      "source": "P",
+      "arch": "arm64e",
+      "base": 6690369536,
+      "CFBundleShortVersionString": "6.9",
+      "CFBundleIdentifier": "com.apple.CoreFoundation",
+      "size": 5629376,
+      "uuid": "00000000-0000-0000-8840-664fb10dcc28",
+      "path": "/System/Library/Frameworks/CoreFoundation.framework/Versions/A/CoreFoundation",
+      "name": "CoreFoundation",
+      "CFBundleVersion": "5026.6.7"
+    },
+    {
+      "source": "P",
+      "arch": "arm64e",
+      "base": 6685999104,
+      "size": 734464,
+      "uuid": "00000000-0000-0000-71d0-cf84787458ea",
+      "path": "/usr/lib/dyld",
+      "name": "dyld"
+    },
+    {
+      "size": 0,
+      "source": "A",
+      "base": 0,
+      "uuid": "00000000-0000-0000-0000-000000000000"
+    },
+    {
+      "source": "P",
+      "arch": "arm64e",
+      "base": 6901194752,
+      "CFBundleShortVersionString": "1.0",
+      "CFBundleIdentifier": "com.apple.audio.caulk",
+      "size": 168064,
+      "uuid": "00000000-0000-0000-848a-bd9bfd99595a",
+      "path": "/System/Library/PrivateFrameworks/caulk.framework/Versions/A/caulk",
+      "name": "caulk"
+    },
+    {
+      "source": "P",
+      "arch": "arm64e",
+      "base": 6690082816,
+      "size": 52028,
+      "uuid": "00000000-0000-0000-ba12-74bb7d72bdf8",
+      "path": "/usr/lib/system/libsystem_pthread.dylib",
+      "name": "libsystem_pthread.dylib"
+    },
+    {
+      "source": "P",
+      "arch": "arm64e",
+      "base": 6741819392,
+      "CFBundleShortVersionString": "5.0",
+      "CFBundleIdentifier": "com.apple.audio.CoreAudio",
+      "size": 7953952,
+      "uuid": "00000000-0000-0000-07b1-6019ed355347",
+      "path": "/System/Library/Frameworks/CoreAudio.framework/Versions/A/CoreAudio",
+      "name": "CoreAudio",
+      "CFBundleVersion": "5.0"
+    },
+    {
+      "source": "P",
+      "arch": "arm64e",
+      "base": 6688284672,
+      "size": 291392,
+      "uuid": "00000000-0000-0000-1f9b-ee8a736b1ab8",
+      "path": "/usr/lib/system/libdispatch.dylib",
+      "name": "libdispatch.dylib"
+    },
+    {
+      "source": "P",
+      "arch": "arm64e",
+      "base": 6686752768,
+      "size": 345440,
+      "uuid": "00000000-0000-0000-f70c-362578eef5be",
+      "path": "/usr/lib/system/libxpc.dylib",
+      "name": "libxpc.dylib"
+    },
+    {
+      "source": "P",
+      "arch": "arm64e",
+      "base": 6760751104,
+      "CFBundleShortVersionString": "2.0.2",
+      "CFBundleIdentifier": "com.apple.framework.IOKit",
+      "size": 950880,
+      "uuid": "00000000-0000-0000-5693-693df7f40b15",
+      "path": "/System/Library/Frameworks/IOKit.framework/Versions/A/IOKit",
+      "name": "IOKit"
+    },
+    {
+      "source": "P",
+      "arch": "arm64e",
+      "base": 6690136064,
+      "size": 35172,
+      "uuid": "00000000-0000-0000-e618-d03222239bbe",
+      "path": "/usr/lib/system/libsystem_platform.dylib",
+      "name": "libsystem_platform.dylib"
+    }
+  ],
+  "sharedCache": {
+    "base": 6684868608,
+    "size": 6010847232,
+    "uuid": "00000000-0000-0000-20d8-088239cd8d64"
+  },
+  "vmSummary": "ReadOnly portion of Libraries: Total=1.7G resident=0K(0%) swapped_out_or_unallocated=1.7G(100%)\nWritable regions: Total=179.5M written=513K(0%) resident=513K(0%) swapped_out=0K(0%) unallocated=179.0M(100%)\n\n                                VIRTUAL   REGION \nREGION TYPE                        SIZE    COUNT (non-coalesced) \n===========                     =======  ======= \nActivity Tracing                   256K        1 \nDispatch continuations            64.0M        1 \nKernel Alloc Once                   32K        1 \nMALLOC                            90.7M       25 \nMALLOC guard page                 3760K        4 \nSTACK GUARD                       56.5M       30 \nStack                             23.4M       30 \nVM_ALLOCATE                        528K       27 \n__AUTH                            5088K      537 \n__AUTH_CONST                      81.0M      908 \n__CTF                               824        1 \n__DATA                            33.7M      865 \n__DATA_CONST                      33.2M      924 \n__DATA_DIRTY                      7832K      781 \n__FONT_DATA                        2352        1 \n__LINKEDIT                       574.3M       13 \n__OBJC_RO                         79.2M        1 \n__OBJC_RW                         2599K        1 \n__TEXT                             1.2G      946 \n__TPRO_CONST                       128K        2 \nmapped file                       34.4M        9 \npage table in kernel               513K        1 \nshared memory                       64K        3 \n===========                     =======  ======= \nTOTAL                              2.2G     5112 \n",
+  "legacyInfo": {
+    "threadTriggered": {
+      "queue": "com.apple.audio.device.XX-XX-XX-XX-XX-XX:output.event"
+    }
+  },
+  "logWritingSignature": "REDACTED",
+  "bug_type": "309",
+  "roots_installed": 0,
+  "trmStatus": 1,
+  "voucherInfos": [
+    {
+      "originatorName": "bluetoothd",
+      "proximateName": "bluetoothd",
+      "thread_id": 12416282
+    },
+    {
+      "originatorName": "bluetoothd",
+      "thread_id": 12417928
+    },
+    {
+      "originatorName": "bluetoothd",
+      "proximateName": "bluetoothd",
+      "thread_id": 12418261
+    },
+    {
+      "originatorName": "bluetoothd",
+      "proximateName": "Messages",
+      "thread_id": 12418268
+    },
+    {
+      "originatorName": "bluetoothd",
+      "proximateName": "bluetoothd",
+      "thread_id": 12418271
+    },
+    {
+      "originatorName": "bluetoothd",
+      "thread_id": 12418274
+    },
+    {
+      "originatorName": "bluetoothd",
+      "proximateName": "heard",
+      "thread_id": 12418276
+    },
+    {
+      "originatorName": "bluetoothd",
+      "thread_id": 12418283
+    }
+  ]
+}

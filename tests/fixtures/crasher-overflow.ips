@@ -1,0 +1,365 @@
+{"app_name":"ct-crasher-overflow","timestamp":"2026-10-27 16:15:42.00 -0400","app_version":"","slice_uuid":"00000000-0000-0000-8c8f-af9e40282320","build_version":"","platform":1,"share_with_app_devs":0,"is_first_party":1,"bug_type":"309","os_version":"macOS 26.6.2 (25G83)","roots_installed":0,"incident_id":"00000000-0000-0000-4BDF-467A0254B6D1","name":"ct-crasher-overflow"}
+{
+  "uptime": 460000,
+  "procRole": "Unspecified",
+  "version": 2,
+  "userID": -1,
+  "deployVersion": 210,
+  "modelCode": "Mac15,3",
+  "coalitionID": 54946,
+  "osVersion": {
+    "train": "macOS 26.6.2",
+    "build": "25G83",
+    "releaseType": "User"
+  },
+  "captureTime": "2026-10-27 16:15:42.8011 -0400",
+  "codeSigningMonitor": 2,
+  "incident": "00000000-0000-0000-4BDF-467A0254B6D1",
+  "pid": 4311,
+  "translated": false,
+  "cpuType": "ARM-64",
+  "procLaunch": "2026-10-27 16:15:42.5679 -0400",
+  "procStartAbsTime": 11135625518501,
+  "procExitAbsTime": 11135631109558,
+  "procName": "ct-crasher-overflow",
+  "procPath": "/REDACTED/ct-crasher-overflow",
+  "parentProc": "bash",
+  "parentPid": 4204,
+  "coalitionName": "com.microsoft.VSCode",
+  "crashReporterKey": "REDACTED",
+  "appleIntelligenceStatus": {
+    "state": "available"
+  },
+  "developerMode": 1,
+  "bootProgressRegister": "0x2f000000",
+  "responsiblePid": 19039,
+  "responsibleProc": "Code",
+  "codeSigningID": "ct-crasher-overflow",
+  "codeSigningTeamID": "",
+  "codeSigningFlags": 570556929,
+  "codeSigningValidationCategory": 10,
+  "codeSigningTrustLevel": 4294967295,
+  "codeSigningAuxiliaryInfo": 0,
+  "instructionByteStream": {
+    "beforePC": "/REDACTED/REDACTED_TOKEN",
+    "atPC": "4AcAuegHQLnoIwA56AdAuQAFABHz//+X6CPAOQgACAvoAwC5qYNe+A=="
+  },
+  "bootSessionUUID": "00000000-0000-0000-D627-38DA3BFC9D05",
+  "wakeTime": 1193,
+  "sleepWakeUUID": "00000000-0000-0000-44DB-1D3FD5E9997E",
+  "sip": "enabled",
+  "vmRegionInfo": "0x16b10bf74 is in 0x167908000-0x16b10c000;  bytes after start: 58736500  bytes before end: 139\n      REGION TYPE                    START - END         [ VSIZE] PRT/MAX SHRMOD  REGION DETAIL\n      MALLOC metadata             12fe00000-12fe04000    [   16K] rw-/rwx SM=PRV  \n      GAP OF 0x37b04000 BYTES\n--->  Stack Guard                 167908000-16b10c000    [ 56.0M] ---/rwx SM=PRV  \n      Stack                       16b10c000-16b908000    [ 8176K] rw-/rwx SM=SHM  ",
+  "exception": {
+    "codes": "0x0000000000000002, 0x000000016b10bf74",
+    "message": "Could not determine thread index for stack guard region",
+    "rawCodes": [
+      2,
+      6091226996
+    ],
+    "type": "EXC_BAD_ACCESS",
+    "signal": "SIGSEGV",
+    "subtype": "KERN_PROTECTION_FAILURE at 0x000000016b10bf74"
+  },
+  "termination": {
+    "flags": 0,
+    "code": 11,
+    "namespace": "SIGNAL",
+    "indicator": "Segmentation fault: 11",
+    "byProc": "exc handler",
+    "byPid": 4311
+  },
+  "vmregioninfo": "0x16b10bf74 is in 0x167908000-0x16b10c000;  bytes after start: 58736500  bytes before end: 139\n      REGION TYPE                    START - END         [ VSIZE] PRT/MAX SHRMOD  REGION DETAIL\n      MALLOC metadata             12fe00000-12fe04000    [   16K] rw-/rwx SM=PRV  \n      GAP OF 0x37b04000 BYTES\n--->  Stack Guard                 167908000-16b10c000    [ 56.0M] ---/rwx SM=PRV  \n      Stack                       16b10c000-16b908000    [ 8176K] rw-/rwx SM=SHM  ",
+  "extMods": {
+    "caller": {
+      "thread_create": 0,
+      "thread_set_state": 0,
+      "task_for_pid": 0
+    },
+    "system": {
+      "thread_create": 0,
+      "thread_set_state": 0,
+      "task_for_pid": 0
+    },
+    "targeted": {
+      "thread_create": 0,
+      "thread_set_state": 0,
+      "task_for_pid": 0
+    },
+    "warnings": 0
+  },
+  "faultingThread": 0,
+  "threads": [
+    {
+      "frames": [
+        {
+          "imageOffset": 1108,
+          "sourceLine": 3,
+          "sourceFile": "overflow.c",
+          "symbol": "descend",
+          "imageIndex": 0,
+          "symbolLocation": 32
+        },
+        {
+          "imageOffset": 1132,
+          "sourceLine": 6,
+          "sourceFile": "overflow.c",
+          "symbol": "descend",
+          "imageIndex": 0,
+          "symbolLocation": 56
+        },
+        {
+          "imageOffset": 1132,
+          "sourceLine": 6,
+          "sourceFile": "overflow.c",
+          "symbol": "descend",
+          "imageIndex": 0,
+          "symbolLocation": 56
+        },
+        {
+          "imageOffset": 1132,
+          "sourceLine": 6,
+          "sourceFile": "overflow.c",
+          "symbol": "descend",
+          "imageIndex": 0,
+          "symbolLocation": 56
+        },
+        {
+          "imageOffset": 1132,
+          "sourceLine": 6,
+          "sourceFile": "overflow.c",
+          "symbol": "descend",
+          "imageIndex": 0,
+          "symbolLocation": 56
+        },
+        {
+          "imageOffset": 1132,
+          "sourceLine": 6,
+          "sourceFile": "overflow.c",
+          "symbol": "descend",
+          "imageIndex": 0,
+          "symbolLocation": 56
+        },
+        {
+          "imageOffset": 1132,
+          "sourceLine": 6,
+          "sourceFile": "overflow.c",
+          "symbol": "descend",
+          "imageIndex": 0,
+          "symbolLocation": 56
+        },
+        {
+          "imageOffset": 1064,
+          "sourceLine": 10,
+          "sourceFile": "overflow.c",
+          "symbol": "main",
+          "imageIndex": 0,
+          "symbolLocation": 24
+        },
+        {
+          "imageOffset": 132324,
+          "symbol": "start",
+          "symbolLocation": 6992,
+          "imageIndex": 1
+        }
+      ],
+      "id": 14134976,
+      "recursionInfoArray": [
+        {
+          "hottestElided": 4,
+          "coldestElided": 27512,
+          "depth": 27515,
+          "keyFrame": {
+            "imageOffset": 1132,
+            "sourceLine": 6,
+            "sourceFile": "overflow.c",
+            "symbol": "descend",
+            "imageIndex": 0,
+            "symbolLocation": 56
+          }
+        }
+      ],
+      "originalLength": 27519,
+      "triggered": true,
+      "threadState": {
+        "x": [
+          {
+            "value": 27515
+          },
+          {
+            "value": 6099593544
+          },
+          {
+            "value": 6099593560
+          },
+          {
+            "value": 6099594112
+          },
+          {
+            "value": 1
+          },
+          {
+            "value": 32
+          },
+          {
+            "value": 99
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 299992910751989770
+          },
+          {
+            "value": 8509951680,
+            "symbolLocation": 3456,
+            "symbol": "lsl::sPoolBytes"
+          },
+          {
+            "value": 6099590488
+          },
+          {
+            "value": 8510079296
+          },
+          {
+            "value": 131072
+          },
+          {
+            "value": 6686017984,
+            "symbolLocation": 0,
+            "symbol": "_dyld_start"
+          },
+          {
+            "value": 1
+          },
+          {
+            "value": 85
+          },
+          {
+            "value": 6690138308,
+            "symbolLocation": 0,
+            "symbol": "os_unfair_lock_unlock"
+          },
+          {
+            "value": 8536135144
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 8509947992,
+            "symbolLocation": 0,
+            "symbol": "lsl::sMemoryManagerBuffer"
+          },
+          {
+            "value": 8509948160,
+            "symbolLocation": 0,
+            "symbol": "lsl::sAllocatorBuffer"
+          },
+          {
+            "value": 6099592024
+          },
+          {
+            "value": 18446744073709551600
+          },
+          {
+            "value": 8512797280,
+            "symbolLocation": 0,
+            "symbol": "vm_page_mask"
+          },
+          {
+            "value": 1
+          },
+          {
+            "value": 6099592384
+          },
+          {
+            "value": 8512797296,
+            "symbolLocation": 0,
+            "symbol": "mach_task_self_"
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          }
+        ],
+        "flavor": "ARM_THREAD_STATE64",
+        "lr": {
+          "value": 4367287404
+        },
+        "cpsr": {
+          "value": 1610616832
+        },
+        "fp": {
+          "value": 6091227280
+        },
+        "sp": {
+          "value": 6091226992
+        },
+        "esr": {
+          "value": 2449473607,
+          "description": "(Data Abort) byte write Translation fault"
+        },
+        "pc": {
+          "value": 4367287380,
+          "matchesCrashFrame": 1
+        },
+        "far": {
+          "value": 6091226996
+        }
+      },
+      "queue": "com.apple.main-thread"
+    }
+  ],
+  "usedImages": [
+    {
+      "source": "P",
+      "arch": "arm64",
+      "base": 4367286272,
+      "size": 16384,
+      "uuid": "00000000-0000-0000-8c8f-af9e40282320",
+      "path": "/REDACTED/ct-crasher-overflow",
+      "name": "ct-crasher-overflow"
+    },
+    {
+      "source": "P",
+      "arch": "arm64e",
+      "base": 6685999104,
+      "size": 734464,
+      "uuid": "00000000-0000-0000-71d0-cf84787458ea",
+      "path": "/usr/lib/dyld",
+      "name": "dyld"
+    },
+    {
+      "size": 0,
+      "source": "A",
+      "base": 0,
+      "uuid": "00000000-0000-0000-0000-000000000000"
+    },
+    {
+      "source": "P",
+      "arch": "arm64e",
+      "base": 6690136064,
+      "size": 35172,
+      "uuid": "00000000-0000-0000-e618-d03222239bbe",
+      "path": "/usr/lib/system/libsystem_platform.dylib",
+      "name": "libsystem_platform.dylib"
+    }
+  ],
+  "sharedCache": {
+    "base": 6684868608,
+    "size": 6010847232,
+    "uuid": "00000000-0000-0000-20d8-088239cd8d64"
+  },
+  "legacyInfo": {
+    "threadTriggered": {
+      "queue": "com.apple.main-thread"
+    }
+  },
+  "logWritingSignature": "REDACTED",
+  "bug_type": "309",
+  "roots_installed": 0,
+  "trmStatus": 1,
+  "trialInfo": {}
+}

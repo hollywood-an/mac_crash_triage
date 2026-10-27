@@ -1,0 +1,174 @@
+{"app_name":"dotnet","timestamp":"2026-10-26 18:37:03.00 -0400","app_version":"","slice_uuid":"00000000-0000-0000-35f4-08292445176c","build_version":"","platform":1,"share_with_app_devs":0,"is_first_party":1,"bug_type":"309","os_version":"macOS 26.6.2 (25G83)","roots_installed":0,"incident_id":"00000000-0000-0000-AB77-D8C8F5534F55","name":"dotnet"}
+{
+  "uptime": 410000,
+  "procRole": "Background",
+  "version": 2,
+  "userID": -1,
+  "deployVersion": 210,
+  "modelCode": "Mac15,3",
+  "coalitionID": 54946,
+  "osVersion": {
+    "train": "macOS 26.6.2",
+    "build": "25G83",
+    "releaseType": "User"
+  },
+  "captureTime": "2026-10-26 18:37:03.2529 -0400",
+  "codeSigningMonitor": 2,
+  "incident": "00000000-0000-0000-AB77-D8C8F5534F55",
+  "pid": 70135,
+  "translated": false,
+  "cpuType": "ARM-64",
+  "procLaunch": "2026-10-26 18:37:02.5217 -0400",
+  "procStartAbsTime": 9910036664821,
+  "procExitAbsTime": 9910054063403,
+  "procName": "dotnet",
+  "procPath": "/REDACTED/dotnet",
+  "parentProc": "Exited process",
+  "parentPid": 70127,
+  "coalitionName": "com.microsoft.VSCode",
+  "crashReporterKey": "REDACTED",
+  "lowPowerMode": 1,
+  "appleIntelligenceStatus": {
+    "state": "available"
+  },
+  "developerMode": 1,
+  "bootProgressRegister": "0x2f000000",
+  "responsiblePid": 19039,
+  "responsibleProc": "Code",
+  "codeSigningID": "dotnet-REDACTED_TOKEN",
+  "codeSigningTeamID": "REDACTED",
+  "codeSigningFlags": 570491653,
+  "codeSigningValidationCategory": 6,
+  "codeSigningTrustLevel": 4294967295,
+  "codeSigningAuxiliaryInfo": 0,
+  "instructionByteStream": {
+    "beforePC": "fyMD1f17v6n9AwCRCuD/l78DAJH9e8Go/w9f1sADX9YQKYDSARAA1A==",
+    "atPC": "AwEAVH8jA9X9e7+p/QMAkf/f/5e/AwCR/XvBqP8PX9bAA1/WcAqA0g=="
+  },
+  "bootSessionUUID": "00000000-0000-0000-D627-38DA3BFC9D05",
+  "wakeTime": 4256,
+  "sleepWakeUUID": "00000000-0000-0000-9061-ED5E9B2867DC",
+  "sip": "enabled",
+  "exception": {
+    "codes": "0x0000000000000000, 0x0000000000000000",
+    "rawCodes": [
+      0,
+      0
+    ],
+    "type": "EXC_CRASH",
+    "signal": "SIGABRT"
+  },
+  "termination": {
+    "flags": 0,
+    "code": 6,
+    "namespace": "SIGNAL",
+    "indicator": "Abort trap: 6",
+    "byProc": "dotnet",
+    "byPid": 70135
+  },
+  "asi": {
+    "libsystem_c.dylib": [
+      "abort() called"
+    ]
+  },
+  "extMods": {
+    "caller": {
+      "thread_create": 0,
+      "thread_set_state": 0,
+      "task_for_pid": 0
+    },
+    "system": {
+      "thread_create": 0,
+      "thread_set_state": 0,
+      "task_for_pid": 0
+    },
+    "targeted": {
+      "thread_create": 0,
+      "thread_set_state": 0,
+      "task_for_pid": 0
+    },
+    "warnings": 0
+  },
+  "faultingThread": 0,
+  "threads": [
+    {
+      "triggered": true,
+      "id": 12131256,
+      "threadState": {
+        "x": [
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 160
+          },
+          {
+            "value": 2
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 14915692153152327599
+          },
+          {
+            "value": 14915692156996759087
+          },
+          {
+            "value": 2
+          },
+          {
+            "value": 4294967293
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 328
+          },
+          {
+            "value": 8536126296
+          },
+          {
+            "value": 0
+          },
+          {
+            "value": 6
+          },
+          {
+            "value": 259
+          },
+          {
+            "value": 8512791136,
+            "symbolLocation": 224,
+            "symbol": "_main_thread"
+          },
+          {
+            "value": 6124616544
+          },
+          {
+            "value": 6124615848
+          },
+          {
+            "value"

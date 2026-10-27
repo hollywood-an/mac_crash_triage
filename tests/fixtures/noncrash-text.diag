@@ -1,0 +1,22 @@
+Date/Time:        2026-10-20 17:02:07.223 -0400
+End time:         2026-10-21 00:02:14.908 -0400
+OS Version:       macOS 26.6.2 (Build 25G83)
+Architecture:     arm64e
+Report Version:   72
+Incident Identifier: 00000000-0000-0000-723E-E5599F24414E
+
+Data Source:      Microstackshots
+Shared Cache:     00000000-0000-0000-593C-68FD60913BAE slid base address 0x18e730000, slide 0xe730000
+
+Command:          Cursor
+Path:             /REDACTED/Cursor
+Identifier:       com.todesktop.230313mzl4w4u92
+Version:          3.25.9 (3.25.9)
+Team ID:          REDACTED
+Is First Party:   No
+Beta Identifier:  REDACTED
+Resource Coalition: 16673
+Architecture:     arm64
+PID:              86256
+
+Event:            disk wr
