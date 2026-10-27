@@ -253,7 +253,10 @@ int main(int argc, char **argv) { (void)argv; printf("%d\\n", work_func(argc)); 
 @pytest.mark.skipif(not TOOLS, reason="needs the Xcode command line tools (clang, dsymutil, atos)")
 def test_real_atos_names_a_stripped_binary(tmp_path) -> None:
     (tmp_path / "app.c").write_text(SOURCE)
-    run = lambda *cmd: subprocess.run(cmd, cwd=tmp_path, check=True, capture_output=True, text=True).stdout  # noqa: E731
+
+    def run(*cmd: str) -> str:
+        return subprocess.run(cmd, cwd=tmp_path, check=True, capture_output=True, text=True).stdout
+
     run("xcrun", "clang", "-g", "-O0", "-c", "app.c", "-o", "app.o")
     run("xcrun", "clang", "app.o", "-o", "app")
     run("xcrun", "dsymutil", "app", "-o", "dsyms/app.dSYM")
@@ -283,3 +286,29 @@ def test_real_atos_names_a_stripped_binary(tmp_path) -> None:
     frame = named.faulting.frames[0]
     assert stats.frames_resolved == 1
     assert (frame.symbol, frame.source_file, frame.source_line) == ("work_func", "app.c", 3)
+
+
+# --- found by the final review --------------------------------------------------------
+
+
+def test_truncated_fat_header_is_a_macho_error_not_a_crash(tmp_path) -> None:
+    stub = struct.pack(">II", sym.FAT_MAGIC, 2) + bytes(4)  # says 2 slices, has none
+    with pytest.raises(MachOError):
+        macho_uuids(stub)
+    (tmp_path / "Thing.class").write_bytes(stub)  # a Java class file starts with CAFEBABE too
+    assert find_dsyms([tmp_path / "Thing.class"]) == {}
+
+
+def test_bundle_path_with_trailing_slash(tmp_path) -> None:
+    dwarf = tmp_path / "app.dSYM" / "Contents" / "Resources" / "DWARF"
+    dwarf.mkdir(parents=True)
+    (dwarf / "app").write_bytes(thin_macho(UUID_A))
+    assert list(find_dsyms([str(tmp_path / "app.dSYM") + "/"])) == [UUID_A]
+
+
+def test_symbolicate_flag_without_atos_fails_before_ingesting(tmp_path, monkeypatch, capsys) -> None:
+    monkeypatch.setattr(sym, "atos_path", lambda: None)
+    db = tmp_path / "x.db"
+    assert main(["ingest", str(FIXTURES), "--db", str(db), "--symbolicate", str(tmp_path)]) == 1
+    assert capsys.readouterr().err == "crashtriage: --symbolicate needs atos (install the Xcode command line tools)\n"
+    assert not db.exists()

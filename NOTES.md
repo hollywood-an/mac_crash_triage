@@ -253,11 +253,13 @@ specification.
 6. `sha256("crashtriage-fp-v1" \0 process \0 exception type \0 tokens joined by
    newlines)`, first 16 hex digits.
 
-Why N = 5: on every fixture the frames that identify the bug are within the
-first 3 app frames, and 5 leaves room for a shared helper on top (e.g. a common
-`validate()` called from two places) without letting deep, unrelated callers
-(`main`, run loops, thread entry points) split a cluster. It is a judgment call,
-pinned by a test, and the first thing to revisit with more data.
+Why N = 5: in every crasher fixture the crashing function is the first app frame,
+and apart from the stack overflow (the same recursive function over and over) the
+whole app call path fits in 3 frames; 5 leaves room for a shared helper on
+top (e.g. a common `validate()` called from two places) without letting deep,
+unrelated callers (`main`, run loops, thread entry points) split a cluster. (For
+dotnet, no N helps: the identifying frames are unnamed JIT frames.) It is a
+judgment call, pinned by a test, and the first thing to revisit with more data.
 
 ### Measured on the fixtures and this Mac
 
@@ -296,8 +298,9 @@ pinned by a test, and the first thing to revisit with more data.
 - **Idempotent ingest:** `INSERT OR IGNORE` on the incident row; when it is
   ignored, nothing else is written and the file counts as a duplicate. One
   transaction per file.
-- **Duplicate incident id with different bytes:** the first file (in sorted path
-  order) wins and the second counts as a duplicate.
+- **Duplicate incident id with different bytes:** the first file in walk order wins
+  (within each folder, its files in name order, then its subfolders) and later ones
+  count as duplicates.
 - `load_report()` rebuilds the exact `CrashReport` from the tables (tested for
   every fixture), so `show` and re-fingerprinting work from the database alone.
 - If the stored fingerprint version differs from the code's, every fingerprint is
@@ -402,24 +405,25 @@ parse, fingerprint, ingest and the CLI:
 ### Mutation check
 
 `scripts/mutation_check.py` breaks the handling code for each defect in a temporary
-copy of the repo and runs the full suite. Result: the baseline passes and **9 of 9
-mutations are caught**.
+copy of the repo and runs the full suite. Result: the baseline passes and every
+mutation is caught. Failing-test counts below are from the final run (after Phase 5
+and the final review); the Phase 4 run caught the same 9 with slightly fewer tests.
 
 | Mutation (breaks the handling of ...) | Failing tests |
 |---|---|
 | frame with a missing offset | 2 (incl. `test_defect_frame_without_offset`) |
 | duplicate incident (`INSERT OR REPLACE`) | 5 (incl. `test_defect_duplicate_incident`) |
-| naive hash: symbolLocation hashed | 17 (incl. `test_defect_same_bug_naive_hash_splits`) |
-| naive hash: JIT frames hashed | 9 |
+| naive hash: symbolLocation hashed | 22 (incl. `test_defect_same_bug_naive_hash_splits`) |
+| naive hash: JIT frames hashed | 12 |
 | all system frames, no fallback | 5 (incl. `test_defect_all_system_frames`) |
-| system frames on top not skipped | 14 (incl. `test_defect_all_system_frames`) |
+| system frames on top not skipped | 16 (incl. `test_defect_all_system_frames`) |
 | non-UTF-8 byte (strict decoding) | 3 (incl. `test_defect_non_utf8_byte`) |
 | empty body check removed | 2 (incl. `test_defect_empty_body`) |
 | inputs opened `r+b` instead of `rb` | 2 |
 
 ### Test suite
 
-214 tests, all passing, in about 1 s (`.venv/bin/python -m pytest`).
+At the end of Phase 4: 214 tests, all passing, in about 1 s (`.venv/bin/python -m pytest`).
 
 Resume bullets built from these numbers are in `RESUME_BULLETS.md`, which is kept
 out of the public repo on purpose (`.gitignore`).
@@ -473,9 +477,60 @@ changed 0 crashes.
   those crash reports. Rebuild, re-run the crashers, then symbolicate.
 - System libraries are not symbolicated (their dSYMs are not on the machine).
 
+## Final review
+
+After Phase 5, an independent read-only review of the whole repo (code, docs, tests
+and git history) found the following. All are fixed in the final commit.
+
+### Privacy: real identifiers in test code
+
+The anonymizer's unit test used values copied from real reports as "canaries":
+this Mac's `crashReporterKey` (a stable per-device id), the Bluetooth MAC address
+from the coreaudiod report, one dotnet incident id, and three build UUIDs (two of
+the crasher builds, one of Microsoft's `dotnet`), plus Microsoft's public Team ID.
+They were pushed in the Phase 1 and Phase 5 commits. The fixtures themselves were
+clean; the privacy test only scanned fixtures for raw identifiers, so test code
+slipped through.
+
+- Replaced every one with an obviously synthetic value.
+- New test `test_repo_has_no_identifiers_from_this_macs_reports` reads every UUID,
+  MAC address, long hex id and team id from this Mac's real reports (read-only)
+  and fails if any of them appears in any file of the repo. Run against the old
+  test file in a scratch copy, it failed and listed all of them.
+- A full scan of `git log -p` against all 1,663 identifiers in the local reports
+  (1,642 UUIDs, 1 MAC address, 19 long hex ids, 1 team id) found these values and
+  nothing else; removing them from the published history
+  needs a history rewrite and force-push, which is the repo owner's call.
+
+### Bugs
+
+1. The parser could still raise: a JSON integer longer than Python's 4,300-digit
+   limit (`ValueError`, not `JSONDecodeError`) and a `captureTime` in year 9999 with
+   a negative offset (`OverflowError`). Both are now a skip or a warning.
+2. A `\ud800`-style escape decoded to a lone surrogate, which then failed to encode
+   as UTF-8 in SQLite and in the fingerprint hash. Lone surrogates are now replaced
+   with U+FFFD and reported as a warning; real surrogate pairs (emoji) are untouched.
+3. A truncated fat Mach-O header (or a Java `.class` file, which also starts with
+   `CAFEBABE`) raised `struct.error` out of `--symbolicate`. Now a `MachOError`,
+   and the file is ignored.
+4. `--symbolicate path/X.dSYM/` (trailing slash, as shell completion adds) found
+   nothing. Paths are normalized now.
+5. `report --as-of DATE` without `--since` ignored the date. `--as-of` now always
+   hides crashes after it ("treat this time as now").
+6. `trend --process NAME` counted undated crashes of every process. Fixed.
+7. `report`, `show` and `trend` opened the database for writing, so a read-only
+   database file failed, and a file that is not a database printed a traceback.
+   Read commands now open it with SQLite's `mode=ro`, and database errors become a
+   one-line message with exit status 1.
+
+Test gap also fixed: two `--symbolicate` CLI tests patched a function the CLI had
+imported by name, so the patch had no effect; the CLI now calls through the module
+and the "atos is missing" path has its own test.
+
 ### Final checks
 
-- Test suite: 238 tests, all passing (`.venv/bin/python -m pytest`, about 1.3 s).
+- Test suite: 252 tests, all passing (`.venv/bin/python -m pytest`, about 1.7 s),
+  also from a fresh clone of the GitHub repo.
 - Mutation check: 11 of 11 mutations caught (the 9 above, plus "atos output that
   does not line up" and "dSYM used without a UUID match").
 

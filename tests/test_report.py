@@ -94,7 +94,7 @@ def test_since_filter_excludes_undated_and_future(conn) -> None:
     add_report(conn, _copy("crasher-segv.ips", 2, "2026-10-28T00:00:00Z"))  # at as_of: excluded
     add_report(conn, _copy("crasher-segv.ips", 3, None))
     add_report(conn, _copy("crasher-segv.ips", 4, "2026-10-20T23:59:59Z"))  # before since
-    found, total, _ = clusters(conn, since=parse_since("7d", AS_OF), as_of=AS_OF)
+    found, total, _ = clusters(conn, since=parse_since("7d", AS_OF), until=AS_OF)
     assert total == 1 and found[0].incident_ids == ("00000000-0000-0000-0000-000000000001",)
     found, total, _ = clusters(conn)
     assert total == 4
@@ -130,3 +130,19 @@ def test_trend_as_of_is_an_exclusive_end(conn) -> None:
     # as_of exactly Monday 00:00: the last full week shown is the one before it.
     data = trend(conn, weeks=1, as_of=datetime(2026, 10, 26, tzinfo=UTC))
     assert data["weeks"] == ["2026-W43"] and data["rows"] == []
+
+
+def test_trend_undated_count_respects_process(conn) -> None:
+    add_report(conn, _copy("crasher-segv.ips", 1, None))
+    add_report(conn, _copy("crasher-trap.ips", 2, "2026-10-26T00:00:00Z"))
+    assert trend(conn, weeks=1, as_of=AS_OF, process="ct-crasher-trap")["undated_crashes"] == 0
+    assert trend(conn, weeks=1, as_of=AS_OF, process="ct-crasher-segv")["undated_crashes"] == 1
+    assert trend(conn, weeks=1, as_of=AS_OF)["undated_crashes"] == 1
+
+
+def test_until_alone_bounds_the_crashes(conn) -> None:
+    add_report(conn, _copy("crasher-segv.ips", 1, "2026-10-26T23:59:59Z"))
+    add_report(conn, _copy("crasher-segv.ips", 2, "2026-10-27T00:00:00Z"))
+    add_report(conn, _copy("crasher-segv.ips", 3, None))
+    _, total, _ = clusters(conn, until=datetime(2026, 10, 27, tzinfo=UTC))
+    assert total == 1

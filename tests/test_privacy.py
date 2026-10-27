@@ -98,6 +98,58 @@ def _tracked_text_files() -> list[Path]:
     return files
 
 
+REPORT_FOLDERS = [Path.home() / "Library" / "Logs" / "DiagnosticReports", Path("/Library/Logs/DiagnosticReports")]
+HEX_RUN = re.compile(r"\b[0-9a-f]{32,}\b")
+TEAM_ID = re.compile(r'"?(?:codeSigningTeamID|Team ID)"?\s*:\s*"?([A-Z0-9]{10})\b')
+
+
+def _normalize(text: str) -> str:
+    return text.lower().replace(":", "-")
+
+
+def _identifiers_in(text: str) -> set[str]:
+    """UUIDs, MAC addresses and long hex runs, lowercased, ':' written as '-'."""
+    text = _normalize(text)
+    found = set(UUID.findall(text)) | set(MAC.findall(text)) | set(HEX_RUN.findall(text))
+    return {v for v in found if not v.startswith("00000000-0000-0000-") and set(v) - {"0", "-"}}
+
+
+def _identifiers_from_this_macs_reports() -> tuple[set[str], set[str]]:
+    """Every UUID, MAC address, long hex id and team id in the real reports on this
+    machine (read-only). Empty where the folders do not exist or cannot be read."""
+    ids, team_ids = set(), set()
+    for folder in REPORT_FOLDERS:
+        for dirpath, _dirnames, filenames in os.walk(folder):
+            for name in filenames:
+                try:
+                    with open(os.path.join(dirpath, name), "rb") as fh:
+                        text = fh.read().decode("utf-8", errors="replace")
+                except OSError:
+                    continue
+                ids |= _identifiers_in(text)
+                team_ids |= {t.lower() for t in TEAM_ID.findall(text)}
+    return ids, team_ids
+
+
+def test_repo_has_no_identifiers_from_this_macs_reports() -> None:
+    """The check that matters most: nothing copied out of a real report (a device's
+    crashReporterKey, an incident id, a Bluetooth MAC, a build UUID) is in the repo,
+    in any file, test code included."""
+    ids, team_ids = _identifiers_from_this_macs_reports()
+    if not ids:
+        pytest.skip("no readable crash reports on this machine to compare against")
+    offenders = []
+    for path in _tracked_text_files():
+        try:
+            text = path.read_text(encoding="utf-8")
+        except (UnicodeDecodeError, OSError):
+            continue
+        lowered = text.lower()
+        leaked = (_identifiers_in(text) & ids) | {t for t in team_ids if t in lowered}
+        offenders += [f"{path.relative_to(REPO)}: {value[:8]}..." for value in sorted(leaked)]
+    assert offenders == []
+
+
 def test_repo_files_have_no_local_identifiers() -> None:
     identifiers = _local_identifiers()
     # The home folder path contains the login name, and NOTES/README may mention

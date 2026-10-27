@@ -61,7 +61,8 @@ def parse_bytes(data: bytes, path: str = "<memory>") -> CrashReport | Skipped:
     header_line, _, body_text = text.partition("\n")
     try:
         header = json.loads(header_line)
-    except json.JSONDecodeError:
+    except (ValueError, RecursionError):
+        # ValueError covers JSONDecodeError and integers past Python's digit limit.
         return Skipped(path, "not-ips", "first line is not a JSON header")
     if not isinstance(header, dict):
         return Skipped(path, "not-ips", "first line is JSON but not an object")
@@ -82,8 +83,16 @@ def parse_bytes(data: bytes, path: str = "<memory>") -> CrashReport | Skipped:
         body = json.loads(body_text)
     except json.JSONDecodeError as exc:
         return Skipped(path, "malformed", f"body is not valid JSON: {exc.msg} at line {exc.lineno + 1} column {exc.colno}")
+    except (ValueError, RecursionError) as exc:
+        return Skipped(path, "malformed", f"body is not usable JSON: {type(exc).__name__}: {str(exc)[:80]}")
     if not isinstance(body, dict):
         return Skipped(path, "malformed", "body is JSON but not an object")
+
+    if _SURROGATE_ESCAPE.search(text):
+        header, fixed_header = _replace_lone_surrogates(header)
+        body, fixed_body = _replace_lone_surrogates(body)
+        if fixed_header + fixed_body:
+            warnings.append(f"{fixed_header + fixed_body} string(s) had lone UTF-16 surrogates; replaced with U+FFFD")
 
     try:
         return _build(header, body, bug_type, sha256, warnings, path)
@@ -92,6 +101,31 @@ def parse_bytes(data: bytes, path: str = "<memory>") -> CrashReport | Skipped:
     except (TypeError, ValueError, AttributeError, KeyError, IndexError) as exc:
         # Defensive net: a shape the typed getters did not anticipate.
         return Skipped(path, "malformed", f"unexpected structure: {type(exc).__name__}: {exc}")
+
+
+_SURROGATE_ESCAPE = re.compile(r"\\u[dD][89a-fA-F][0-9a-fA-F]{2}")
+_LONE_SURROGATE = re.compile("[\ud800-\udfff]")
+
+
+def _replace_lone_surrogates(value: Any) -> tuple[Any, int]:
+    """JSON may escape half of a UTF-16 surrogate pair ("\\ud800"); Python decodes it
+    to a lone surrogate, which cannot be encoded as UTF-8 (SQLite and hashing would
+    fail). Replace each with U+FFFD and count the strings changed."""
+    if isinstance(value, str):
+        fixed = _LONE_SURROGATE.sub("\ufffd", value)
+        return fixed, int(fixed != value)
+    if isinstance(value, list):
+        items = [_replace_lone_surrogates(v) for v in value]
+        return [v for v, _ in items], sum(n for _, n in items)
+    if isinstance(value, dict):
+        count, out = 0, {}
+        for k, v in value.items():
+            new_k, n_k = _replace_lone_surrogates(k)
+            new_v, n_v = _replace_lone_surrogates(v)
+            out[new_k] = new_v
+            count += n_k + n_v
+        return out, count
+    return value, 0
 
 
 # --- typed getters -----------------------------------------------------------
@@ -156,9 +190,9 @@ def parse_timestamp(raw: str) -> str | None:
     for fmt in _TIME_FORMATS:
         try:
             moment = datetime.strptime(raw.strip(), fmt)
-        except ValueError:
+            return moment.astimezone(UTC).strftime("%Y-%m-%dT%H:%M:%SZ")
+        except (ValueError, OverflowError):  # OverflowError: year 9999 pushed past the end
             continue
-        return moment.astimezone(UTC).strftime("%Y-%m-%dT%H:%M:%SZ")
     return None
 
 

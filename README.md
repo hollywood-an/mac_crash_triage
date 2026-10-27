@@ -37,8 +37,8 @@ Every command takes `--json` for machine-readable output and `--db PATH`
 
 ## Example
 
-`crashtriage report` on the anonymized test fixtures (`tests/golden/report.md`,
-first rows):
+`crashtriage report` on the anonymized test fixtures (selected rows of
+`tests/golden/report.md`):
 
 | # | Count | Process | Exception | First seen (UTC) | Last seen (UTC) | Versions | Top frame | Fingerprint |
 |--:|--:|---|---|---|---|---|---|---|
@@ -124,8 +124,11 @@ to run, and the bug does not. The full rule, and why each step exists, is in
 - The database (`crashtriage.db`) stays local and is git-ignored. Real crash
   reports never enter this repo. The test fixtures are real reports passed
   through `python -m crashtriage.anonymize`, which replaces UUIDs, device and
-  signer ids, MAC addresses, emails, tokens, home folders and non-OS paths, and
-  `tests/test_privacy.py` re-checks every fixture and file on each test run.
+  signer ids, MAC addresses, emails, tokens, home folders and non-OS paths.
+  `tests/test_privacy.py` runs on every test run: it checks each fixture for
+  identifiers that were not anonymized, and checks every file in the repo (test
+  code included) for the login name, full name, hostname, home folder, and every
+  UUID, MAC address and device id found in this Mac's own crash reports.
 
 ## Limitations
 

@@ -15,7 +15,7 @@ from pathlib import Path
 
 import pytest
 
-from conftest import FIXTURES, REPO
+from conftest import FIXTURES, REPO, running_as_root
 from crashtriage.cli import main
 
 GOLDEN = Path(__file__).parent / "golden"
@@ -161,3 +161,50 @@ def test_ingest_of_a_missing_folder_reports_it(workdir, capsys) -> None:
 def test_module_entry_point_runs() -> None:
     result = subprocess.run([sys.executable, "-m", "crashtriage", "--version"], capture_output=True, text=True, cwd=REPO, check=True)
     assert result.stdout.startswith("crashtriage ")
+
+
+# --- found by the final review --------------------------------------------------------
+
+
+def test_as_of_alone_hides_later_crashes(workdir, capsys) -> None:
+    run(capsys, "ingest", "fixtures")
+    code, out, _ = run(capsys, "report", "--as-of", "2026-10-26")
+    assert code == 0
+    assert "3 crashes in 1 cluster (as of 2026-10-26)." in out  # only the dotnet crashes happened by then
+    assert "| 1 | 3 | dotnet |" in out
+
+
+@running_as_root
+def test_read_commands_work_on_a_read_only_database(workdir, capsys) -> None:
+    run(capsys, "ingest", "fixtures")
+    os.chmod("crashtriage.db", 0o444)
+    try:
+        for argv in (["report"], ["show", "bd6f08"], ["trend"]):
+            code, out, err = run(capsys, *argv)
+            assert (code, err) == (0, ""), argv
+        code, _, err = run(capsys, "ingest", "fixtures")
+        assert code == 1 and err.startswith("crashtriage: cannot use database crashtriage.db: ")
+    finally:
+        os.chmod("crashtriage.db", 0o644)
+
+
+@pytest.mark.parametrize(
+    ("content", "message"),
+    [
+        (b"this is not a database at all, just text" * 100, "crashtriage: cannot use database other.db: file is not a database\n"),
+        (None, "crashtriage: other.db is not a crashtriage database\n"),
+    ],
+    ids=["not-sqlite", "foreign-sqlite"],
+)
+def test_wrong_database_files_are_reported(workdir, capsys, content, message) -> None:
+    if content is None:
+        import sqlite3
+
+        foreign = sqlite3.connect("other.db")
+        foreign.execute("CREATE TABLE t (x)")
+        foreign.commit()
+        foreign.close()
+    else:
+        (workdir / "other.db").write_bytes(content)
+    code, out, err = run(capsys, "report", "--db", "other.db")
+    assert (code, out, err) == (1, "", message)

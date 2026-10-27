@@ -98,17 +98,23 @@ def clusters(
     conn: sqlite3.Connection,
     *,
     since: datetime | None = None,
-    as_of: datetime | None = None,
+    until: datetime | None = None,
     process: str | None = None,
     top: int | None = None,
 ) -> tuple[list[Cluster], int, int]:
     """Clusters ranked by count (then most recent, then fingerprint). Returns the
     clusters (cut to `top`), the number of crashes that matched the filters and the
-    number of clusters before the cut."""
+    number of clusters before the cut. `since` and `until` bound the crash time
+    (until is exclusive); with either one, crashes without a timestamp are left out."""
     where, params = [], []
+    if since is not None or until is not None:
+        where.append("timestamp IS NOT NULL")
     if since is not None:
-        where.append("timestamp IS NOT NULL AND timestamp >= ? AND timestamp < ?")
-        params += [_stamp(since), _stamp(as_of or datetime.now(UTC))]
+        where.append("timestamp >= ?")
+        params.append(_stamp(since))
+    if until is not None:
+        where.append("timestamp < ?")
+        params.append(_stamp(until))
     if process is not None:
         where.append("process_name = ? COLLATE NOCASE")
         params.append(process)
@@ -410,7 +416,11 @@ def trend(conn: sqlite3.Connection, *, weeks: int, as_of: datetime, process: str
         column = labels.index(week_label(moment))
         counts.setdefault(name, [0] * weeks)[column] += 1
     rows = sorted(counts.items(), key=lambda item: (-sum(item[1]), item[0]))
-    undated = conn.execute("SELECT COUNT(*) FROM incidents WHERE timestamp IS NULL").fetchone()[0]
+    undated_sql, undated_params = "SELECT COUNT(*) FROM incidents WHERE timestamp IS NULL", []
+    if process is not None:
+        undated_sql += " AND process_name = ? COLLATE NOCASE"
+        undated_params.append(process)
+    undated = conn.execute(undated_sql, undated_params).fetchone()[0]
     return {
         "weeks": labels,
         "window": {"start": _stamp(window_start), "end": _stamp(window_end)},

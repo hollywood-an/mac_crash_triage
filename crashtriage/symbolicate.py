@@ -86,6 +86,13 @@ def _thin_uuid(data: bytes, start: int) -> tuple[str, str]:
 
 def macho_uuids(data: bytes) -> list[tuple[str, str]]:
     """(uuid, arch) for every slice of a thin or universal (fat) Mach-O file."""
+    try:
+        return _macho_uuids(data)
+    except struct.error as exc:  # a header that ends early
+        raise MachOError(f"truncated Mach-O file: {exc}") from None
+
+
+def _macho_uuids(data: bytes) -> list[tuple[str, str]]:
     if len(data) < 8:
         raise MachOError("file too small")
     (magic,) = struct.unpack_from(">I", data, 0)
@@ -130,7 +137,7 @@ def find_dsyms(paths: Iterable[str | Path]) -> dict[str, DsymFile]:
                 add_file(os.path.join(dwarf, name))
 
     for path in paths:
-        path = str(path)
+        path = os.path.normpath(str(path))  # "X.dSYM/" (shell completion) -> "X.dSYM"
         if path.endswith(".dSYM") and os.path.isdir(path):
             add_bundle(path)
         elif os.path.isfile(path):

@@ -409,3 +409,47 @@ def test_parser_only_opens_files_for_reading(tmp_path, monkeypatch) -> None:
     parse_file(fixture_path("crasher-segv.ips"))
     assert modes == ["rb"]
     assert os.access(fixture_path("crasher-segv.ips"), os.R_OK)
+
+
+# --- found by the final review: inputs that used to raise -------------------------
+
+
+def test_integer_past_pythons_digit_limit_is_skipped_not_raised() -> None:
+    big = b"9" * 5000
+    assert parse_bytes(b'{"bug_type": "309", "x": ' + big + b"}\n{}").kind == "not-ips"
+    result = parse_bytes(b'{"bug_type": "309"}\n{"procName": "a", "x": ' + big + b"}")
+    assert (result.kind, result.reason.startswith("body is not usable JSON: ValueError")) == ("malformed", True)
+
+
+def test_timestamp_at_the_end_of_time_is_a_warning() -> None:
+    assert parse_timestamp("9999-12-31 23:59:59.00 -0100") is None
+    result = parse_bytes(_crash_doc({"procName": "demo", "captureTime": "9999-12-31 23:59:59.00 -0100"}))
+    assert isinstance(result, CrashReport) and result.timestamp is None
+    assert "unparseable or missing timestamp: '9999-12-31 23:59:59.00 -0100'" in result.warnings
+
+
+def test_lone_surrogate_escapes_are_replaced(tmp_path) -> None:
+    from crashtriage.fingerprint import fingerprint
+    from crashtriage.store import connect, ingest
+
+    body = (
+        b'{"procName": "demo\\ud800", "faultingThread": 0, "captureTime": "2026-10-27 12:00:00 +0000",'
+        b' "usedImages": [{"name": "demo", "path": "/x/demo"}],'
+        b' "threads": [{"triggered": true, "frames": [{"imageIndex": 0, "imageOffset": 1, "symbol": "f\\udc00"}]}]}'
+    )
+    raw = b'{"bug_type": "309", "incident_id": "x"}\n' + body
+    result = parse_bytes(raw)
+    assert isinstance(result, CrashReport)
+    assert result.process_name == "demo�" and result.faulting.frames[0].symbol == "f�"
+    assert result.warnings == ("2 string(s) had lone UTF-16 surrogates; replaced with U+FFFD",)
+    assert fingerprint(result).tokens == ("demo!f�",)
+    (tmp_path / "s.ips").write_bytes(raw)
+    conn = connect(tmp_path / "s.db")
+    assert ingest(conn, [tmp_path / "s.ips"]).added == 1
+    conn.close()
+
+
+def test_surrogate_pairs_are_not_touched() -> None:
+    result = parse_bytes(b'{"bug_type": "309", "incident_id": "x"}\n{"procName": "app \\ud83d\\ude00", "captureTime": "2026-10-27 12:00:00 +0000"}')
+    assert result.process_name == "app \U0001f600"
+    assert not any("surrogate" in w for w in result.warnings)

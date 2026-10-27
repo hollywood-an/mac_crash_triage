@@ -11,7 +11,6 @@ import pytest
 
 from conftest import CRASH_FIXTURES, FIXTURES, fixture_bytes, fixture_path
 from crashtriage.fingerprint import fingerprint
-from crashtriage.model import CrashReport
 from crashtriage.parser import parse_file
 from crashtriage.store import SchemaMismatch, add_report, connect, ingest, load_report, refingerprint, row_counts
 
@@ -140,7 +139,10 @@ def _snapshot(folder):
         for name in dirnames + filenames:
             path = os.path.join(dirpath, name)
             st = os.stat(path)
-            digest = hashlib.sha256(open(path, "rb").read()).hexdigest() if os.path.isfile(path) else None
+            digest = None
+            if os.path.isfile(path):
+                with open(path, "rb") as fh:
+                    digest = hashlib.sha256(fh.read()).hexdigest()
             state[path] = (st.st_mode, st.st_size, st.st_mtime_ns, digest)
     return state
 
@@ -149,7 +151,7 @@ def _snapshot(folder):
 def test_ingest_never_writes_to_the_input_folders(conn, tmp_path) -> None:
     source = tmp_path / "DiagnosticReports"
     shutil.copytree(FIXTURES, source)
-    for dirpath, dirnames, filenames in os.walk(source):
+    for dirpath, _dirnames, filenames in os.walk(source):
         for name in filenames:
             os.chmod(os.path.join(dirpath, name), 0o444)
     os.chmod(source, 0o555)

@@ -103,8 +103,12 @@ class SchemaMismatch(Exception):
     pass
 
 
-def connect(path: str | Path) -> sqlite3.Connection:
-    """Open (or create) a crashtriage database."""
+def connect(path: str | Path, *, readonly: bool = False) -> sqlite3.Connection:
+    """Open (or create) a crashtriage database. With readonly=True the file is opened
+    with SQLite's mode=ro, nothing is created or migrated, and a database that is not
+    a crashtriage database (or needs re-fingerprinting) raises SchemaMismatch."""
+    if readonly:
+        return _connect_readonly(path)
     conn = sqlite3.connect(str(path))
     conn.row_factory = sqlite3.Row
     conn.execute("PRAGMA foreign_keys = ON")
@@ -113,12 +117,33 @@ def connect(path: str | Path) -> sqlite3.Connection:
         conn.execute("INSERT OR IGNORE INTO meta (key, value) VALUES ('schema_version', ?)", (SCHEMA_VERSION,))
         conn.execute("INSERT OR IGNORE INTO meta (key, value) VALUES ('fingerprint_version', ?)", (FINGERPRINT_VERSION,))
     meta = dict(conn.execute("SELECT key, value FROM meta").fetchall())
-    if meta["schema_version"] != SCHEMA_VERSION:
-        raise SchemaMismatch(f"database schema {meta['schema_version']}, this tool writes {SCHEMA_VERSION}")
-    if meta["fingerprint_version"] != FINGERPRINT_VERSION:
+    if meta.get("schema_version") != SCHEMA_VERSION:
+        conn.close()
+        raise SchemaMismatch(f"database schema {meta.get('schema_version')}, this tool writes {SCHEMA_VERSION}")
+    if meta.get("fingerprint_version") != FINGERPRINT_VERSION:
         refingerprint(conn)
         with conn:
             conn.execute("UPDATE meta SET value = ? WHERE key = 'fingerprint_version'", (FINGERPRINT_VERSION,))
+    return conn
+
+
+def _connect_readonly(path: str | Path) -> sqlite3.Connection:
+    conn = sqlite3.connect(Path(path).resolve().as_uri() + "?mode=ro", uri=True)
+    conn.row_factory = sqlite3.Row
+    try:
+        meta = dict(conn.execute("SELECT key, value FROM meta").fetchall())
+    except sqlite3.OperationalError:
+        conn.close()
+        raise SchemaMismatch(f"{path} is not a crashtriage database") from None
+    except sqlite3.Error:
+        conn.close()
+        raise
+    if meta.get("schema_version") != SCHEMA_VERSION:
+        conn.close()
+        raise SchemaMismatch(f"database schema {meta.get('schema_version')}, this tool reads {SCHEMA_VERSION}")
+    if meta.get("fingerprint_version") != FINGERPRINT_VERSION:
+        conn.close()
+        raise SchemaMismatch("the database was fingerprinted by an older rule; run `crashtriage ingest` once to update it")
     return conn
 
 

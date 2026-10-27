@@ -13,6 +13,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import sqlite3
 import sys
 from collections import Counter
 from typing import Any
@@ -32,8 +33,8 @@ from .report import (
     show_json,
     trend,
 )
+from . import symbolicate as symbolication
 from .store import SchemaMismatch, connect, ingest, row_counts
-from .symbolicate import atos_path, find_dsyms, symbolicate_stored
 
 # Skips worth listing file by file; the rest are expected and only counted.
 _LISTED_KINDS = ("permission", "unreadable", "malformed")
@@ -99,6 +100,9 @@ def main(argv: list[str] | None = None) -> int:
     except SchemaMismatch as exc:
         _error(str(exc))
         return 1
+    except sqlite3.Error as exc:
+        _error(f"cannot use database {args.db}: {exc}")
+        return 1
     except BrokenPipeError:  # e.g. `crashtriage report | head`
         sys.stderr.close()
         return 0
@@ -124,17 +128,17 @@ def _ingest(args: argparse.Namespace) -> int:
     folders = args.folders or [str(p) for p in default_folders()]
     dsyms = None
     if args.symbolicate:
-        if atos_path() is None:
+        if symbolication.atos_path() is None:
             _error("--symbolicate needs atos (install the Xcode command line tools)")
             return 1
-        dsyms = find_dsyms(args.symbolicate)
+        dsyms = symbolication.find_dsyms(args.symbolicate)
         if not dsyms:
             _error("no dSYM found under " + ", ".join(args.symbolicate))
             return 1
     conn = connect(args.db)
     try:
         result = ingest(conn, folders)
-        symbolicated = symbolicate_stored(conn, dsyms) if dsyms else None
+        symbolicated = symbolication.symbolicate_stored(conn, dsyms) if dsyms else None
         stored = row_counts(conn)["incidents"]
     finally:
         conn.close()
@@ -200,9 +204,11 @@ def _report(args: argparse.Namespace, parser: argparse.ArgumentParser) -> int:
         since = parse_since(args.since, as_of) if args.since else None
     except ValueError as exc:
         parser.error(str(exc))
-    conn = connect(args.db)
+    conn = connect(args.db, readonly=True)
     try:
-        found, total, total_clusters = clusters(conn, since=since, as_of=as_of, process=args.process, top=args.top)
+        # --as-of means "treat this time as now", so it also hides later crashes.
+        until = as_of if (args.as_of or args.since) else None
+        found, total, total_clusters = clusters(conn, since=since, until=until, process=args.process, top=args.top)
     finally:
         conn.close()
     described = []
@@ -218,7 +224,7 @@ def _report(args: argparse.Namespace, parser: argparse.ArgumentParser) -> int:
 
 
 def _show(args: argparse.Namespace) -> int:
-    conn = connect(args.db)
+    conn = connect(args.db, readonly=True)
     try:
         try:
             incident_id, size = resolve(conn, args.id)
@@ -238,7 +244,7 @@ def _trend(args: argparse.Namespace, parser: argparse.ArgumentParser) -> int:
         as_of = parse_as_of(args.as_of)
     except ValueError as exc:
         parser.error(str(exc))
-    conn = connect(args.db)
+    conn = connect(args.db, readonly=True)
     try:
         data = trend(conn, weeks=args.weeks, as_of=as_of, process=args.process)
     finally:
