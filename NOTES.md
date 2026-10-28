@@ -499,8 +499,17 @@ slipped through.
   test file in a scratch copy, it failed and listed all of them.
 - A full scan of `git log -p` against all 1,663 identifiers in the local reports
   (1,642 UUIDs, 1 MAC address, 19 long hex ids, 1 team id) found these values and
-  nothing else; removing them from the published history
-  needs a history rewrite and force-push, which is the repo owner's call.
+  nothing else.
+- With the owner's approval, the history was rewritten with `git filter-repo
+  --replace-text` (each value swapped for the same synthetic value the tests now
+  use) and force-pushed. The final file tree was byte-identical before and after
+  (same tree hash); the rewritten Phase 1 and Phase 5 commits still pass their own
+  tests (115 and 238) in a plain checkout; a re-scan of the new history against
+  every identifier in the local reports (3,078 by then) found none. GitHub may keep
+  serving the old commits by direct SHA until it garbage-collects them.
+- Running the tests from a git worktree briefly tripped the repo-wide scan: a
+  worktree's `.git` is a file holding its absolute path, which can contain the login
+  name. The scan now skips `.git` whether it is a file or a folder.
 
 ### Bugs
 
