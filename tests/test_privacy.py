@@ -92,7 +92,8 @@ def _tracked_text_files() -> list[Path]:
         dirnames[:] = [d for d in dirnames if d not in skip_dirs and not d.endswith((".dSYM", ".noindex"))]
         for name in filenames:
             path = Path(dirpath) / name
-            if path.suffix in {".db", ".pyc"} or name == "RESUME_BULLETS.md":
+            # A git worktree has a .git *file* that records where it lives on disk.
+            if path.suffix in {".db", ".pyc"} or name in {"RESUME_BULLETS.md", ".git"}:
                 continue
             files.append(path)
     return files
